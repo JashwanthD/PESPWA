@@ -85,7 +85,7 @@ pipeline {
                 echo "=== Building Docker images ==="
                 withCredentials([file(credentialsId: 'pesce-env-file', variable: 'ENV_FILE')]) {
                     powershell '''
-                        Copy-Item $env:ENV_FILE -Destination "Lango\\Lango\\Langraph\\.env.docker" -Force
+                        Copy-Item $env:ENV_FILE -Destination "Lango\\Lango\\Langraph\\.env" -Force
                     '''
                 }
                 bat """
@@ -100,7 +100,7 @@ pipeline {
             post {
                 always {
                     powershell '''
-                        Remove-Item -Path "Lango\\Lango\\Langraph\\.env.docker" -Force -ErrorAction SilentlyContinue
+                        Remove-Item -Path "Lango\\Lango\\Langraph\\.env" -Force -ErrorAction SilentlyContinue
                     '''
                 }
             }
@@ -112,7 +112,7 @@ pipeline {
                 echo "=== Running smoke tests against containers ==="
                 withCredentials([file(credentialsId: 'pesce-env-file', variable: 'ENV_FILE')]) {
                     powershell '''
-                        Copy-Item $env:ENV_FILE -Destination "Lango\\Lango\\Langraph\\.env.test" -Force
+                        Copy-Item $env:ENV_FILE -Destination "Lango\\Lango\\Langraph\\.env" -Force
 
                         # Start backend only for smoke test
                         docker compose run --rm -d `
@@ -158,7 +158,7 @@ pipeline {
                     powershell '''
                         docker stop pesce-smoke-backend 2>$null
                         docker rm   pesce-smoke-backend 2>$null
-                        Remove-Item -Path "Lango\\Lango\\Langraph\\.env.test" -Force -ErrorAction SilentlyContinue
+                        Remove-Item -Path "Lango\\Lango\\Langraph\\.env" -Force -ErrorAction SilentlyContinue
                     '''
                 }
             }
