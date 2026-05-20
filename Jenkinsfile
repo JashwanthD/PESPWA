@@ -71,7 +71,7 @@ pipeline {
                 echo "=== Running ESLint ==="
                 dir('pesce-insight-nexus-main/pesce-insight-nexus-main') {
                     bat '''
-                        npm ci --prefer-offline
+                        npm install --prefer-offline
                         npm run lint
                         exit /b 0
                     '''
