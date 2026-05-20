@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────
-// PESCE Intelligence — Jenkins Declarative Pipeline
+// PESCE Intelligence — Jenkins Declarative Pipeline (Windows)
 // ─────────────────────────────────────────────────────────────
 // Prerequisites in Jenkins:
 //   1. Install plugins: Docker Pipeline, Pipeline, Credentials Binding
@@ -7,6 +7,7 @@
 //      - ID: "pesce-env-file"    → Secret File  (.env with all API keys)
 //      - ID: "dockerhub-creds"  → Username/Password (Docker Hub login)
 //   3. Ensure Jenkins agent has Docker + Docker Compose v2 installed
+//   4. Jenkins running on Windows — uses 'bat' / 'powershell' (NOT 'sh')
 // ─────────────────────────────────────────────────────────────
 
 pipeline {
@@ -41,10 +42,10 @@ pipeline {
                 echo "=== Checking out source ==="
                 checkout scm
                 script {
-                    env.GIT_COMMIT_SHORT = sh(
+                    env.GIT_COMMIT_SHORT = bat(
                         script: "git rev-parse --short HEAD",
                         returnStdout: true
-                    ).trim()
+                    ).trim().readLines().last()
                     echo "Building commit: ${env.GIT_COMMIT_SHORT}"
                 }
             }
@@ -55,9 +56,10 @@ pipeline {
             steps {
                 echo "=== Running Python tests ==="
                 dir('Lango/Lango/Langraph') {
-                    sh '''
+                    bat '''
                         python -m pip install --quiet pytest
-                        python -m pytest test_schema.py -v --tb=short || true
+                        python -m pytest test_schema.py -v --tb=short
+                        exit /b 0
                     '''
                 }
             }
@@ -68,9 +70,10 @@ pipeline {
             steps {
                 echo "=== Running ESLint ==="
                 dir('pesce-insight-nexus-main/pesce-insight-nexus-main') {
-                    sh '''
+                    bat '''
                         npm ci --prefer-offline
-                        npm run lint || true
+                        npm run lint
+                        exit /b 0
                     '''
                 }
             }
@@ -80,26 +83,25 @@ pipeline {
         stage('Build Images') {
             steps {
                 echo "=== Building Docker images ==="
-                // Inject the .env file for context (not baked in, just for validation)
                 withCredentials([file(credentialsId: 'pesce-env-file', variable: 'ENV_FILE')]) {
-                    sh "cp \$ENV_FILE Lango/Lango/Langraph/.env.docker"
+                    powershell '''
+                        Copy-Item $env:ENV_FILE -Destination "Lango\\Lango\\Langraph\\.env.docker" -Force
+                    '''
                 }
-                sh """
-                    docker compose build \
-                        --no-cache \
-                        --build-arg BUILD_NUMBER=${IMAGE_TAG}
-                    
-                    # Tag with build number
-                    docker tag pesce-backend:latest  ${BACKEND_IMAGE}:${IMAGE_TAG}
-                    docker tag pesce-backend:latest  ${BACKEND_IMAGE}:latest
-                    docker tag pesce-frontend:latest ${FRONTEND_IMAGE}:${IMAGE_TAG}
-                    docker tag pesce-frontend:latest ${FRONTEND_IMAGE}:latest
+                bat """
+                    docker compose build --no-cache --build-arg BUILD_NUMBER=%IMAGE_TAG%
+
+                    docker tag pesce-backend:latest  %BACKEND_IMAGE%:%IMAGE_TAG%
+                    docker tag pesce-backend:latest  %BACKEND_IMAGE%:latest
+                    docker tag pesce-frontend:latest %FRONTEND_IMAGE%:%IMAGE_TAG%
+                    docker tag pesce-frontend:latest %FRONTEND_IMAGE%:latest
                 """
             }
             post {
                 always {
-                    // Clean up temp env file
-                    sh 'rm -f Lango/Lango/Langraph/.env.docker || true'
+                    powershell '''
+                        Remove-Item -Path "Lango\\Lango\\Langraph\\.env.docker" -Force -ErrorAction SilentlyContinue
+                    '''
                 }
             }
         }
@@ -109,41 +111,54 @@ pipeline {
             steps {
                 echo "=== Running smoke tests against containers ==="
                 withCredentials([file(credentialsId: 'pesce-env-file', variable: 'ENV_FILE')]) {
-                    sh """
-                        cp \$ENV_FILE Lango/Lango/Langraph/.env.test
+                    powershell '''
+                        Copy-Item $env:ENV_FILE -Destination "Lango\\Lango\\Langraph\\.env.test" -Force
 
                         # Start backend only for smoke test
-                        COMPOSE_ENV_FILE=Lango/Lango/Langraph/.env.test \
-                        docker compose run --rm -d \
-                            --name pesce-smoke-backend \
-                            -p 18001:8001 \
+                        docker compose run --rm -d `
+                            --name pesce-smoke-backend `
+                            -p 18001:8001 `
                             backend
 
                         # Wait for health check (up to 45s)
-                        for i in \$(seq 1 15); do
-                            if curl -sf http://localhost:18001/health; then
-                                echo "Backend healthy!"
-                                break
-                            fi
-                            echo "Waiting for backend... (\$i/15)"
-                            sleep 3
-                        done
+                        $healthy = $false
+                        for ($i = 1; $i -le 15; $i++) {
+                            try {
+                                $resp = Invoke-WebRequest -Uri "http://localhost:18001/health" -UseBasicParsing -TimeoutSec 3
+                                if ($resp.StatusCode -eq 200) {
+                                    Write-Host "Backend healthy!"
+                                    $healthy = $true
+                                    break
+                                }
+                            } catch {
+                                Write-Host "Waiting for backend... ($i/15)"
+                                Start-Sleep -Seconds 3
+                            }
+                        }
+
+                        if (-not $healthy) {
+                            Write-Host "Backend did not become healthy in time!"
+                            exit 1
+                        }
 
                         # Verify health endpoint returns expected JSON
-                        HEALTH=\$(curl -s http://localhost:18001/health)
-                        echo "Health response: \$HEALTH"
-                        echo "\$HEALTH" | grep -q '"status":"healthy"' || exit 1
+                        $health = (Invoke-WebRequest -Uri "http://localhost:18001/health" -UseBasicParsing).Content
+                        Write-Host "Health response: $health"
+                        if ($health -notmatch '"status":"healthy"') {
+                            Write-Host "Health check response invalid!"
+                            exit 1
+                        }
 
-                        echo "All smoke tests passed!"
-                    """
+                        Write-Host "All smoke tests passed!"
+                    '''
                 }
             }
             post {
                 always {
-                    sh '''
-                        docker stop pesce-smoke-backend 2>/dev/null || true
-                        docker rm pesce-smoke-backend 2>/dev/null || true
-                        rm -f Lango/Lango/Langraph/.env.test || true
+                    powershell '''
+                        docker stop pesce-smoke-backend 2>$null
+                        docker rm   pesce-smoke-backend 2>$null
+                        Remove-Item -Path "Lango\\Lango\\Langraph\\.env.test" -Force -ErrorAction SilentlyContinue
                     '''
                 }
             }
@@ -165,16 +180,16 @@ pipeline {
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
-                    sh """
-                        echo \$DOCKER_PASS | docker login -u \$DOCKER_USER --password-stdin
+                    powershell '''
+                        $env:DOCKER_PASS | docker login -u $env:DOCKER_USER --password-stdin
 
-                        docker push ${BACKEND_IMAGE}:${IMAGE_TAG}
-                        docker push ${BACKEND_IMAGE}:latest
-                        docker push ${FRONTEND_IMAGE}:${IMAGE_TAG}
-                        docker push ${FRONTEND_IMAGE}:latest
+                        docker push "$env:BACKEND_IMAGE`:$env:IMAGE_TAG"
+                        docker push "$env:BACKEND_IMAGE`:latest"
+                        docker push "$env:FRONTEND_IMAGE`:$env:IMAGE_TAG"
+                        docker push "$env:FRONTEND_IMAGE`:latest"
 
                         docker logout
-                    """
+                    '''
                 }
             }
         }
@@ -190,19 +205,18 @@ pipeline {
             steps {
                 echo "=== Deploying stack with Docker Compose ==="
                 withCredentials([file(credentialsId: 'pesce-env-file', variable: 'ENV_FILE')]) {
-                    sh """
-                        cp \$ENV_FILE Lango/Lango/Langraph/.env
+                    powershell '''
+                        Copy-Item $env:ENV_FILE -Destination "Lango\\Lango\\Langraph\\.env" -Force
 
-                        # Pull latest images (already tagged above)
-                        # Then (re)create containers with zero-downtime recreate
+                        # (Re)create containers with latest images
                         docker compose up -d --remove-orphans
 
-                        # Wait for both containers to be healthy
-                        echo "Waiting for services to be healthy..."
-                        sleep 20
+                        # Wait for services to stabilise
+                        Write-Host "Waiting for services to be healthy..."
+                        Start-Sleep -Seconds 20
 
                         docker compose ps
-                    """
+                    '''
                 }
             }
         }
@@ -213,7 +227,7 @@ pipeline {
         success {
             echo """
 ╔══════════════════════════════════════════════════════╗
-║  ✅ BUILD SUCCEEDED                                  ║
+║  BUILD SUCCEEDED                                     ║
 ║  Commit : ${env.GIT_COMMIT_SHORT ?: 'N/A'}          ║
 ║  Build  : #${env.BUILD_NUMBER}                       ║
 ║  Images : ${BACKEND_IMAGE}:${IMAGE_TAG}              ║
@@ -223,11 +237,11 @@ pipeline {
 """
         }
         failure {
-            echo "❌ BUILD FAILED — Check console output above for details."
+            echo "BUILD FAILED — Check console output above for details."
         }
         always {
             // Clean up dangling images to reclaim disk space
-            sh 'docker image prune -f || true'
+            bat 'docker image prune -f'
             echo "Build #${env.BUILD_NUMBER} complete."
         }
     }
