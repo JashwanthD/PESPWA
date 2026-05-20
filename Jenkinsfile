@@ -89,7 +89,7 @@ pipeline {
                     '''
                 }
                 bat """
-                    docker compose build --no-cache --build-arg BUILD_NUMBER=%IMAGE_TAG%
+                    docker compose build --build-arg BUILD_NUMBER=%IMAGE_TAG%
 
                     docker tag pesce-backend:latest  %BACKEND_IMAGE%:%IMAGE_TAG%
                     docker tag pesce-backend:latest  %BACKEND_IMAGE%:latest

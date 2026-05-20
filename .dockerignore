@@ -1,12 +1,13 @@
 # ── Python cache ─────────────────────────────────────────────
 __pycache__/
+**/__pycache__/
 *.py[cod]
 *.pyo
 *.pyd
 .Python
 *.egg-info/
-dist/
 build/
+**/build/
 *.egg
 
 # ── Virtual environments ──────────────────────────────────────
@@ -14,6 +15,7 @@ build/
 venv/
 env/
 ENV/
+**/node_modules/
 
 # ── Secrets / environment ─────────────────────────────────────
 .env
@@ -47,3 +49,8 @@ Thumbs.db
 # ── Docs / misc ───────────────────────────────────────────────
 *.md
 *.zip
+*.war
+
+# ── Jenkins ───────────────────────────────────────────────────
+jenkins-home/
+jenkins.war
