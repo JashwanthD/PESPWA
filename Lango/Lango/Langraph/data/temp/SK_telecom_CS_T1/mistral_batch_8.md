@@ -1,0 +1,7 @@
+```markdown
+| ID  | Category         | A/C      | Parameter               | Research Output / Data                                                                                                                                                                                                 |
+|-----|------------------|----------|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 161 | Values Alignment | Atomic   | Mission clarity         | T1 Entertainment & Sports' mission is to lead the global esports industry by fostering competitive excellence, innovation, and community engagement, with a focus on expanding its brand through gaming culture, content, and merchandise. |
+| 162 | Values Alignment | Composite| Sustainability and CSR  | Commitment to ESG initiatives through SK Telecom’s integrated data platform; Expansion of startup collaboration via SKTCH to drive innovation; Publication of annual ESG reports (2021-2025) to track progress.                     |
+| 163 | Values Alignment | Atomic   | Crisis behavior         | Not Found                                                                                                                                                                                                            |
+```

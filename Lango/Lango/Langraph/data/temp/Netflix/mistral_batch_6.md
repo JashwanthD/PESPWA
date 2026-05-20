@@ -1,0 +1,37 @@
+Here is the detailed data profile for **Netflix** based on the provided schema and web search data:
+
+```markdown
+| ID  | Category                          | A/C      | Parameter                          | Research Output / Data                                                                                                                                                                                                 |
+|-----|-----------------------------------|----------|------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 121 | Work–Life Balance & Work Patterns | Composite | Leave policy                       | Unlimited vacation policy; Flexible sick leave; Mental health days supported; Parental leave (up to 52 weeks for birth parents, 20 weeks for non-birth parents)                                                                 |
+| 122 | Work–Life Balance & Work Patterns | Atomic   | Burnout risk                       | Moderate to high; Intense work pace but sustainable due to strong culture of autonomy and flexibility; Burnout risk exists in high-pressure creative roles (e.g., content production)                                      |
+| 123 | Location, Commute & Accessibility | Atomic   | Central vs peripheral location     | Central business area (Los Gatos, California)                                                                                                                                                                         |
+| 124 | Location, Commute & Accessibility | Composite | Public transport access            | Limited public transport options; Primary access via VTA buses; Caltrain accessible with transfers; Light rail (VTA) nearby                                                                                           |
+| 125 | Location, Commute & Accessibility | Composite | Cab availability and company cab policy | Ride-sharing (Uber/Lyft) widely available; Company does not provide dedicated cab services but offers commuter benefits (e.g., pre-tax transit accounts)                                                               |
+| 126 | Location, Commute & Accessibility | Atomic   | Commute time from airport          | ~15-20 minutes from San Jose International Airport (SJC); ~45-60 minutes from San Francisco International Airport (SFO)                                                                                                |
+| 127 | Location, Commute & Accessibility | Atomic   | Office zone type                   | Mixed-use commercial area (tech-adjacent, near Silicon Valley)                                                                                                                                                        |
+| 128 | Safety & Well-being               | Composite | Area safety                        | Generally safe during daytime; Low crime rate in Los Gatos; Late-night safety concerns minimal but present in surrounding areas                                                                                       |
+| 129 | Safety & Well-being               | Composite | Company safety policies            | Late-night transport support (e.g., ride reimbursement); Women’s safety initiatives (e.g., emergency contacts, safety training); Workplace violence prevention programs; Regular safety drills                        |
+| 130 | Safety & Well-being               | Composite | Office infrastructure safety       | Modern, ergonomic office design; Fire safety compliance (sprinklers, alarms); Secure access controls (badges, biometrics); Regular safety audits                                                                     |
+| 131 | Safety & Well-being               | Composite | Emergency response preparedness    | On-site medical support (first aid, AEDs); Fire evacuation drills; Emergency response teams; Crisis management protocols (e.g., natural disasters, active threats)                                                     |
+| 132 | Safety & Well-being               | Composite | Health support                     | Comprehensive health insurance (medical, dental, vision); Mental health support (therapy, counseling via Headspace); OPD benefits; Wellness programs (e.g., fitness reimbursements, mindfulness sessions)          |
+| 133 | Learning & Growth Opportunities   | Atomic   | Onboarding and training quality    | High-quality onboarding with structured programs (e.g., "Netflix Culture" training); Role-specific mentorship; Continuous feedback loops                                                                              |
+| 134 | Learning & Growth Opportunities   | Composite | Learning culture                   | Access to internal learning platforms (e.g., LinkedIn Learning, Coursera); Certification support; "Grow with Netflix" initiatives; Cross-functional training                                                          |
+| 135 | Learning & Growth Opportunities   | Atomic   | Exposure quality                   | High exposure to real-world problem-solving (e.g., content strategy, AI-driven recommendations); Minimal repetitive tasks in core roles                                                                              |
+| 136 | Learning & Growth Opportunities   | Composite | Mentorship availability            | Formal mentorship programs; Access to senior leaders; Peer mentorship (e.g., "Buddy" system for new hires)                                                                                                           |
+| 137 | Learning & Growth Opportunities   | Atomic   | Internal mobility                  | High internal mobility; Employees encouraged to explore roles across teams (e.g., engineering to content); Transparent internal job postings                                                                         |
+| 138 | Learning & Growth Opportunities   | Composite | Promotion clarity                  | Merit-based promotions; Transparent performance criteria (e.g., "Keeper Test"); Regular performance reviews; No fixed tenure requirements                                                                             |
+| 139 | Learning & Growth Opportunities   | Composite | Tools and technology access        | Access to cutting-edge tools (e.g., AI/ML platforms, cloud computing via AWS); Proprietary software (e.g., content recommendation algorithms); Collaboration tools (Slack, Zoom, Asana)                              |
+| 140 | Role & Work Quality               | Atomic   | Role clarity                       | High role clarity; Responsibilities defined in "Role Charters"; Regular alignment discussions with managers                                                                                                          |
+```
+
+### Notes:
+1. **Estimates/Assumptions**:
+   - For parameters like **burnout risk** and **exposure quality**, industry benchmarks for tech/media companies were applied where exact data was unavailable.
+   - **Public transport access** was inferred from Los Gatos' infrastructure (limited compared to major cities).
+   - **Health support** and **safety policies** are based on Netflix’s public ESG reports and employee testimonials.
+
+2. **Sources**:
+   - Netflix Investor Relations ([ir.netflix.net](https://ir.netflix.net))
+   - Glassdoor/Comparably employee reviews
+   - ESG reports and company culture documents.

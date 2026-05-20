@@ -1,0 +1,7 @@
+```markdown
+| ID  | Category         | A/C      | Parameter               | Research Output / Data                                                                                                                                                                                                 |
+|-----|------------------|----------|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 161 | Values Alignment  | Atomic   | Mission clarity         | Blinkit's mission is to revolutionize grocery shopping through quick commerce, offering ultra-fast deliveries (as little as 10 minutes) to provide convenience and efficiency for urban consumers in India.                     |
+| 162 | Values Alignment  | Composite| Sustainability and CSR  | Commitment to reducing carbon footprint through optimized delivery routes; Partnerships with local farmers and suppliers to promote sustainable sourcing; Initiatives to minimize plastic waste in packaging.                     |
+| 163 | Values Alignment  | Atomic   | Crisis behavior         | During the COVID-19 pandemic, Blinkit pivoted to an inventory-based model to ensure supply chain resilience, prioritized safety protocols for delivery personnel, and expanded services to meet increased demand for essential goods. |
+```

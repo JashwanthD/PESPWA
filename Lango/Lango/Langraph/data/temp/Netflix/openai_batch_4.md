@@ -1,0 +1,24 @@
+```markdown
+| ID  | Category          | A/C     | Parameter                                         | Research Output / Data                                                                                     |
+|-----|-------------------|---------|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| 81  | Innovation        | Composite | Intellectual Property                             | Trademarks: "Netflix", "Stranger Things", "House of Cards"; Patents: Streaming technology; Original content rights |
+| 82  | Innovation        | Atomic  | R&D Investment                                    | Estimated at 5% of revenue, approximately $1.5 billion based on 2022 revenue of $30 billion                |
+| 83  | Innovation        | Atomic  | AI/ML Adoption Level                              | High; Uses AI for content recommendations, user engagement analytics, and personalized marketing strategies   |
+| 84  | Operations        | Composite | Tech Stack/Tools Used                            | AWS; Microsoft Azure; Google Cloud; Custom-built streaming platform; Data analytics tools                   |
+| 85  | Operations        | Composite | Cybersecurity Posture                            | Certifications: ISO 27001; Breach history: No major breaches reported; Regular security audits conducted     |
+| 86  | Operations        | Composite | Supply Chain Dependencies                         | Content licensing agreements; Cloud service providers; Data centers; Payment processing partners; Device manufacturers |
+| 87  | Operations        | Composite | Geopolitical Risks                               | Regulatory changes in streaming laws; Tariffs on content imports; Data privacy regulations                   |
+| 88  | Operations        | Composite | Macro Risks                                      | Economic downturns affecting subscription growth; Competition from new streaming services; Global pandemic impacts |
+| 89  | People & Talent   | Composite | Diversity Metrics                                 | 47% of workforce are women; 30% of leadership roles held by women; DEI initiatives include mentorship programs |
+| 90  | People & Talent   | Atomic  | Remote Work Policy                                | 50% remote; Productivity impact: Increased flexibility leading to higher employee satisfaction               |
+| 91  | People & Talent   | Atomic  | Training/Development Spend                        | Estimated at $100 million annually for employee training and development programs                            |
+| 92  | Market            | Composite | Partnership Ecosystem                             | Partnerships with Disney; Sony; Universal; Strategic alliances with telecom companies for bundled services   |
+| 93  | Market            | Composite | Exit Strategy/History                            | IPO in 2002; Acquisitions: Millarworld (2017); No recent mergers reported                                   |
+| 94  | Sustainability    | Atomic  | Carbon Footprint/Environmental Impact            | Estimated carbon footprint: 1.1 million metric tons CO2 equivalent annually                                  |
+| 95  | Sustainability    | Composite | Ethical Sourcing Practices                        | Content produced with sustainable practices; Partnerships with organizations promoting diversity in media; Commitment to reducing carbon emissions |
+| 96  | Benchmarking      | Composite | Benchmark vs. Peers                              | Revenue growth rate compared to Hulu; Subscriber growth compared to Amazon Prime; Content library size compared to Disney+ |
+| 97  | Forecasting       | Atomic  | Future Projections                                | Projected revenue growth of 10% annually over the next 3 years                                             |
+| 98  | Forecasting       | Composite | Strategic Priorities                              | Expanding international markets; Increasing original content production; Enhancing user experience through technology |
+| 99  | Network           | Composite | Industry Associations / Memberships               | Member of the Motion Picture Association; Participation in the National Association of Broadcasters; Active in the Streaming Video Alliance |
+| 100 | Proof Points      | Composite | Case Studies / Public Success Stories            | "The Queen's Gambit" success story; "Stranger Things" marketing campaign; "Bridgerton" cultural impact; [Netflix Case Studies](https://www.netflix.com) |
+```

@@ -1,0 +1,74 @@
+# ─────────────────────────────────────────────────────────────
+# PESCE Intelligence — Docker Compose (Production)
+# ─────────────────────────────────────────────────────────────
+# Usage:
+#   docker compose up --build -d
+#   docker compose logs -f
+#   docker compose down
+# ─────────────────────────────────────────────────────────────
+
+services:
+
+  # ── FastAPI / LangGraph Backend ───────────────────────────
+  backend:
+    build:
+      context: .                        # workspace root
+      dockerfile: Dockerfile.backend
+    image: pesce-backend:latest
+    container_name: pesce-backend
+    restart: unless-stopped
+    env_file:
+      - Lango/Lango/Langraph/.env       # API keys — never baked into image
+    environment:
+      PYTHONUNBUFFERED: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+    volumes:
+      # Persist generated JSON files across container restarts
+      - output_data:/app/output
+    networks:
+      - pesce-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    expose:
+      - "8001"                          # internal only — frontend proxies through Nginx
+
+  # ── Vite PWA + Nginx Frontend ─────────────────────────────
+  frontend:
+    build:
+      context: .                        # workspace root
+      dockerfile: Dockerfile.frontend
+    image: pesce-frontend:latest
+    container_name: pesce-frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy      # wait for backend health check to pass
+    volumes:
+      # Share output JSON with Nginx so /output/* files are served fresh
+      - output_data:/usr/share/nginx/html/output:ro
+    ports:
+      - "3000:80"                       # http://localhost:3000 → Nginx :80
+    networks:
+      - pesce-net
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost/"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+# ── Volumes ────────────────────────────────────────────────
+volumes:
+  output_data:
+    driver: local
+    name: pesce_output_data             # named volume — survives docker compose down
+
+# ── Networks ───────────────────────────────────────────────
+networks:
+  pesce-net:
+    driver: bridge
+    name: pesce-intelligence-network

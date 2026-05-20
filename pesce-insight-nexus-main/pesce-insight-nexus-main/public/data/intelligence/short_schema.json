@@ -1,0 +1,275 @@
+{
+    "company_id": 1,
+    "name": "WhiteHat Education Technology Private Limited",
+    "short_name": "WhiteHat Jr",
+    "logo_url": "https://www.whitehatjr.com/static/images/whitehat_logo.svg",
+    "category": "Startup (Subsidiary)",
+    "operating_countries": "India; USA; UK; Australia; Brazil; Mexico",
+    "office_locations": "Mumbai, India; Bengaluru, India; Gurugram, India; Wilmington, USA",
+    "employee_size": "3,204 employees",
+    "yoy_growth_rate": "-42%"
+}
+{
+    "company_id": 2,
+    "name": "Fourdegreewater Capital Private Limited",
+    "short_name": "Wint Wealth",
+    "logo_url": "https://www.wintwealth.com/static/wint-logo.svg",
+    "category": "Startup / WealthTech",
+    "operating_countries": "India",
+    "office_locations": "Bengaluru, India; Mumbai, India",
+    "employee_size": "132 employees",
+    "yoy_growth_rate": "158%"
+}
+{
+    "company_id": 3,
+    "name": "Wipro Limited",
+    "short_name": "Wipro",
+    "logo_url": "https://www.wipro.com/brand/logo.png",
+    "category": "Investor / Enterprise IT",
+    "operating_countries": "India; USA; UK; Germany; Australia; Brazil; Japan; Singapore; South Africa; UAE",
+    "office_locations": "New York, USA; London, UK; Bangalore, India; Paris, France; Tokyo, Japan; Sydney, Australia",
+    "employee_size": "234,000 employees",
+    "yoy_growth_rate": "4.0%"
+}
+{
+    "company_id": 4,
+    "name": "Wise Payments Limited",
+    "short_name": "Wise",
+    "logo_url": "https://wise.com/brand_logo.svg",
+    "category": "Startup (Public / Scale-up)",
+    "operating_countries": "UK; USA; Australia; Singapore; India; Brazil; Canada; Japan; NZ; Switzerland",
+    "office_locations": "London, UK; Tallinn, Estonia; New York, USA; Singapore; Mumbai, India",
+    "employee_size": "5,500 employees",
+    "yoy_growth_rate": "26%"
+}
+{
+    "company_id": 5,
+    "name": "Wise Payments India Private Limited",
+    "short_name": "Wise India",
+    "logo_url": "https://wise.com/brand_logo.svg",
+    "category": "Startup (Subsidiary)",
+    "operating_countries": "India",
+    "office_locations": "Mumbai, India; Hyderabad, India",
+    "employee_size": "210 employees",
+    "yoy_growth_rate": "35%"
+}
+{
+    "company_id": 6,
+    "name": "Wix.com Ltd.",
+    "short_name": "Wix",
+    "logo_url": "https://www.wix.com/logo.svg",
+    "category": "Public / Enterprise SaaS",
+    "operating_countries": "Israel; USA; Canada; Germany; India; Brazil; Lithuania; Ukraine; Ireland; Japan",
+    "office_locations": "Tel Aviv, Israel; New York, USA; Dublin, Ireland; Tokyo, Japan; Bengaluru, India",
+    "employee_size": "6,100 employees",
+    "yoy_growth_rate": "14%"
+}
+{
+    "company_id": 7,
+    "name": "WNS (Holdings) Limited",
+    "short_name": "WNS",
+    "logo_url": "https://www.wns.com/wns-logo.png",
+    "category": "Mature Enterprise",
+    "operating_countries": "India; USA; UK; Philippines; South Africa; Poland; Romania; China; Spain",
+    "office_locations": "Mumbai, India; New York, USA; London, UK; Pune, India; Hyderabad, India",
+    "employee_size": "66,000 employees",
+    "yoy_growth_rate": "9.5%"
+}
+{
+    "company_id": 8,
+    "name": "Wolt Enterprises Oy",
+    "short_name": "Wolt",
+    "logo_url": "https://wolt.com/wolt-logo.svg",
+    "category": "Startup (Subsidiary)",
+    "operating_countries": "Finland; Germany; Israel; Japan; Norway; Denmark; Greece; Hungary; Poland",
+    "office_locations": "Helsinki, Finland; Berlin, Germany; Tokyo, Japan; Tel Aviv, Israel",
+    "employee_size": "12,500 employees",
+    "yoy_growth_rate": "22%"
+}
+{
+    "company_id": 9,
+    "name": "Workato, Inc.",
+    "short_name": "Workato",
+    "logo_url": "https://www.workato.com/logo.svg",
+    "category": "Startup / Enterprise SaaS",
+    "operating_countries": "USA; Singapore; UK; Australia; Spain; Germany; Japan; India",
+    "office_locations": "Mountain View, USA; Singapore; London, UK; Sydney, Australia; Barcelona, Spain",
+    "employee_size": "1,200 employees",
+    "yoy_growth_rate": "35%"
+}
+{
+    "company_id": 10,
+    "name": "Writer, Inc.",
+    "short_name": "Writer",
+    "logo_url": "https://writer.com/brand/logo.svg",
+    "category": "Startup / GenAI",
+    "operating_countries": "USA; Global (Digital)",
+    "office_locations": "San Francisco, USA; New York, USA; London, UK",
+    "employee_size": "2,419 employees",
+    "yoy_growth_rate": "150%"
+}
+{
+    "company_id": 11,
+    "name": "Xerox Holdings Corporation",
+    "short_name": "Xerox",
+    "logo_url": "https://xerox.com/static/images/logo.png",
+    "category": "Mature Enterprise",
+    "operating_countries": "United States; United Kingdom; India; Canada; Brazil; Japan; France; Germany",
+    "office_locations": "Norwalk, USA; London, UK; Tokyo, Japan; New Delhi, India; Paris, France",
+    "employee_size": "15,000 employees",
+    "yoy_growth_rate": "12.9%"
+}
+{
+    "company_id": 12,
+    "name": "Xiaomi Corporation",
+    "short_name": "Xiaomi",
+    "logo_url": "https://mi.com/logo.png",
+    "category": "Public / Consumer Tech",
+    "operating_countries": "China; India; Spain; Brazil; Germany; France; Vietnam; Thailand; Indonesia",
+    "office_locations": "Beijing, China; Bengaluru, India; Madrid, Spain; Sao Paulo, Brazil",
+    "employee_size": "35,000 employees",
+    "yoy_growth_rate": "25%"
+}
+{
+    "company_id": 13,
+    "name": "BusyBees Logistics Solutions Pvt Ltd",
+    "short_name": "Xpressbees",
+    "logo_url": "https://xpressbees.com/logo.svg",
+    "category": "Startup / Logistics",
+    "operating_countries": "India",
+    "office_locations": "Pune, India; Mumbai, India; Bengaluru, India; Delhi, India",
+    "employee_size": "2,960 employees",
+    "yoy_growth_rate": "32%"
+}
+{
+    "company_id": 14,
+    "name": "Nebius Group N.V.",
+    "short_name": "Nebius",
+    "logo_url": "https://nebius.com/logo.svg",
+    "category": "Public / AI Infra",
+    "operating_countries": "Netherlands; France; Israel; USA; UAE; Germany; United Kingdom",
+    "office_locations": "Amsterdam, Netherlands; Paris, France; Tel Aviv, Israel; Abu Dhabi, UAE",
+    "employee_size": "1,371 employees",
+    "yoy_growth_rate": "25%"
+}
+{
+    "company_id": 15,
+    "name": "Yubi Wealth Pvt Ltd",
+    "short_name": "Yubi",
+    "logo_url": "https://go-yubi.com/logo.png",
+    "category": "Startup / FinTech",
+    "operating_countries": "India",
+    "office_locations": "Chennai, India; Mumbai, India; Bengaluru, India",
+    "employee_size": "850 employees",
+    "yoy_growth_rate": "36%"
+}
+{
+    "company_id": 16,
+    "name": "Zapier, Inc.",
+    "short_name": "Zapier",
+    "logo_url": "https://zapier.com/logo.svg",
+    "category": "Startup / SaaS",
+    "operating_countries": "Global (Digital); USA; UK; Canada; Australia; India; Germany; Spain",
+    "office_locations": "Remote; San Francisco (Virtual HQ)",
+    "employee_size": "1,433 employees",
+    "yoy_growth_rate": "35%"
+}
+{
+    "company_id": 17,
+    "name": "Zendesk, Inc.",
+    "short_name": "Zendesk",
+    "logo_url": "https://zendesk.com/logo.svg",
+    "category": "Public / SaaS",
+    "operating_countries": "USA; UK; Singapore; Australia; Japan; Brazil; Germany; France; India",
+    "office_locations": "San Francisco, USA; London, UK; Singapore; Austin, USA; Melbourne, Australia",
+    "employee_size": "8,200 employees",
+    "yoy_growth_rate": "18%"
+}
+{
+    "company_id": 18,
+    "name": "Zensar Technologies Limited",
+    "short_name": "Zensar",
+    "logo_url": "https://zensar.com/logo.png",
+    "category": "Public / IT Services",
+    "operating_countries": "India; USA; UK; South Africa; UAE; Germany; Singapore",
+    "office_locations": "Pune, India; London, UK; New York, USA; Johannesburg, South Africa",
+    "employee_size": "10,500 employees",
+    "yoy_growth_rate": "12%"
+}
+{
+    "company_id": 19,
+    "name": "Zeta Services Inc.",
+    "short_name": "Zeta",
+    "logo_url": "https://zeta.tech/logo.svg",
+    "category": "Startup / FinTech",
+    "operating_countries": "USA; India; UK; UAE; Brazil; Mexico; Vietnam; Philippines",
+    "office_locations": "San Ramon, USA; Mumbai, India; Bengaluru, India; Dubai, UAE",
+    "employee_size": "1,700 employees",
+    "yoy_growth_rate": "35%"
+}
+{
+    "company_id": 20,
+    "name": "Zifo R&D Solutions",
+    "short_name": "Zifo",
+    "logo_url": "https://zifo.tech/logo.png",
+    "category": "Private / R&D IT",
+    "operating_countries": "India; USA; UK; Germany; Switzerland; Japan; China; Canada; Singapore",
+    "office_locations": "Chennai, India; San Diego, USA; Basel, Switzerland; Tokyo, Japan",
+    "employee_size": "2,500 employees",
+    "yoy_growth_rate": "15%"
+}
+{
+    "company_id": 21,
+    "name": "Zillow Group, Inc.",
+    "short_name": "Zillow",
+    "logo_url": "https://zillow.com/logo.svg",
+    "category": "Public / PropTech",
+    "operating_countries": "USA; Canada",
+    "office_locations": "Seattle, USA; New York, USA; Irvine, USA; Vancouver, Canada",
+    "employee_size": "7,900 employees",
+    "yoy_growth_rate": "16%"
+}
+{
+    "company_id": 22,
+    "name": "Zoho Corporation Pvt Ltd",
+    "short_name": "Zoho",
+    "logo_url": "https://zoho.com/logo.png",
+    "category": "Public / SaaS (Bootstrapped)",
+    "operating_countries": "India; USA; UAE; Singapore; UK; Japan; Netherlands; Australia; Brazil",
+    "office_locations": "Chennai, India; Austin, USA; Dubai, UAE; Singapore; Tenkasi, India",
+    "employee_size": "16,000 employees",
+    "yoy_growth_rate": "17.8%"
+}
+{
+    "company_id": 23,
+    "name": "Zolve Innovations Pvt Ltd",
+    "short_name": "Zolve",
+    "logo_url": "https://zolve.com/logo.png",
+    "category": "Startup / FinTech",
+    "operating_countries": "India; USA; UK; Canada",
+    "office_locations": "Bengaluru, India; San Francisco, USA; Mumbai, India",
+    "employee_size": "350 employees",
+    "yoy_growth_rate": "45%"
+}
+{
+    "company_id": 24,
+    "name": "Eternal (formerly Zomato Ltd)",
+    "short_name": "Eternal",
+    "logo_url": "https://zomato.com/logo.png",
+    "category": "Public / Consumer Tech",
+    "operating_countries": "India; UAE",
+    "office_locations": "Gurugram, India; Mumbai, India; Bengaluru, India; Dubai, UAE",
+    "employee_size": "32,000 employees",
+    "yoy_growth_rate": "300% (Quick Commerce)"
+}
+{
+    "company_id": 25,
+    "name": "Zoom Video Communications, Inc.",
+    "short_name": "Zoom",
+    "logo_url": "https://zoom.us/logo.svg",
+    "category": "Public / SaaS",
+    "operating_countries": "USA; Global (Digital); UK; Australia; Japan; Germany; France; Singapore; India",
+    "office_locations": "San Jose, USA; Denver, USA; Amsterdam, Netherlands; Sydney, Australia",
+    "employee_size": "7,400 employees",
+    "yoy_growth_rate": "4.7%"
+}

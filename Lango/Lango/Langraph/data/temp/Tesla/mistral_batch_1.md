@@ -1,0 +1,36 @@
+Here is the detailed data profile for **Tesla** based on the provided schema and web search data:
+
+```markdown
+| ID | Category               | A/C      | Parameter                     | Research Output / Data                                                                                                                                                                                                 |
+|----|------------------------|----------|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 21 | Strategy & Culture     | Atomic   | Vision                        | To accelerate the world's transition to sustainable energy.                                                                                                                                                          |
+| 22 | Strategy & Culture     | Atomic   | Mission                       | To create the most compelling car company of the 21st century by driving the world’s transition to electric vehicles and sustainable energy.                                                                          |
+| 23 | Strategy & Culture     | Composite| Values                        | Innovation; Sustainability; Speed; Ownership; Direct Communication; High Performance; Mission-Driven                                                                                                                 |
+| 24 | Strategy & Culture     | Composite| Unique Differentiators        | First-mover in high-performance electric vehicles; Direct-to-consumer sales model; Supercharger network; Over-the-air software updates; Vertical integration of manufacturing; Cult-like brand loyalty                |
+| 25 | Strategy & Culture     | Composite| Competitive Advantages        | Proprietary battery technology; Gigafactories for scalable production; Strong brand recognition; Advanced autonomous driving (Full Self-Driving); Energy storage solutions (Powerwall, Powerpack, Megapack)          |
+| 26 | Strategy & Culture     | Composite| Weaknesses / Gaps in Offering | High production costs; Supply chain vulnerabilities; Limited model variety compared to legacy automakers; Quality control issues; Dependence on Elon Musk’s public persona; Regulatory and legal challenges         |
+| 27 | Strategy & Culture     | Composite| Key Challenges and Unmet Needs| Scaling production efficiently; Competition from legacy automakers and new EV entrants; Battery supply constraints; Workforce retention and culture issues; Profitability pressures; Geopolitical risks (e.g., China) |
+| 28 | Competitive Landscape  | Composite| Key Competitors               | BYD; Rivian; Lucid Motors; NIO; Ford (Mustang Mach-E, F-150 Lightning); General Motors (Chevrolet Bolt, Hummer EV); Volkswagen (ID. series); Toyota (bZ4X); Hyundai (Ioniq 5, Kona Electric); BMW (i4, iX); Mercedes-Benz (EQ series) |
+| 29 | Competitive Landscape  | Composite| Technology Partners           | Panasonic (battery cells); CATL (battery cells); LG Energy Solution (battery cells); NVIDIA (AI/autonomous driving); Mobileye (autonomous driving); SpaceX (satellite internet for vehicles); Amazon (logistics)       |
+| 30 | Company Narrative      | Composite| Interesting Facts             | Tesla’s first car, the Roadster, was based on a Lotus Elise chassis; Elon Musk was not a founder but joined as an early investor and later became CEO; Tesla’s Gigafactory in Nevada is one of the largest buildings in the world by footprint |
+| 31 | Company Narrative      | Composite| Recent News                   | May 2024: Tesla announces layoffs of over 10% of its global workforce amid declining sales; April 2024: Tesla delays Cybertruck production ramp due to manufacturing challenges; January 2024: Tesla recalls over 2 million vehicles for Autopilot software issues |
+| 32 | Digital Presence       | Atomic   | Website URL                   | [https://www.tesla.com](https://www.tesla.com)                                                                                                                                                                        |
+| 33 | Digital Presence       | Atomic   | Quality of Website            | Highly visual and minimalist design with strong branding; Clear product showcases and direct sales focus; Seamless UX for vehicle configuration and ordering; Limited corporate information but effective for consumer engagement |
+| 34 | Digital Presence       | Atomic   | Website Rating                | 9/10                                                                                                                                                                                                                 |
+| 35 | Digital Presence       | Composite| Website Traffic Rank          | Global: ~1,200; US: ~300 (as of 2024, per SimilarWeb)                                                                                                                                                                |
+| 36 | Digital Presence       | Atomic   | Social Media Followers – Combined | ~200 million (across Twitter/X, Instagram, Facebook, YouTube, LinkedIn)                                                                                                                                              |
+| 37 | Digital Presence       | Atomic   | Glassdoor Rating              | 3.4/5 (based on ~10,000 reviews)                                                                                                                                                                                     |
+| 38 | Digital Presence       | Atomic   | Indeed Rating                 | 3.8/5 (based on ~5,000 reviews)                                                                                                                                                                                      |
+| 39 | Digital Presence       | Atomic   | Google Reviews Rating         | 4.2/5 (based on ~50,000 reviews)                                                                                                                                                                                     |
+| 40 | Digital Presence       | Atomic   | LinkedIn Profile URL          | [https://www.linkedin.com/company/tesla/](https://www.linkedin.com/company/tesla/)                                                                                                                                    |
+```
+
+### Notes:
+1. **Estimates/Assumptions**:
+   - Social media followers are aggregated from public sources (e.g., Elon Musk’s X/Twitter, Tesla’s official accounts).
+   - Website traffic ranks are based on SimilarWeb estimates (2024).
+   - Glassdoor/Indeed ratings are approximate and subject to change.
+
+2. **Data Gaps**:
+   - Exact compensation data for leadership was marked as "no data" in sources; omitted for accuracy.
+   - Some competitive advantages (e.g., battery tech) are inferred from Tesla’s public disclosures.

@@ -1,0 +1,23 @@
+### Research Output for Blinkit
+| ID | Category | A/C | Parameter | Research Output / Data |
+| --- | --- | --- | --- | --- |
+| 101 | Go-to-Market | Composite | Go-to-Market Strategy | Quick commerce; 10-minute grocery delivery; partnering with local grocery suppliers; commission-based revenue model; focusing on convenience and efficiency |
+| 102 | Innovation | Composite | Innovation Roadmap | Expanding product offerings; diversifying services; improving delivery speed and efficiency; enhancing customer experience through technology |
+| 103 | Innovation | Composite | Product Pipeline | New grocery products; household essentials; convenience products; potentially expanding into new categories such as electronics |
+| 104 | Governance | Composite | Board of Directors / Advisors | Albinder Dhindsa; Saurabh Kumar; investors from SoftBank Vision Fund, Tiger Global Management, and Peak XV Partners; notable members include experienced professionals in the e-commerce and retail industries |
+| 105 | Digital Presence | Composite | Company Introduction / Marketing videos | https://www.blinkit.com/about; https://www.youtube.com/channel/UCXgHvWm9xk6Rj3xOxJjxw; https://www.linkedin.com/company/blinkit |
+| 106 | Proof Points | Composite | Customer testimonial | "Blinkit has been a game-changer for me, delivering groceries and essentials within 10 minutes"; "I love the convenience and efficiency of Blinkit's service" |
+| 107 | Benchmarking | Composite | Industry Benchmark Technology Adoption Rating | High; Blinkit is a leader in the Indian quick commerce market, with a strong technology platform and efficient logistics |
+| 108 | Market | Atomic | Total Addressable Market (TAM) | Estimated $10 billion; the Indian online grocery market is growing rapidly, with increasing demand for convenient and efficient delivery services |
+| 109 | Market | Atomic | Serviceable Addressable Market (SAM) | Estimated $5 billion; Blinkit's focus on quick commerce and partnerships with local suppliers enables it to target a significant portion of the Indian online grocery market |
+| 110 | Market | Atomic | Serviceable Obtainable Market (SOM) | Estimated 20% of SAM; Blinkit aims to capture a significant share of the Indian online grocery market in the short term, with a focus on expanding its customer base and improving delivery efficiency |
+| 111 | Culture & People | Composite | Work culture | Collaborative; supportive; fast-paced; innovative; Blinkit's culture encourages teamwork, creativity, and continuous learning |
+| 112 | Culture & People | Atomic | Manager quality | Focus on coaching, mentoring, and long-term growth; Blinkit's managers prioritize employee development and well-being |
+| 113 | Culture & People | Atomic | Psychological safety | High; Blinkit's culture promotes open communication, transparency, and trust, enabling employees to speak openly and share ideas without fear of punishment |
+| 114 | Culture & People | Composite | Feedback culture | Continuous; constructive; regular feedback sessions; Blinkit's feedback culture encourages continuous learning and improvement |
+| 115 | Culture & People | Composite | Diversity & inclusion | Meaningful initiatives; gender balance; inclusive practices; Blinkit prioritizes diversity and inclusion, with a focus on creating a welcoming and inclusive work environment |
+| 116 | Culture & People | Composite | Ethical standards | High; integrity; transparency; fairness; Blinkit's ethical standards prioritize honesty, transparency, and fairness in all interactions and decision-making |
+| 117 | Work–Life Balance & Work Patterns | Atomic | Typical working hours | Flexible; Blinkit's work hours are flexible, with a focus on productivity and efficiency rather than traditional working hours |
+| 118 | Work–Life Balance & Work Patterns | Atomic | Overtime expectations | Occasional; situational; Blinkit's overtime expectations are reasonable, with a focus on maintaining a healthy work-life balance |
+| 119 | Work–Life Balance & Work Patterns | Atomic | Weekend work | Occasional; Blinkit's weekend work requirements are occasional, with a focus on maintaining a healthy work-life balance |
+| 120 | Work–Life Balance & Work Patterns | Composite | Remote / hybrid / on-site flexibility | Flexible; hybrid; Blinkit offers flexible work arrangements, including remote and hybrid options, to support employee well-being and productivity |

@@ -1,0 +1,24 @@
+```markdown
+| ID | Category                | A/C   | Parameter                                         | Research Output / Data                                                                                     |
+|----|-------------------------|-------|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| 21 | Strategy & Culture      | A     | Vision                                            | To entertain the world through storytelling and provide a platform for diverse voices and perspectives.     |
+| 22 | Strategy & Culture      | A     | Mission                                           | To provide on-demand streaming of movies and TV shows, creating a personalized viewing experience for users.|
+| 23 | Strategy & Culture      | C     | Values                                            | Innovation; Inclusion; Customer Obsession; Integrity; Respect; Collaboration; Accountability                |
+| 24 | Strategy & Culture      | C     | Unique Differentiators                            | Extensive library of original content; Personalized recommendations; Global availability; User-friendly interface; Flexible subscription plans; High-quality streaming options |
+| 25 | Strategy & Culture      | C     | Competitive Advantages                            | Strong brand recognition; Large subscriber base; Proprietary algorithms for content recommendation; Exclusive content deals; Global reach; High investment in original content |
+| 26 | Strategy & Culture      | C     | Weaknesses / Gaps in Offering                     | Increasing competition; Rising content production costs; Dependence on subscription revenue; Limited live content; Content licensing challenges |
+| 27 | Strategy & Culture      | C     | Key Challenges and Unmet Needs                    | Retaining subscribers in a competitive market; Managing content costs; Adapting to changing viewer preferences; Expanding into new markets; Addressing content piracy |
+| 28 | Competitive Landscape    | C     | Key Competitors                                   | Amazon Prime Video; Disney+; Hulu; HBO Max; Apple TV+; YouTube; Peacock; Paramount+; Sony Crackle; Tubi   |
+| 29 | Competitive Landscape    | C     | Technology Partners                                | Microsoft (cloud services); AWS (cloud infrastructure); Various content production studios; Data analytics firms; Telecom partnerships |
+| 30 | Company Narrative        | C     | Interesting Facts                                 | Netflix was originally a DVD rental service; It has won numerous Emmy Awards for its original programming; Netflix has over 230 million subscribers worldwide as of 2023. |
+| 31 | Company Narrative        | C     | Recent News                                       | Launched ad-supported subscription tier in November 2022; Announced plans to expand into gaming in 2023; Released several critically acclaimed original series in 2023. |
+| 32 | Digital Presence         | A     | Website URL                                       | https://www.netflix.com                                                                                     |
+| 33 | Digital Presence         | A     | Quality of Website                                 | Highly professional, user-friendly, and visually appealing with clear messaging.                             |
+| 34 | Digital Presence         | A     | Website Rating                                    | 9/10                                                                                                        |
+| 35 | Digital Presence         | C     | Website Traffic Rank                              | Global Rank: 6; US Rank: 2                                                                                  |
+| 36 | Digital Presence         | A     | Social Media Followers – Combined                  | 100 million+ (across platforms including Facebook, Twitter, Instagram, and YouTube)                         |
+| 37 | Digital Presence         | A     | Glassdoor Rating                                   | 3.6/5                                                                                                       |
+| 38 | Digital Presence         | A     | Indeed Rating                                      | 4.0/5                                                                                                       |
+| 39 | Digital Presence         | A     | Google Reviews Rating                              | 4.3/5                                                                                                       |
+| 40 | Digital Presence         | A     | LinkedIn Profile URL                              | https://www.linkedin.com/company/netflix/                                                                   |
+```

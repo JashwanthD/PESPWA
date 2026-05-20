@@ -1,0 +1,10 @@
+{
+  "name": "PESCE Placement Intelligence",
+  "short_name": "PESCE Intel",
+  "description": "Enterprise placement intelligence for PES College of Engineering, Mandya.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "icons": []
+}

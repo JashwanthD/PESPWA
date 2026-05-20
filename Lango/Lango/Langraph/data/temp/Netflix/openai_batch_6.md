@@ -1,0 +1,24 @@
+```markdown
+| ID  | Category                          | A/C     | Parameter                                         | Research Output / Data                                                                                     |
+|-----|-----------------------------------|---------|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| 121 | Work–Life Balance & Work Patterns  | C       | Leave policy                                      | Sick leave; Mental health days; Paid time off; Unpaid leave                                                |
+| 122 | Work–Life Balance & Work Patterns  | A       | Burnout risk                                      | Moderate risk due to high workload and project deadlines                                                    |
+| 123 | Location, Commute & Accessibility  | A       | Central vs peripheral location                    | Central location in Los Gatos, California                                                                    |
+| 124 | Location, Commute & Accessibility  | C       | Public transport access                           | Good access to public transport; Nearby bus stops; Limited train service; Shuttle services available         |
+| 125 | Location, Commute & Accessibility  | C       | Cab availability and company cab policy           | Cabs readily available; Company provides transport support for late-night shifts; Ride-sharing partnerships   |
+| 126 | Location, Commute & Accessibility  | A       | Commute time from airport                         | Approximately 30 minutes from San Jose International Airport                                                 |
+| 127 | Location, Commute & Accessibility  | A       | Office zone type                                  | Located in a mixed-use commercial area                                                                        |
+| 128 | Safety & Well-being                | C       | Area safety                                       | Generally safe area; Low crime rate during daytime; Moderate safety concerns at night                        |
+| 129 | Safety & Well-being                | C       | Company safety policies                           | Late-night transport provided; Safety training programs; Emergency contact protocols; Women safety measures   |
+| 130 | Safety & Well-being                | C       | Office infrastructure safety                       | Modern office facilities; Regular safety inspections; Fire safety measures in place                          |
+| 131 | Safety & Well-being                | C       | Emergency response preparedness                    | Emergency drills conducted regularly; First aid kits available; Trained personnel for emergencies             |
+| 132 | Safety & Well-being                | C       | Health support                                    | Comprehensive health insurance; Mental health support services; OPD benefits available                       |
+| 133 | Learning & Growth Opportunities     | A       | Onboarding and training quality                   | Comprehensive onboarding program; Initial training includes mentorship and resources                         |
+| 134 | Learning & Growth Opportunities     | C       | Learning culture                                  | Access to online courses; Internal workshops; Certification programs; Knowledge-sharing sessions             |
+| 135 | Learning & Growth Opportunities     | A       | Exposure quality                                  | High exposure to real-world problem solving; Engaging projects and tasks                                    |
+| 136 | Learning & Growth Opportunities     | C       | Mentorship availability                            | Mentorship programs available; Access to senior leaders for guidance; Peer mentoring initiatives             |
+| 137 | Learning & Growth Opportunities     | A       | Internal mobility                                 | Opportunities for role changes; Cross-departmental projects encouraged                                      |
+| 138 | Learning & Growth Opportunities     | C       | Promotion clarity                                 | Promotions based on performance; Clear criteria for advancement; Regular performance reviews                  |
+| 139 | Learning & Growth Opportunities     | C       | Tools and technology access                       | Access to latest software tools; Regular updates on industry technologies; Training on new tools provided    |
+| 140 | Role & Work Quality                | A       | Role clarity                                     | Clear job descriptions; Defined responsibilities; Regular feedback on performance                            |
+```

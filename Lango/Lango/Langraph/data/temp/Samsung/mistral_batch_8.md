@@ -1,0 +1,7 @@
+```markdown
+| ID  | Category         | A/C      | Parameter               | Research Output / Data                                                                                                                                                                                                 |
+|-----|------------------|----------|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 161 | Values Alignment  | Atomic   | Mission clarity         | Samsung's mission is to devote its talent and technology to creating superior products and services that contribute to a better global society.                                                                       |
+| 162 | Values Alignment  | Composite| Sustainability and CSR  | Commitment to environmental sustainability through reduced environmental footprint; Corporate Social Responsibility (CSR) initiatives like the "Five Samsung Business Principles"; Employee-driven ESG programs.      |
+| 163 | Values Alignment  | Atomic   | Crisis behavior         | During the Galaxy Note 7 crisis in 2016, Samsung demonstrated decisive action by terminating the flagship phone, conducting a thorough investigation, and implementing enhanced safety measures for future products. |
+```

@@ -1,0 +1,47 @@
+# ─────────────────────────────────────────────────────────────
+# PESCE Intelligence — Vite PWA Frontend
+# Build context: workspace root (d:\games\PES placement PWA\)
+# Multi-stage: Node 20 builds, Nginx serves
+# ─────────────────────────────────────────────────────────────
+
+# ── Stage 1: Build ───────────────────────────────────────────
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Copy package files first for better layer caching
+COPY pesce-insight-nexus-main/pesce-insight-nexus-main/package.json \
+     pesce-insight-nexus-main/pesce-insight-nexus-main/package-lock.json ./
+
+# Install all deps (devDeps needed for Vite build)
+RUN npm ci --prefer-offline
+
+# Copy source code
+COPY pesce-insight-nexus-main/pesce-insight-nexus-main/ .
+
+# Build production bundle
+RUN npm run build
+
+# ── Stage 2: Serve with Nginx ────────────────────────────────
+FROM nginx:alpine AS runtime
+
+# Remove default nginx site config
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Copy our custom Nginx config (SPA routing + /api proxy)
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Copy built Vite assets from Stage 1
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Create output dir placeholder (real data comes from shared volume)
+RUN mkdir -p /usr/share/nginx/html/output
+
+# Expose HTTP port
+EXPOSE 80
+
+# Health check
+HEALTHCHECK --interval=15s --timeout=5s --start-period=10s --retries=3 \
+    CMD wget -q --spider http://localhost/ || exit 1
+
+CMD ["nginx", "-g", "daemon off;"]

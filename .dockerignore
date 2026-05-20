@@ -1,0 +1,49 @@
+# ── Python cache ─────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ── Virtual environments ──────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ── Secrets / environment ─────────────────────────────────────
+.env
+*.env
+!.env.example
+
+# ── Test artifacts ────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+*.xml
+
+# ── LangGraph internal ────────────────────────────────────────
+.langgraph_api/
+_tmp_validation_golden/
+scratch.py
+confidence_scores.txt
+
+# ── IDE / OS files ────────────────────────────────────────────
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# ── Git ───────────────────────────────────────────────────────
+.git/
+.gitignore
+.gitattributes
+
+# ── Docs / misc ───────────────────────────────────────────────
+*.md
+*.zip

@@ -1,0 +1,13 @@
+{
+  "total_companies": 1,
+  "successful": 0,
+  "failed": 1,
+  "golden_records": [],
+  "failed_companies": [
+    {
+      "company": "PT GoTo Gojek Tokopedia Tbk",
+      "index": 4,
+      "reason": "Empty golden record"
+    }
+  ]
+}

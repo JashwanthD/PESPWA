@@ -1,0 +1,7 @@
+```markdown
+| ID  | Category         | A/C      | Parameter               | Research Output / Data                                                                                                                                                                                                 |
+|-----|------------------|----------|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 161 | Values Alignment | Atomic   | Mission clarity         | T1 specializes in providing innovative technology solutions designed to enhance business efficiency and excellence, with a focus on delivering robust, reliable, and tailored technology services to meet client needs. |
+| 162 | Values Alignment | Composite| Sustainability and CSR  | Active Tier 1 green initiatives targeting an annual reduction in emissions of 350 US tons; commitment to ESG growth through technology; integration of sustainability into commercial innovations.                          |
+| 163 | Values Alignment | Atomic   | Crisis behavior         | Not Found                                                                                                                                                                                                            |
+```

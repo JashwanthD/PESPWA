@@ -1,0 +1,24 @@
+```markdown
+| ID  | Category                          | A/C     | Parameter                                         | Research Output / Data                                                                                     |
+|-----|-----------------------------------|---------|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| 121 | Work–Life Balance & Work Patterns  | Composite | Leave policy                                      | Sick leave; Mental health days; Annual leave; Unpaid leave                                                  |
+| 122 | Work–Life Balance & Work Patterns  | Atomic   | Burnout risk                                      | Moderate                                                                                                     |
+| 123 | Location, Commute & Accessibility   | Atomic   | Central vs peripheral location                     | Central                                                                                                      |
+| 124 | Location, Commute & Accessibility   | Composite | Public transport access                            | Excellent; Buses; MRT; Ride-hailing services                                                                |
+| 125 | Location, Commute & Accessibility   | Composite | Cab availability and company cab policy           | Available; Company provides transport support; Ride-hailing reimbursement                                      |
+| 126 | Location, Commute & Accessibility   | Atomic   | Commute time from airport                          | 45 minutes                                                                                                   |
+| 127 | Location, Commute & Accessibility   | Atomic   | Office zone type                                   | Mixed-use commercial area                                                                                   |
+| 128 | Safety & Well-being                | Composite | Area safety                                       | Generally safe; Moderate crime rate                                                                          |
+| 129 | Safety & Well-being                | Composite | Company safety policies                            | Late-night transport provided; Women safety measures in place; Emergency contact protocols                   |
+| 130 | Safety & Well-being                | Composite | Office infrastructure safety                       | Fire safety measures; Regular safety drills; First aid kits available                                        |
+| 131 | Safety & Well-being                | Composite | Emergency response preparedness                    | Fire drills conducted; Medical emergency protocols in place; Trained first responders on-site                |
+| 132 | Safety & Well-being                | Composite | Health support                                    | Comprehensive health insurance; OPD benefits; Mental health support services; Employee assistance program     |
+| 133 | Learning & Growth Opportunities     | Atomic   | Onboarding and training quality                    | High-quality onboarding                                                                                     |
+| 134 | Learning & Growth Opportunities     | Composite | Learning culture                                   | Certifications available; Internal learning platforms; Regular workshops; Access to online courses            |
+| 135 | Learning & Growth Opportunities     | Atomic   | Exposure quality                                   | High                                                                                                        |
+| 136 | Learning & Growth Opportunities     | Composite | Mentorship availability                            | Available; Assigned mentors; Peer mentoring programs                                                         |
+| 137 | Learning & Growth Opportunities     | Atomic   | Internal mobility                                  | Moderate                                                                                                     |
+| 138 | Learning & Growth Opportunities     | Composite | Promotion clarity                                  | Merit-based; Transparent criteria; Regular performance reviews                                               |
+| 139 | Learning & Growth Opportunities     | Composite | Tools and technology access                        | Modern software; Industry-standard tools; Access to latest technologies; Cloud-based platforms; Analytics tools |
+| 140 | Role & Work Quality                | Atomic   | Role clarity                                      | Clear                                                                                                       |
+```

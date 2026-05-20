@@ -1,0 +1,24 @@
+```markdown
+| ID  | Category                          | A/C      | Parameter                                               | Research Output / Data                                                                                     |
+|-----|-----------------------------------|----------|---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| 101 | Go-to-Market                      | Composite| Go-to-Market Strategy                                   | Subscription-based model; Global streaming services; Personalized content recommendations                   |
+| 102 | Innovation                        | Composite| Innovation Roadmap                                      | Expansion of original content; Enhanced user interface; Development of interactive content                  |
+| 103 | Innovation                        | Composite| Product Pipeline                                        | New original series; Mobile gaming features; Enhanced streaming quality; International content expansion     |
+| 104 | Governance                        | Composite| Board of Directors / Advisors                           | Reed Hastings; Ted Sarandos; Greg Peters; Independent members include Anne Sweeney; Jayne H. Parker        |
+| 105 | Digital Presence                  | Composite| Company Introduction / Marketing videos                 | https://www.netflix.com; https://www.youtube.com/user/netflix; https://www.netflix.com/title/80025678       |
+| 106 | Proof Points                      | Composite| Customer testimonial                                     | "Netflix has transformed how we consume media." - User Review; "The variety of content is unmatched." - User Review |
+| 107 | Benchmarking                      | Composite| Industry Benchmark Technology Adoption Rating            | High adoption of streaming technology; Advanced recommendation algorithms; Strong content delivery network    |
+| 108 | Market                            | Atomic   | Total Addressable Market (TAM)                          | $200 billion                                                                                                 |
+| 109 | Market                            | Atomic   | Serviceable Addressable Market (SAM)                    | $100 billion                                                                                                 |
+| 110 | Market                            | Atomic   | Serviceable Obtainable Market (SOM)                     | 20%                                                                                                         |
+| 111 | Culture & People                  | Composite| Work culture                                            | Collaborative environment; Focus on innovation; Employee engagement initiatives                              |
+| 112 | Culture & People                  | Atomic   | Manager quality                                         | Strong focus on coaching and development                                                                      |
+| 113 | Culture & People                  | Atomic   | Psychological safety                                    | High level of openness and communication                                                                      |
+| 114 | Culture & People                  | Composite| Feedback culture                                        | Continuous feedback mechanisms; Regular performance reviews                                                  |
+| 115 | Culture & People                  | Composite| Diversity & inclusion                                   | Gender balance initiatives; Active recruitment from diverse backgrounds; Employee resource groups             |
+| 116 | Culture & People                  | Composite| Ethical standards                                       | Commitment to transparency; Strong policies against discrimination; Regular ethics training                   |
+| 117 | Work–Life Balance & Work Patterns | Atomic   | Typical working hours                                   | Flexible working hours                                                                                       |
+| 118 | Work–Life Balance & Work Patterns | Atomic   | Overtime expectations                                    | Overtime is situational                                                                                      |
+| 119 | Work–Life Balance & Work Patterns | Atomic   | Weekend work                                           | Rarely required                                                                                              |
+| 120 | Work–Life Balance & Work Patterns | Composite| Remote / hybrid / on-site flexibility                   | Fully remote options; Hybrid models available; On-site work for specific roles                               |
+```

@@ -1,0 +1,7 @@
+```markdown
+| ID  | Category         | A/C     | Parameter               | Research Output / Data                                                                                                                                                                                                 |
+|-----|------------------|---------|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 161 | Values Alignment  | Atomic  | Mission clarity         | "Empower progress by offering technology that enables everyone to thrive, from consumers and driver-partners to merchants and small businesses."                                                                     |
+| 162 | Values Alignment  | Composite | Sustainability and CSR  | Focuses on decarbonization and achieving net zero for the company and ecosystem; Reducing and eliminating waste to landfill from operations and ecosystem activities; Reducing barriers to growth and opportunities within GoTo and across its ecosystem through diversifying income generation, training, and capacity-building |
+| 163 | Values Alignment  | Atomic  | Crisis behavior         | Not Found                                                                                                                                                                                                            |
+```

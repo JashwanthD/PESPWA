@@ -1,0 +1,46 @@
+# ── Python cache ─────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+build/
+*.egg
+
+# ── Virtual environments ──────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ── Secrets / environment ─────────────────────────────────────
+.env
+*.env
+!.env.example
+
+# ── Test artifacts ────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ── LangGraph internal ────────────────────────────────────────
+.langgraph_api/
+_tmp_validation_golden/
+scratch.py
+confidence_scores.txt
+
+# ── IDE / OS files ────────────────────────────────────────────
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# ── Large binaries ────────────────────────────────────────────
+*.zip
+*.war
+
+# ── Node modules (frontend) ───────────────────────────────────
+node_modules/
+dist/

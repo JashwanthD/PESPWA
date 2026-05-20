@@ -1,0 +1,7 @@
+Test Name,Node ID,Status,Duration (s),Error Details
+test_1_1_standard_input,::test_1_1_standard_input,PASSED,0.009,
+test_1_2_invalid_empty_input,::test_1_2_invalid_empty_input,PASSED,0.0078,
+test_1_3_special_characters,::test_1_3_special_characters,PASSED,0.0101,
+test_1_4_malformed_input,::test_1_4_malformed_input,PASSED,0.0104,
+test_1_5_ambiguous_input,::test_1_5_ambiguous_input,PASSED,0.0084,
+test_1_6_case_sensitivity,::test_1_6_case_sensitivity,PASSED,0.0122,

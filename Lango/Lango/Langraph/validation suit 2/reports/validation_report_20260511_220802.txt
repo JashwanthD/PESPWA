@@ -1,0 +1,301 @@
+Validation Suite Execution Report
+Generated on: 2026-05-11 22:08:02
+================================================================================
+
+Summary:
+Total Tests: 134
+Passed: 132
+Failed: 1
+--------------------------------------------------------------------------------
+
+Detailed Results:
+[PASSED] test_10_1_knowledge_cutoff_events (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_10_2_recent_structural_changes (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_10_3_market_position_changes[Market Share (%)-15.5%-True] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_10_3_market_position_changes[Market Share (%)-InvalidShare-False] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_10_3_market_position_changes[Key Competitors-New Entrant Corp, Incumbent LLC-True] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_10_3_market_position_changes[Benchmark vs. Peers-Company now leads against New Entrant Corp...-True] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_10_4_regulatory_updates[Regulatory & Compliance Status-SOC2, GDPR, NEW_REG_2025-True] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_10_4_regulatory_updates[Cybersecurity Posture-Compliant with new AI act 2025-True] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_10_4_regulatory_updates[ESG Practices or Ratings-Score: 85 (Updated 2025 framework)-True] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_10_4_regulatory_updates[Carbon Footprint/Environmental Impact-1500 CO2e-True] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_10_4_regulatory_updates[Ethical Sourcing Practices-Fair Trade 2025 standards met-True] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_10_5_crisis_events (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_11_1_multiple_entities_same_name[entity_10-entity_20] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_11_2_subsidiaries_vs_parent[parent0-subsidiary0] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_11_3_geographic_variants[entity_10-entity_20] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_11_4_abbreviation_handling[entity_abbr0-entity_full0] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_11_5_legal_entity_names[Company Name-Meta Platforms, Inc.-True] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_11_5_legal_entity_names[Company Name-Meta \U0001f680-False] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_11_5_legal_entity_names[Short Name-Meta-True] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_11_5_legal_entity_names[Short Name-Meta Platforms, Inc. which is extremely long and definitely over the one hundred character limit that is specified in the schema so it should fail-False] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_12_1_company_category[Startup-True] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_12_1_company_category[SMB-True] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_12_1_company_category[VC-True] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_12_1_company_category[InvalidCategory-False] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_12_2_industry_classification[Financial Technology-True] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_12_2_industry_classification[Automotive & Clean Energy-True] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_12_2_industry_classification[E-commerce & Cloud-True] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_12_3_nature_of_company[Private-True] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_12_3_nature_of_company[Public-True] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_12_3_nature_of_company[Subsidiary-True] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_12_3_nature_of_company[UnknownType-False] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_12_4_sentiment_scoring[Brand Sentiment Score-Positive-True] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_12_4_sentiment_scoring[Brand Sentiment Score-Neutral-True] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_12_4_sentiment_scoring[Brand Sentiment Score-Angry-False] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_12_4_sentiment_scoring[Net Promoter Score (NPS)-75-True] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_12_4_sentiment_scoring[Net Promoter Score (NPS)--50-True] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_12_4_sentiment_scoring[Net Promoter Score (NPS)-150-False] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_12_5_risk_classification[Customer Concentration Risk-Yes, 25%-True] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_12_5_risk_classification[Customer Concentration Risk-No-True] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_12_5_risk_classification[Customer Concentration Risk-Maybe-False] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_12_5_risk_classification[Burnout risk-High-True] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_12_5_risk_classification[Burnout risk-Severe-True] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_12_5_risk_classification[Burnout risk-Okay-False] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_1_1_standard_input (Duration: 0.001s)
+----------------------------------------
+[PASSED] test_1_2_invalid_empty_input (Duration: 0.0007s)
+----------------------------------------
+[PASSED] test_1_3_special_characters (Duration: 0.0007s)
+----------------------------------------
+[PASSED] test_1_4_malformed_input (Duration: 0.0007s)
+----------------------------------------
+[PASSED] test_1_5_ambiguous_input (Duration: 0.0007s)
+----------------------------------------
+[PASSED] test_1_6_case_sensitivity (Duration: 0.0007s)
+----------------------------------------
+[PASSED] test_2_1_complete_profile (Duration: 0.0017s)
+----------------------------------------
+[PASSED] test_2_2_partial_profile (Duration: 0.0011s)
+----------------------------------------
+[FAILED] test_2_3_empty_response (Duration: 0.0008s)
+Error:
+company_data =            name  ...                      board_members
+0  Globant S.A.  ...  Martin Migoya, Guillermo Seminara
+
+[1 rows x 163 columns]
+
+    def test_2_3_empty_response(company_data):
+        """
+        2.3 Data Completeness - Empty Response
+        Verify appropriate null handling (no string literals like 'null', 'none')
+        """
+        rule = RULES["2.3"]
+    
+        for _, row in company_data.iterrows():
+            for col in company_data.columns:
+                val = row[col]
+>               assert has_no_null_literals(val), f"Failed empty response check: {col}='{val}' contains a null string literal."
+E               AssertionError: Failed empty response check: exit_strategy_history='N/A' contains a null string literal.
+E               assert False
+E                +  where False = has_no_null_literals('N/A')
+
+validation suit 2/tests/test_2_data_completeness.py:50: AssertionError
+----------------------------------------
+[PASSED] test_2_4_mandatory_fields_only (Duration: 0.0008s)
+----------------------------------------
+[PASSED] test_2_5_field_dependency (Duration: 0.0007s)
+----------------------------------------
+[PASSED] test_3_1_factual_correctness (Duration: 0.0007s)
+----------------------------------------
+[PASSED] test_3_2_temporal_accuracy (Duration: 0.0007s)
+----------------------------------------
+[PASSED] test_3_3_numerical_precision (Duration: 0.0008s)
+----------------------------------------
+[PASSED] test_3_4_cross_field_consistency (Duration: 0.0007s)
+----------------------------------------
+[PASSED] test_3_5_source_attribution (Duration: 0.0007s)
+----------------------------------------
+[PASSED] test_4_1_fabricated_entities (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_4_2_plausible_but_false (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_4_3_confident_incorrectness (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_5_1_calculated_field_accuracy[cac_ltv_ratio] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_5_1_calculated_field_accuracy[runway_months] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_5_1_calculated_field_accuracy[sam] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_5_1_calculated_field_accuracy[som] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_5_2_logical_consistency[profitability_status] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_5_2_logical_consistency[incorporation_year] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_5_2_logical_consistency[website_rating] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_5_2_logical_consistency[total_capital_raised] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_5_3_timeline_consistency[incorporation_vs_funding] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_5_3_timeline_consistency[recent_news_timeframe] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_5_4_format_consistency[annual_revenue] (Duration: 0.0002s)
+----------------------------------------
+[PASSED] test_5_4_format_consistency[primary_phone_number] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_5_5_cross_parameter_consistency (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_6_1_very_new_companies (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_6_2_very_large_companies (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_6_3_private_companies (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_9_3_context_confusion[payload_sequence0] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_9_3_context_confusion[payload_sequence1] (Duration: 0.0s)
+----------------------------------------
+[PASSED] test_batch_7_boundaries (Duration: 0.0136s)
+----------------------------------------
+[PASSED] test_batch_8_validation (Duration: 53.459s)
+----------------------------------------
+[PASSED] test_13_2_response_time (Duration: 0.0002s)
+----------------------------------------
+[PASSED] test_13_3_token_limit_handling (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_13_4_memory_independence (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_1_unavailable_data (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_2_not_applicable_fields (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_3_ambiguous_availability (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_4_default_value_handling (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Short Name-dependencies0] (Duration: 0.0002s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Logo-dependencies1] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Category-dependencies2] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Overview of the Company-dependencies3] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Number of Offices (beyond HQ)-dependencies4] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Office Locations-dependencies5] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Hiring Velocity-dependencies6] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Employee Turnover-dependencies7] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Average Retention Tenure-dependencies8] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Pain Points Being Addressed-dependencies9] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Focus Sectors / Industries-dependencies10] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Services / Offerings / Products-dependencies11] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Top Customers by Client Segments-dependencies12] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Core Value Proposition-dependencies13] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Vision-dependencies14] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Mission-dependencies15] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Values-dependencies16] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Quality of Website-dependencies17] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Website Rating-dependencies18] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Website Traffic Rank-dependencies19] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Social Media Followers - Combined-dependencies20] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Profitability Status-dependencies21] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Market Share (%)-dependencies22] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Total Capital Raised-dependencies23] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[CAC:LTV Ratio-dependencies24] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Customer Concentration Risk-dependencies25] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Runway-dependencies26] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Burn Multiplier-dependencies27] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Serviceable Addressable Market (SAM)-dependencies28] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Serviceable Obtainable Market (SOM)-dependencies29] (Duration: 0.0002s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Central vs peripheral location-dependencies30] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Commute time from airport-dependencies31] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Office zone type-dependencies32] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Area safety-dependencies33] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Company maturity-dependencies34] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Client quality-dependencies35] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Layoff history-dependencies36] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Global exposure-dependencies37] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_14_5_null_propagation[Crisis behavior-dependencies38] (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_15_1_confidence_levels (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_15_2_source_quality_tiers (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_15_3_recency_scoring (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_15_5_overall_quality_score (Duration: 0.0001s)
+----------------------------------------
+[PASSED] test_full_schema_validation (Duration: 46.3446s)
+----------------------------------------
+[SKIPPED] test_full_schema_excel_validation (Duration: 0.0004s)
+----------------------------------------

@@ -1,0 +1,5 @@
+| ID | Category | A/C | Parameter | Research Output / Data |
+|---|---|---|---|---|
+| 161 | Values Alignment | Atomic | Mission clarity | The company's mission is clear: to be a global leader in esports, operating highly successful teams across various competitive gaming titles, and expanding its brand through related ventures like gaming cafes, live events, content, and merchandise to grow revenue and influence in competitive gaming culture. |
+| 162 | Values Alignment | Composite | Sustainability and CSR | Influenced by parent company SK Telecom's strong commitment to ESG activities; SK Telecom publishes annual ESG reports (2021-2025); SK Telecom focuses on building an AI-powered ecosystem and expanding startup collaboration for social impact. |
+| 163 | Values Alignment | Atomic | Crisis behavior | Not Found |

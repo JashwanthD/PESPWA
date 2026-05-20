@@ -1,0 +1,7 @@
+```markdown
+| ID  | Category         | A/C      | Parameter               | Research Output / Data                                                                                                                                                                                                 |
+|-----|------------------|----------|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 161 | Values Alignment | Atomic   | Mission clarity         | "Smarter Technology for All" – Lenovo's mission is to provide intelligent technology solutions that enhance productivity, connectivity, and sustainability for individuals and businesses globally.                          |
+| 162 | Values Alignment | Composite| Sustainability and CSR  | Climate change mitigation (net-zero emissions by 2050); Product sustainability (50% recycled materials in PCs by 2025); Digital inclusion (bridging the digital divide through education and accessibility initiatives) |
+| 163 | Values Alignment | Atomic   | Crisis behavior         | During the COVID-19 pandemic, Lenovo prioritized employee safety, maintained supply chain resilience through AI-driven logistics, and donated over $18 million in equipment and funds to support global relief efforts. |
+```

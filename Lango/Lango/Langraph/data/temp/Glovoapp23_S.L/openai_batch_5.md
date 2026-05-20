@@ -1,0 +1,24 @@
+```markdown
+| ID  | Category                       | A/C      | Parameter                                               | Research Output / Data                                                                                     |
+|-----|--------------------------------|----------|--------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| 101 | Go-to-Market                   | Composite| Go-to-Market Strategy                                  | Online food delivery; Grocery delivery; Pharmaceutical delivery; Retail delivery; Business services         |
+| 102 | Innovation                     | Composite| Innovation Roadmap                                     | Expansion into new markets; Development of AI for logistics; Enhanced user experience features              |
+| 103 | Innovation                     | Composite| Product Pipeline                                       | New grocery delivery options; Integration of local businesses; Enhanced app features; Subscription services   |
+| 104 | Governance                     | Composite| Board of Directors / Advisors                          | Oscar Pierre (CEO); Delivery Hero representatives; Independent advisors; Industry experts                    |
+| 105 | Digital Presence               | Composite| Company Introduction / Marketing videos                | https://www.youtube.com/glovo; https://www.glovoapp.com/videos; https://www.glovoapp.com/marketing         |
+| 106 | Proof Points                   | Composite| Customer testimonial                                    | "Fast delivery and great service!"; "Convenient for groceries."; "Reliable for urgent needs."              |
+| 107 | Benchmarking                   | Composite| Industry Benchmark Technology Adoption Rating          | High adoption of mobile technology; Advanced logistics software; Integration with local businesses           |
+| 108 | Market                         | Atomic   | Total Addressable Market (TAM)                         | $5 billion                                                                                                   |
+| 109 | Market                         | Atomic   | Serviceable Addressable Market (SAM)                   | $2 billion                                                                                                   |
+| 110 | Market                         | Atomic   | Serviceable Obtainable Market (SOM)                    | 20%                                                                                                         |
+| 111 | Culture & People               | Composite| Work culture                                           | Collaborative; Supportive; Fast-paced                                                                         |
+| 112 | Culture & People               | Atomic   | Manager quality                                        | Focus on coaching and mentoring                                                                                |
+| 113 | Culture & People               | Atomic   | Psychological safety                                   | High level of openness                                                                                       |
+| 114 | Culture & People               | Composite| Feedback culture                                       | Continuous feedback; Regular performance reviews                                                              |
+| 115 | Culture & People               | Composite| Diversity & inclusion                                   | Gender balance initiatives; Active recruitment of diverse candidates; Inclusion training programs             |
+| 116 | Culture & People               | Composite| Ethical standards                                      | High integrity; Transparent operations; Fair treatment of employees                                          |
+| 117 | Work–Life Balance & Work Patterns| Atomic   | Typical working hours                                   | Flexible working hours                                                                                       |
+| 118 | Work–Life Balance & Work Patterns| Atomic   | Overtime expectations                                   | Occasionally expected                                                                                       |
+| 119 | Work–Life Balance & Work Patterns| Atomic   | Weekend work                                           | Rarely required                                                                                             |
+| 120 | Work–Life Balance & Work Patterns| Composite| Remote / hybrid / on-site flexibility                  | Fully remote; Hybrid options; On-site work available                                                          |
+```

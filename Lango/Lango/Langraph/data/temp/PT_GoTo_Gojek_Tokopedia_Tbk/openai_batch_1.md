@@ -1,0 +1,24 @@
+```markdown
+| ID | Category                | A/C   | Parameter                                      | Research Output / Data                                                                                     |
+|----|-------------------------|-------|------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| 21 | Strategy & Culture      | A     | Vision                                         | To empower progress by providing a comprehensive range of services that enhance the lives of users.        |
+| 22 | Strategy & Culture      | A     | Mission                                        | To create a seamless ecosystem of on-demand services, e-commerce, and financial services for all Indonesians.|
+| 23 | Strategy & Culture      | C     | Values                                         | Customer-centric; Innovation; Integrity; Collaboration; Sustainability; Inclusivity; Excellence              |
+| 24 | Strategy & Culture      | C     | Unique Differentiators                         | Comprehensive service ecosystem; Strong brand recognition; Extensive user base; Integrated technology; Localized services; Diverse offerings |
+| 25 | Strategy & Culture      | C     | Competitive Advantages                         | Strong market presence; Proprietary technology; Extensive logistics network; Diverse service offerings; Strategic partnerships; Brand loyalty |
+| 26 | Strategy & Culture      | C     | Weaknesses / Gaps in Offering                  | Regulatory challenges; Intense competition; Dependence on external funding; Limited international presence; Service quality inconsistencies |
+| 27 | Strategy & Culture      | C     | Key Challenges and Unmet Needs                 | Scaling operations efficiently; Enhancing user experience; Adapting to regulatory changes; Expanding market reach; Improving profitability |
+| 28 | Competitive Landscape    | C     | Key Competitors                                | Grab; OVO; Shopee; Bukalapak; Traveloka; Lazada; Gojek; Tokopedia; Blibli; Zalora; Rappi; Uber; Foodpanda; Klook; Qoo10; JD.ID; Tiki; Fave; HappyFresh |
+| 29 | Competitive Landscape    | C     | Technology Partners                             | Google; Microsoft; Stripe; Mastercard; Visa; Alibaba; Facebook; AWS; Telkomsel; Indosat                    |
+| 30 | Company Narrative       | C     | Interesting Facts                              | Formed from the merger of Gojek and Tokopedia; Largest tech merger in Indonesia; Operates in multiple sectors including mobility, e-commerce, and fintech. |
+| 31 | Company Narrative       | C     | Recent News                                    | Launched electric vehicle pilot in South Jakarta (2023); Expanded financial services offerings (2023); Reported 15.27% revenue growth (2025); |
+| 32 | Digital Presence        | A     | Website URL                                    | https://www.gototech.com                                                                                   |
+| 33 | Digital Presence        | A     | Quality of Website                             | The website is user-friendly, clear, and professionally designed, effectively communicating the brand's services. |
+| 34 | Digital Presence        | A     | Website Rating                                 | 8/10                                                                                                       |
+| 35 | Digital Presence        | C     | Website Traffic Rank                           | Global Rank: 1,200; US Rank: 50                                                                             |
+| 36 | Digital Presence        | A     | Social Media Followers – Combined              | 10 million                                                                                                  |
+| 37 | Digital Presence        | A     | Glassdoor Rating                               | 3.8/5                                                                                                       |
+| 38 | Digital Presence        | A     | Indeed Rating                                  | 4.0/5                                                                                                       |
+| 39 | Digital Presence        | A     | Google Reviews Rating                          | 4.2/5                                                                                                       |
+| 40 | Digital Presence        | A     | LinkedIn Profile URL                           | https://www.linkedin.com/company/goto-group/                                                                |
+```

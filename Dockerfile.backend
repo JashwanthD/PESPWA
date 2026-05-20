@@ -1,0 +1,37 @@
+# ─────────────────────────────────────────────────────────────
+# PESCE Intelligence — FastAPI Backend (LangGraph Agent)
+# Build context: workspace root (d:\games\PES placement PWA\)
+# ─────────────────────────────────────────────────────────────
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# System dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy dependency file first (layer caching)
+COPY Lango/Lango/Langraph/requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir -r requirements.txt
+
+# Copy entire backend application code
+COPY Lango/Lango/Langraph/ .
+
+# Create output directory (mounted as volume at runtime for persistence)
+RUN mkdir -p /app/output
+
+# Expose FastAPI port
+EXPOSE 8001
+
+# Health check
+HEALTHCHECK --interval=15s --timeout=5s --start-period=30s --retries=3 \
+    CMD curl -f http://localhost:8001/health || exit 1
+
+# Run uvicorn
+CMD ["python", "-m", "uvicorn", "app.main:app", \
+     "--host", "0.0.0.0", "--port", "8001", "--workers", "1"]

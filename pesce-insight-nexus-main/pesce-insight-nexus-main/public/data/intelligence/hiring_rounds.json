@@ -1,0 +1,750 @@
+{
+    "company_name": "WhiteHat Jr",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "Software Development Engineer",
+            "role_category": "SDE",
+            "job_description": "Building scalable 1:1 live learning platforms and video interfaces. Focus on Node.js and React performance.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 1200000,
+            "bonus": "10% Performance Bonus",
+            "benefits_summary": "Medical Insurance, Remote Work Setup, Wellness Programs",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "Online Coding Test",
+                    "round_category": "Coding Test",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "COD",
+                            "typical_questions": "Check if string is palindrome ignoring special chars; Flatten nested JSON; First non-repeating char."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Wint Wealth",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "Backend Developer",
+            "role_category": "SDE",
+            "job_description": "Developing high-concurrency systems for retail debt assets. Expertise in Python and SQL indexing required.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 2200000,
+            "bonus": "Joining Bonus: 2L; 15% Performance",
+            "benefits_summary": "ESOPs, Health Insurance, Tech Reimbursement",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "Machine Coding",
+                    "round_category": "Coding Test",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "OOD",
+                            "typical_questions": "Design a parking lot with tiers; Design a Splitwise-like ledger; Design a multi-currency wallet."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Wipro",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "Project Engineer",
+            "role_category": "SDE",
+            "job_description": "Enterprise solution development for global clients using Java/C++. Requires strong fundamental logic.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 650000,
+            "bonus": "Annual Performance Variable",
+            "benefits_summary": "Stock Purchase Plan, Medical Cover, Upskilling Grants",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "Elite NTH Test",
+                    "round_category": "Aptitude",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "APTI",
+                            "typical_questions": "Time-distance logic; Syllogisms; Numerical series completion."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Wise",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "Full Stack Engineer",
+            "role_category": "SDE",
+            "job_description": "Architecting low-latency global transfer engines. Focus on cross-border payment security.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 4500000,
+            "bonus": "Wise Equity (RSUs)",
+            "benefits_summary": "Work from Anywhere, 28 Days Holiday, Private Health",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "Take-home Challenge",
+                    "round_category": "Coding Test",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "SWE",
+                            "typical_questions": "Build a currency converter with real-time rate sync; Secure Auth flow; Error handling for API."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Wise India",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "Product Engineer",
+            "role_category": "SDE",
+            "job_description": "Localizing the global Wise engine for INR corridors and UPI. High proficiency in Java and FEMA rules.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 2800000,
+            "bonus": "12% Variable Pay",
+            "benefits_summary": "Comprehensive Family Insurance, Learning Stipend",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "System Design",
+                    "round_category": "Interview",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "SYSD",
+                            "typical_questions": "Design a high-volume UPI tracking system; Sharding for global ledgers; Disaster recovery for FX."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Wix",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "Frontend Engineer",
+            "role_category": "Frontend_Developer",
+            "job_description": "Building the world's leading AI-driven website editor. Expert knowledge of React and browser internals.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 3500000,
+            "bonus": "Nasdaq Stock Options",
+            "benefits_summary": "Gourmet Kitchen, Travel Offsites, Education Support",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "Live Coding",
+                    "round_category": "Coding Test",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "COD",
+                            "typical_questions": "Polyfill for Array.map; Custom hook for debouncing; Deep clone object logic."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "WNS",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "Data Analyst",
+            "role_category": "Data_Analyst",
+            "job_description": "Analytics support for travel and insurance verticals. Requires mastery of SQL and Tableau/Python.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 900000,
+            "bonus": "Quarterly Performance Bonus",
+            "benefits_summary": "On-site Gym, Subsidized Cafeteria, Health Cover",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "Analytical Test",
+                    "round_category": "Aptitude",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "SQL",
+                            "typical_questions": "Write query for top 3 sales cities; Difference between Rank and Dense_Rank; Null handling in joins."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Wolt",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "Backend Engineer",
+            "role_category": "SDE",
+            "job_description": "Optimizing local logistics and real-time merchant delivery. Strong Python/Kotlin skills needed.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 4200000,
+            "bonus": "DoorDash RSUs",
+            "benefits_summary": "Unlimited Wolt+ Credits, Mental Health Support",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "Algorithmic Interview",
+                    "round_category": "Interview",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "DSA",
+                            "typical_questions": "Dijkstra's for courier route; Priority queue for orders; K-nearest restaurants."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Workato",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "Integration Specialist",
+            "role_category": "Others",
+            "job_description": "Creating automated workflows between SaaS apps for enterprise clients. Focus on API orchestration.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 1800000,
+            "bonus": "Annual Performance Bonus",
+            "benefits_summary": "Work-from-Home Stipend, Wellness Benefits",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "API Design Round",
+                    "round_category": "Interview",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "SWE",
+                            "typical_questions": "OAuth vs API Key; Pagination in massive JSON; Webhook retry logic."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Writer.com",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "AI Research Engineer",
+            "role_category": "Data_Scientist",
+            "job_description": "Developing Palmyra LLMs and Agentic AI features. Requires PyTorch and NLP research background.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 6000000,
+            "bonus": "Equity Package",
+            "benefits_summary": "Research Sabbaticals, Global Team Retreats",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "ML Deep Dive",
+                    "round_category": "Interview",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "AI",
+                            "typical_questions": "Self-attention mechanism scratch implementation; Vanishing gradient fixes; Transformer optimization."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Xerox",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "Software Engineer (Embedded)",
+            "role_category": "SDE",
+            "job_description": "Firmware development for imaging tech. Strong C/C++ and Linux internals experience mandatory.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 1400000,
+            "bonus": "Retention Bonus",
+            "benefits_summary": "Retirement Matching, Health/Dental, Tuition Support",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "Systems Test",
+                    "round_category": "Coding Test",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "OS",
+                            "typical_questions": "Mutex vs Semaphore; Priority Inversion in RTOS; Memory mapping in Linux."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Xiaomi",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "Android Developer",
+            "role_category": "SDE",
+            "job_description": "UI and system-level features for HyperOS. Optimization for flagship mobile devices using Kotlin.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 1600000,
+            "bonus": "Signing Bonus",
+            "benefits_summary": "Mi-Home Discounts, Fitness Allowance",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "Mobile Assessment",
+                    "round_category": "Interview",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "SWE",
+                            "typical_questions": "Activity lifecycle edges; Memory profiling in Android; Intent vs Service use-cases."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Xpressbees",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "Operations Analyst",
+            "role_category": "Data_Analyst",
+            "job_description": "Data-driven route optimization and logistics efficiency tracking. Advanced Excel and SQL required.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 800000,
+            "bonus": "Performance Bonus",
+            "benefits_summary": "Health Cover, Employee Equity Plan",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "SQL Round",
+                    "round_category": "Coding Test",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "SQL",
+                            "typical_questions": "Avg delivery time per hub; Duplicate ID detection; Top 3 couriers by volume."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Nebius",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "SRE (AI Infrastructure)",
+            "role_category": "SRE",
+            "job_description": "Managing Nvidia GPU clusters and cloud scaling for global AI labs. Expertise in Kubernetes.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 5500000,
+            "bonus": "Nasdaq Stock RSUs",
+            "benefits_summary": "Global Relocation, Unlimited Learning Budget",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "Networking Deep Dive",
+                    "round_category": "Interview",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "NETW",
+                            "typical_questions": "TCP 3-way handshake; BGP importance for infra; L4 vs L7 load balancing."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Yubi",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "Backend Engineer",
+            "role_category": "SDE",
+            "job_description": "Developing robust debt marketplace infrastructure using microservices. Proficiency in Java/Spring Boot.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 2000000,
+            "bonus": "Performance variable 20%",
+            "benefits_summary": "Modern Gadget Allowance, ESOPs",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "Machine Coding",
+                    "round_category": "Coding Test",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "OOD",
+                            "typical_questions": "Design an auction engine; Multi-level loan approval logic; Transaction ledger."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Zapier",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "Full Stack Engineer",
+            "role_category": "SDE",
+            "job_description": "Universal app connectivity and workflow automation. Fully remote. Strong JS/Python required.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 5000000,
+            "bonus": "Profit Sharing",
+            "benefits_summary": "Home Office Stipend, Annual Remote Retreat",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "Take-home Project",
+                    "round_category": "Coding Test",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "SWE",
+                            "typical_questions": "Build a mini-zap engine; API retry mechanism; Webhook listener implementation."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Zendesk",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "Software Engineer (AI)",
+            "role_category": "SDE",
+            "job_description": "Building autonomous CX solutions using LLMs. Focus on scalability in Ruby and Java environments.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 3200000,
+            "bonus": "Annual Performance Bonus",
+            "benefits_summary": "Volunteer Time Off, Comprehensive Health",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "Technical Screening",
+                    "round_category": "Interview",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "COD",
+                            "typical_questions": "Longest ticket response chain; Message priority queue; Nested ticket parsing."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Zensar",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "Digital Technology Associate",
+            "role_category": "SDE",
+            "job_description": "Cloud and digital solutions development for Fortune 500 clients. Entry-level role for tech grads.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 500000,
+            "bonus": "Project Incentives",
+            "benefits_summary": "Upskilling Academy, Group Insurance",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "Logic Assessment",
+                    "round_category": "Aptitude",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "APTI",
+                            "typical_questions": "Probability logic; Reading comprehension; Basic algebra for coding."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Zeta",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "SDE",
+            "role_category": "SDE",
+            "job_description": "Reinventing the core banking stack for global banks. High scale systems in Java/Distributed DBs.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 3000000,
+            "bonus": "High ESOP Grants",
+            "benefits_summary": "Unlimited Leave, Free Gourmet Meals",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "DSA Interview",
+                    "round_category": "Interview",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "DSA",
+                            "typical_questions": "Connect nodes at same tree level; Distributed counter implementation; Merge K sorted arrays."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Zifo",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "Data Engineer",
+            "role_category": "Others",
+            "job_description": "Engineering scientific data for pharma R&D. Requires knowledge of biostats and Python/SQL.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 750000,
+            "bonus": "Annual Performance Variable",
+            "benefits_summary": "Global Travel Opportunities, Scientific Research Grants",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "Domain Test",
+                    "round_category": "Aptitude",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "SQL",
+                            "typical_questions": "Find trials with no results; Join patient demographics; Calculate mortality rate logic."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Zillow",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "Data Scientist",
+            "role_category": "Data_Scientist",
+            "job_description": "Improving Zestimate accuracy using predictive models. PhD or Masters in STEM fields required.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 5000000,
+            "bonus": "Equity Grant",
+            "benefits_summary": "Flexible PTO, Commuter Benefits",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "Modeling Challenge",
+                    "round_category": "Coding Test",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "AI",
+                            "typical_questions": "Missing data handling in price prediction; XGBoost bias-variance tradeoff; Cross-validation for time-series."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Zoho",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "Member Technical Staff",
+            "role_category": "SDE",
+            "job_description": "Building the Zoho Operating System for Business. Pure development from scratch with no external libs.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 1000000,
+            "bonus": "Retention Bonus",
+            "benefits_summary": "Free Food and Accommodation, Rural Office Access",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "Logic Programming",
+                    "round_category": "Coding Test",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "On Campus",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "COD",
+                            "typical_questions": "N x N spiral matrix; Longest word formation by deletion; Find sub-palindromes."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Zolve",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "Software Engineer",
+            "role_category": "SDE",
+            "job_description": "Building cross-border neobanking solutions. Focus on credit scoring models and payment APIs.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 2400000,
+            "bonus": "Performance ESOPs",
+            "benefits_summary": "Global Relocation, Health Insurance",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "Arch Interview",
+                    "round_category": "Interview",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "SYSD",
+                            "typical_questions": "High-availability KYC pipeline; Eventual consistency in banking; Real-time credit limit microservice."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Zomato",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "SDE (Blinkit)",
+            "role_category": "SDE",
+            "job_description": "Logistics and Quick Commerce platform scaling. High-scale Java and React system ownership.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 2800000,
+            "bonus": "Zomato Stock RSUs",
+            "benefits_summary": "Zomato Gold for Life, Flexible Hybrid",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "Machine Coding",
+                    "round_category": "Coding Test",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "OOD",
+                            "typical_questions": "Real-time delivery tracking system; Coupon management logic; Rating service architecture."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+{
+    "company_name": "Zoom",
+    "job_role_details": [
+        {
+            "opportunity_type": "Employment",
+            "role_title": "SRE (Infrastructure)",
+            "role_category": "SRE",
+            "job_description": "Global network stability and latency management for massive concurrent video users.",
+            "compensation": "CTC",
+            "ctc_or_stipend": 4500000,
+            "bonus": "Annual Performance Equity",
+            "benefits_summary": "Work-from-Home Stipend, Mental Health Days",
+            "hiring_rounds": [
+                {
+                    "round_number": 1,
+                    "round_name": "Reliability Round",
+                    "round_category": "Interview",
+                    "evaluation_type": "Technical",
+                    "assessment_mode": "Online",
+                    "skill_sets": [
+                        {
+                            "skill_set_code": "NETW",
+                            "typical_questions": "TCP vs UDP for video streaming; Latency debugging in global calls; Anycast usage."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

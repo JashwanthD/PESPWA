@@ -1,0 +1,15 @@
+langchain
+langgraph
+pydantic
+supabase
+python-dotenv
+langchain-openai
+langchain-google-genai
+langchain-groq
+pandas
+pytest
+tavily-python
+langgraph-cli[inmem]
+fastapi
+uvicorn
+pydantic-settings

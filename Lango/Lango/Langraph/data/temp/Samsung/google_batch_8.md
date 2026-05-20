@@ -1,0 +1,6 @@
+### Research Output for Samsung
+| ID | Category | A/C | Parameter | Research Output / Data |
+| --- | --- | --- | --- | --- |
+| 161 | Values Alignment | Atomic | Mission clarity | Samsung follows a simple business philosophy: to devote its talent and technology to creating superior products and services that contribute to a better global society. |
+| 162 | Values Alignment | Composite | Sustainability and CSR | ESG — or environmental, social and corporate governance — is much more than a buzzword at Samsung Electronics, and we believe that having a positive impact on the planet starts with our employees; Samsung wants to lead by example and create a company culture that is not only dedicated to pushing the boundaries of technology, but also to preserving our planet; Samsung Electronics announced the “Five Samsung Business Principles” in 2005, expressing its commitment to corporate social responsibility as a world leading company. |
+| 163 | Values Alignment | Atomic | Crisis behavior | Samsung had to terminate its Galaxy Note 7 flagship phone in 2016 due to safety concerns, demonstrating a proactive approach to addressing crises and prioritizing customer safety. |

@@ -1,0 +1,106 @@
+{
+  "test_mapping": {
+    "7.1_extreme_high_values": [
+      "Annual Revenues",
+      "Company Valuation",
+      "Employee Size",
+      "Total Capital Raised",
+      "Website Traffic Rank",
+      "Social Media Followers – Combined",
+      "TAM",
+      "SAM",
+      "SOM"
+    ],
+    "7.2_zero_values": [
+      "Number of Offices (beyond HQ)",
+      "Total Capital Raised",
+      "Annual Revenues",
+      "Hiring Velocity",
+      "Employee Turnover",
+      "Churn Rate"
+    ],
+    "7.3_negative_values": [
+      "Annual Profits",
+      "Year-over-Year Growth Rate",
+      "Net Promoter Score (NPS)",
+      "Burn Multiplier"
+    ],
+    "7.4_percentage_bounds": [
+      "Market Share (%)",
+      "Churn Rate",
+      "Employee Turnover",
+      "Revenue Mix",
+      "R&D Investment",
+      "Diversity Metrics"
+    ],
+    "7.5_date_boundaries": [
+      "Year of Incorporation",
+      "Recent News",
+      "Recent Funding Rounds",
+      "Layoff history",
+      "Future Projections",
+      "Innovation Roadmap"
+    ],
+    "7.6_ratio_boundaries": [
+      "CAC:LTV Ratio",
+      "Burn Multiplier"
+    ],
+    "8.2_url_validity": [
+      "Logo",
+      "Website URL",
+      "LinkedIn Profile URL",
+      "CEO LinkedIn URL",
+      "Company Introduction / Marketing videos"
+    ],
+    "8.5_list_formatting": [
+      "Countries Operating In",
+      "Office Locations",
+      "Key Investors / Backers",
+      "Tech Stack/Tools Used",
+      "Key Competitors",
+      "Technology Partners"
+    ],
+    "8.6_text_length": [
+      "Short Name",
+      "Overview of the Company",
+      "Vision",
+      "Mission",
+      "Core Value Proposition"
+    ]
+  },
+  "enums": {
+    "categories": ["Startup", "MSME", "SMB", "Enterprise", "Investor", "VC"],
+    "legal_structures": ["Private", "Public", "Subsidiary", "Partnership", "Non-Profit", "Govt"],
+    "sales_motions": ["PLG", "Product-Led", "Sales-Led", "Field Sales", "Channel", "Hybrid"],
+    "remote_policies": ["Remote", "Hybrid", "On-Site", "Office-First"]
+  },
+  "global_config": {
+    "min_inc_year": 1800,
+    "max_text_narrative": 5000,
+    "supported_image_formats": ["png", "jpg", "jpeg", "svg", "webp"]
+  },
+  "header_mapping": {
+    "name": "Company Name",
+    "short_name": "Short Name",
+    "logo_url": "Logo",
+    "incorporation_year": "Year of Incorporation",
+    "overview_text": "Overview of the Company",
+    "nature_of_company": "Nature of Company",
+    "operating_countries": "Countries Operating In",
+    "office_count": "Number of Offices (beyond HQ)",
+    "annual_revenue": "Annual Revenues",
+    "annual_profit": "Annual Profits",
+    "valuation": "Company Valuation",
+    "yoy_growth_rate": "Year-over-Year Growth Rate",
+    "market_share_percentage": "Market Share (%)",
+    "total_capital_raised": "Total Capital Raised",
+    "churn_rate": "Churn Rate",
+    "net_promoter_score": "Net Promoter Score (NPS)",
+    "website_url": "Website URL",
+    "linkedin_url": "LinkedIn Profile URL",
+    "ceo_name": "CEO Name",
+    "ceo_linkedin_url": "CEO LinkedIn URL",
+    "key_investors": "Key Investors / Backers",
+    "employee_size": "Employee Size"
+  }
+}

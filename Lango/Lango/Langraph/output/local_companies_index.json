@@ -1,0 +1,151 @@
+[
+  {
+    "company_id": 2,
+    "name": "GlobalLogic Inc.",
+    "short_name": "GlobalLogic",
+    "logo_url": [
+      "https://www.globallogic.com/wp-content/themes/globallogic/assets/images/logo.svg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/GlobalLogic_logo.svg/2560px-GlobalLogic_logo.svg.png"
+    ],
+    "category": "Large-scale Digital Engineering Services Provider",
+    "employee_size": "32000",
+    "yoy_growth_rate": "0.22",
+    "operating_countries": [
+      "United States",
+      "India",
+      "Ukraine",
+      "Poland",
+      "Romania",
+      "United Kingdom",
+      "Argentina",
+      "Canada",
+      "Germany",
+      "Japan",
+      "Mexico",
+      "Sweden",
+      "Slovakia"
+    ],
+    "office_locations": [
+      "Noida, India",
+      "Bengaluru, India",
+      "Kyiv, Ukraine",
+      "Krakow, Poland",
+      "San Jose, USA",
+      "London, UK",
+      "Tokyo, Japan",
+      "Wroclaw, Poland"
+    ],
+    "filename": "GlobalLogic_Inc._consolidated.json"
+  },
+  {
+    "company_id": 3,
+    "name": "Globant S.A.",
+    "short_name": "Globant",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Globant_Logo.svg; https://www.globant.com/wp-content/themes/globant/assets/images/logo.svg; https://brandfetch.com/globant/logo",
+    "category": "Public Digital Transformation & AI Services Company",
+    "employee_size": "29100",
+    "yoy_growth_rate": "~15\u201320%",
+    "operating_countries": "United States; Argentina; India; United Kingdom; Spain; Colombia; Mexico; Brazil; Germany; Australia",
+    "office_locations": "Buenos Aires, Argentina; New York, USA; London, UK; Madrid, Spain; Pune, India; Bogota, Colombia; Mexico City, Mexico; Montevideo, Uruguay; Sao Paulo, Brazil; San Francisco, USA",
+    "filename": "Globant_S.A._consolidated.json"
+  },
+  {
+    "company_id": 4,
+    "name": "Glovoapp23 S.L.",
+    "short_name": "Glovo",
+    "logo_url": [
+      "https://upload.wikimedia.org/wikipedia/commons/0/0f/Glovo_logo.svg",
+      "https://commons.wikimedia.org/wiki/File:Glovo_Logo.svg",
+      "https://brandfetch.com/glovoapp.com/logo"
+    ],
+    "category": "Subsidiary Quick-Commerce & Multi-Category Delivery Platform",
+    "employee_size": "~15,000+ (including couriers, ~3,000 corporate staff)",
+    "yoy_growth_rate": "15% - 20% (Revenue growth)",
+    "operating_countries": "Spain; Italy; Poland; Romania; Morocco; Kenya; Kazakhstan; Croatia; Georgia; Ukraine",
+    "office_locations": [
+      "Barcelona Spain (HQ)",
+      "Madrid Spain",
+      "Rome Italy",
+      "Warsaw Poland",
+      "Bucharest Romania",
+      "Lisbon Portugal",
+      "Nairobi Kenya",
+      "Lagos Nigeria",
+      "Kyiv Ukraine",
+      "multiple additional city hubs in 23 countries"
+    ],
+    "filename": "Glovoapp23_S.L._consolidated.json"
+  },
+  {
+    "company_id": 4799,
+    "name": "Netflix, Inc.",
+    "short_name": "Netflix",
+    "logo_url": "https://s22.q4cdn.com/959853165/files/design/logo.png; https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg; https://www.netflix.com/",
+    "category": "Public Company (Large Cap); Media Company",
+    "employee_size": "85/100 (ESG rating); 90% (renewable energy usage); Netflix has a strong commitment to sustainability and social responsibility.",
+    "yoy_growth_rate": "High: Employees encouraged to challenge ideas; \"Radical candor\" promoted; Failures viewed as learning opportunities; Netflix has a high growth rate, with a focus on innovation and continuous improvement.",
+    "operating_countries": "United States; Canada; United Kingdom; Germany; France; Japan; Brazil; India; Australia; Mexico; Spain; Italy; South Korea; Netherlands; Argentina; Sweden; Turkey; Poland; Philippines; Thailand; South Africa; Latin America; Europe; Asia; Australia; Africa; Middle East; India",
+    "office_locations": "Los Angeles, CA (Content Production); Albuquerque, NM (DVD Operations); London, UK; Tokyo, Japan; Mumbai, India; S\u00e3o Paulo, Brazil; Amsterdam, Netherlands; Singapore; Seoul, South Korea; Toronto, Canada; Los Gatos, California, USA; New York City, New York, USA; London, UK; Tokyo, Japan; Seoul, South Korea; Mumbai, India; Singapore; Sydney, Australia",
+    "filename": "Netflix_consolidated.json"
+  },
+  {
+    "company_id": 3589,
+    "name": "Samsung Electronics Co., Ltd.",
+    "short_name": "Samsung",
+    "logo_url": "https://www.samsung.com/etc/designs/smg/global/imgs/logo-square-letter.png; https://www.samsung.com/global/assets/images/aboutsamsung/samsung_logo_blue.png; https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg",
+    "category": "Multinational Conglomerate (Chaebol)",
+    "employee_size": "Dow Jones Sustainability Index (DJSI) World Member (2023); MSCI ESG Rating: AA; RE100 (100% renewable energy by 2050); Circular Economy Initiatives; Carbon Neutrality by 2050",
+    "yoy_growth_rate": "Moderate: Employees report feeling safe to challenge ideas in small teams but hesitant to criticize leadership publicly",
+    "operating_countries": "United States; China; India; Germany; Brazil; South Korea; Vietnam; Indonesia; Mexico; United Kingdom; Japan; Russia; Turkey; Thailand; Philippines; Spain; France; Italy; Canada; Australia",
+    "office_locations": "Samsung Semiconductor HQ (Hwaseong, South Korea); Samsung Austin Semiconductor (Texas, USA); Samsung R&D Institute India (Bangalore); Samsung Electronics America (New Jersey, USA); Samsung UK (Chertsey)",
+    "filename": "Samsung_consolidated.json"
+  },
+  {
+    "company_id": 6899,
+    "name": "T1 Entertainment & Sports",
+    "short_name": "T1",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/T1_Esports_logo.svg/1200px-T1_Esports_logo.svg.png; https://t1.gg/images/logo-t1.svg",
+    "category": "Esports Organization; Joint Venture",
+    "employee_size": "SK Telecom (parent company) has established an integrated data platform for ESG activities; SK Telecom publishes annual ESG reports (2021-2025); SK Telecom expands startup collaboration platform SKTCH for AI-powered ecosystem solutions. (T1, as a JV, likely benefits from/aligns with these initiatives)",
+    "yoy_growth_rate": "High for players (open communication with coaches/management); Moderate for non-player staff (varies by department)",
+    "operating_countries": "South Korea; United States; Japan; Vietnam; Singapore; China",
+    "office_locations": "Seoul, South Korea; Philadelphia, USA; Los Angeles, USA",
+    "filename": "SK_telecom_CS_T1_consolidated.json"
+  },
+  {
+    "company_id": 1022,
+    "name": "T1 Entertainment & Sports (esports joint venture); T1 Energy Inc. (energy sector)",
+    "short_name": "T1",
+    "logo_url": "https://t1.gg/images/logo-t1.svg",
+    "category": "Public Company (T1 Energy Inc.); Joint Venture (T1 Entertainment & Sports)",
+    "employee_size": "Active Tier 1 green initiatives targeting 350 US tons annual emissions reduction; ESG-driven technology solutions",
+    "yoy_growth_rate": "Employees report feeling safe to voice opinions and challenge ideas in team settings",
+    "operating_countries": "South Korea; United States; Philippines; Los Angeles; Seoul",
+    "office_locations": "Seoul, South Korea; Philadelphia, USA; Los Angeles, USA; 123 Main St, Los Angeles, CA 90012; 456 Seoul St, Seoul, South Korea 12345; 789 Manila St, Manila, Philippines 12345",
+    "filename": "T1_consolidated.json"
+  },
+  {
+    "company_id": 9606,
+    "name": "Tesla, Inc.",
+    "short_name": "Tesla",
+    "logo_url": "https://www.tesla.com/sites/default/files/images/logos/tesla-logo.png; https://upload.wikimedia.org/wikipedia/commons/b/ba/Tesla_Motors_logo.png; https://logo.clearbit.com/tesla.com; https://www.tesla.com/favicon.ico; https://www.tesla.com/logo.png; https://www.tesla.com/tesla-logo-vector.png",
+    "category": "Public Company (Automotive & Clean Energy); Automotive and Energy Company",
+    "employee_size": "S&P Global ESG Score: 37/100 (2023); Initiatives: Carbon-neutral operations; Battery recycling programs; 10/10 (ISS Governance QualityScore, 2026)",
+    "yoy_growth_rate": "Mixed\u2014employees report high autonomy but fear of retribution for mistakes in high-stakes projects; Managers focus on coaching, mentoring, and long-term growth.",
+    "operating_countries": "United States; China; Germany; Netherlands; Canada; Japan; Australia; Norway; United Kingdom; France; Europe; Asia; Australia; Canada; Mexico; South America; Africa; Middle East",
+    "office_locations": "Gigafactory Berlin-Brandenburg, Germany; Gigafactory Shanghai, China; Gigafactory Texas, USA; Gigafactory Nevada, USA; Tesla Fremont Factory, USA; Tesla Kato Road, USA; Tesla Amsterdam, Netherlands; 100+ locations worldwide, including stores, galleries, and service centers",
+    "filename": "Tesla_consolidated.json"
+  },
+  {
+    "company_id": 1878,
+    "name": "GoogleCorp",
+    "short_name": "GC",
+    "logo_url": "google.png",
+    "category": "Tech Giant",
+    "employee_size": null,
+    "yoy_growth_rate": null,
+    "operating_countries": null,
+    "office_locations": null,
+    "filename": "TestCompany_consolidated.json"
+  }
+]

@@ -1,0 +1,7 @@
+```markdown
+| ID  | Category          | A/C   | Parameter                     | Research Output / Data                                                                                                                                                                                                                     |
+|-----|-------------------|-------|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 161 | Values Alignment   | A     | Mission clarity               | GoTo's mission is to "Empower Progress" by offering an unparalleled selection of goods and services through a comprehensive merchant and partner network and promoting financial inclusion through its leading payments and financial services business. |
+| 162 | Values Alignment   | C     | Sustainability and CSR        | Decarbonization initiatives; Transition to electric vehicles; Waste reduction and recycling efforts                                                                                                                                          |
+| 163 | Values Alignment   | A     | Crisis behavior               | GoTo has demonstrated resilience and adaptability during crises, focusing on maintaining service continuity and supporting its drivers and merchants through financial assistance and operational adjustments.                                   |
+```

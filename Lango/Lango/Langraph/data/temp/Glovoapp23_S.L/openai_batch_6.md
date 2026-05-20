@@ -1,0 +1,24 @@
+```markdown
+| ID  | Category                          | A/C     | Parameter                                         | Research Output / Data                                                                                     |
+|-----|-----------------------------------|---------|---------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| 121 | Work–Life Balance & Work Patterns  | C       | Leave policy                                      | Sick leave; Mental health days; Annual leave; Unpaid leave                                                  |
+| 122 | Work–Life Balance & Work Patterns  | A       | Burnout risk                                      | Moderate risk due to fast-paced environment and high demand for delivery services.                          |
+| 123 | Location, Commute & Accessibility   | A       | Central vs peripheral location                     | Central location in Barcelona, Spain.                                                                       |
+| 124 | Location, Commute & Accessibility   | C       | Public transport access                            | Well-connected by metro; Buses available; Proximity to major transport hubs; Bike lanes nearby              |
+| 125 | Location, Commute & Accessibility   | C       | Cab availability and company cab policy           | Cabs readily available; Company provides transport support for late-night shifts; Ride-sharing partnerships   |
+| 126 | Location, Commute & Accessibility   | A       | Commute time from airport                          | Approximately 20-30 minutes to Barcelona El Prat Airport.                                                  |
+| 127 | Location, Commute & Accessibility   | A       | Office zone type                                  | Located in a mixed-use commercial area.                                                                      |
+| 128 | Safety & Well-being                | C       | Area safety                                       | Generally safe during the day; Moderate safety concerns at night; Regular police presence                   |
+| 129 | Safety & Well-being                | C       | Company safety policies                            | Late-night transport provided; Safety training for employees; Women safety measures in place                 |
+| 130 | Safety & Well-being                | C       | Office infrastructure safety                       | Modern office facilities; Regular safety inspections; Emergency exits clearly marked                         |
+| 131 | Safety & Well-being                | C       | Emergency response preparedness                    | Fire drills conducted regularly; First aid kits available; Trained personnel for emergencies                 |
+| 132 | Safety & Well-being                | C       | Health support                                    | Comprehensive health insurance; Mental health support services; OPD benefits included                        |
+| 133 | Learning & Growth Opportunities     | A       | Onboarding and training quality                    | Structured onboarding program with initial training sessions.                                               |
+| 134 | Learning & Growth Opportunities     | C       | Learning culture                                   | Access to online courses; Internal workshops; Certification programs; Knowledge-sharing sessions             |
+| 135 | Learning & Growth Opportunities     | A       | Exposure quality                                   | High exposure to real-world problem solving; Opportunities for impactful projects.                          |
+| 136 | Learning & Growth Opportunities     | C       | Mentorship availability                            | Assigned mentors for new hires; Regular mentorship programs; Peer mentoring opportunities                    |
+| 137 | Learning & Growth Opportunities     | A       | Internal mobility                                  | Opportunities to move across teams; Clear internal job postings.                                           |
+| 138 | Learning & Growth Opportunities     | C       | Promotion clarity                                  | Promotions based on performance; Transparent criteria for advancement; Regular performance reviews           |
+| 139 | Learning & Growth Opportunities     | C       | Tools and technology access                        | Access to modern delivery management software; Use of data analytics tools; Latest communication platforms   |
+| 140 | Role & Work Quality                | A       | Role clarity                                      | Clear job descriptions; Defined responsibilities; Regular feedback on performance.                          |
+```

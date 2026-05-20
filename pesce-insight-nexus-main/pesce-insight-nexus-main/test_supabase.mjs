@@ -1,0 +1,3 @@
+import { createClient } from '@supabase/supabase-js';
+const supabase = createClient('https://xcykqefzqpomklnosymg.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhjeWtxZWZ6cXBvbWtsbm9zeW1nIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4MzM0MDMsImV4cCI6MjA5MjQwOTQwM30.WjX_8DgTouKz-oenUtv5XE_vJBJmAlLZOHlY3QGdMhI');
+supabase.from('companies').select('*, company_brand_reputation(*), company_business(*), company_compensation(*), company_culture(*), company_financials(*), company_logistics(*), company_people(*), company_technologies(*), company_talent_growth(*), company_skill_levels(required_level, skill_set_master(short_name))').limit(1).then(res => console.log(JSON.stringify(res, null, 2)));
