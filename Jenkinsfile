@@ -136,7 +136,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DH_USER', passwordVariable: 'DH_PASS')]) {
                     bat """
-                        echo %DH_PASS% | docker login -u %DH_USER% --password-stdin
+                        echo %DH_PASS%| docker login -u %DH_USER% --password-stdin
                         docker tag pesce-backend:latest  %DH_USER%/pesce-backend:%BUILD_NUMBER%
                         docker tag pesce-backend:latest  %DH_USER%/pesce-backend:latest
                         docker tag pesce-frontend:latest %DH_USER%/pesce-frontend:%BUILD_NUMBER%
