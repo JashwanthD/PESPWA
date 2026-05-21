@@ -41,16 +41,6 @@ pipeline {
             }
         }
 
-        stage('Test Backend') {
-            steps {
-                bat """
-                    cd /d "%WORKSPACE_DIR%\\%BACKEND_DIR%"
-                    python -m pip install --quiet pytest
-                    python -m pytest test_schema.py -v --tb=short
-                """
-            }
-        }
-
         stage('Lint Frontend') {
             steps {
                 bat """
@@ -89,6 +79,13 @@ pipeline {
                     bat "if exist \"%WORKSPACE_DIR%\\%BACKEND_DIR%\\.env\" del /F /Q \"%WORKSPACE_DIR%\\%BACKEND_DIR%\\.env\""
                     bat "if exist \"%WORKSPACE_DIR%\\run-build.bat\" del /F /Q \"%WORKSPACE_DIR%\\run-build.bat\""
                 }
+            }
+        }
+
+        stage('Test Backend') {
+            steps {
+                echo "=== Running python tests inside built container ==="
+                bat "docker run --rm pesce-backend:latest python test_schema.py"
             }
         }
 
