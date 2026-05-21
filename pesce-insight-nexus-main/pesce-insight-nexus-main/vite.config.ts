@@ -7,14 +7,6 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
-  // SPA mode: generates dist/client/_shell.html as a static entry point for Nginx.
-  // Without this, the build only produces JS/CSS chunks with no index.html,
-  // which causes Nginx to return 403 Forbidden on all routes.
-  tanstackStart: {
-    spa: {
-      enabled: true,
-    },
-  },
   vite: {
     server: {
       proxy: {

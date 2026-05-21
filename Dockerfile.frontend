@@ -36,18 +36,25 @@ COPY pesce-insight-nexus-main/pesce-insight-nexus-main/ .
 # Build production bundle — Vite embeds VITE_* vars at this step
 RUN npm run build
 
+# Generate index.html — TanStack Start (Cloudflare Workers target) does not
+# produce an index.html. The script below reads dist/client/assets, picks the
+# hashed CSS and main JS bundle, and writes a minimal HTML shell.
+# Script is base64-encoded to avoid all shell quoting issues.
+RUN echo 'Y29uc3QgZnMgPSByZXF1aXJlKCdmcycpOwpjb25zdCBhc3NldHNEaXIgPSAnZGlzdC9jbGllbnQvYXNzZXRzJzsKY29uc3QgZmlsZXMgPSBmcy5yZWFkZGlyU3luYyhhc3NldHNEaXIpOwpjb25zdCBjc3NGaWxlID0gZmlsZXMuZmluZChmID0+IC9ec3R5bGVzLS4qXC5jc3MkLy50ZXN0KGYpKTsKY29uc3QganNDYW5kaWRhdGVzID0gZmlsZXMuZmlsdGVyKGYgPT4gL15pbmRleC0uKlwuanMkLy50ZXN0KGYpKTsKbGV0IG1haW5KcyA9IGpzQ2FuZGlkYXRlcy5yZWR1Y2UoKGEsIGIpID0+CiAgZnMuc3RhdFN5bmMoYXNzZXRzRGlyICsgJy8nICsgYSkuc2l6ZSA+PSBmcy5zdGF0U3luYyhhc3NldHNEaXIgKyAnLycgKyBiKS5zaXplID8gYSA6IGIKKTsKY29uc3QgaHRtbCA9IFsKICAnPCFET0NUWVBFIGh0bWw+JywKICAnPGh0bWwgbGFuZz0iZW4iPicsCiAgJzxoZWFkPicsCiAgJyAgPG1ldGEgY2hhcnNldD0idXRmLTgiIC8+JywKICAnICA8bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTEiIC8+JywKICAnICA8dGl0bGU+UEVTQ0UgUGxhY2VtZW50IEludGVsbGlnZW5jZTwvdGl0bGU+JywKICAnICA8bWV0YSBuYW1lPSJkZXNjcmlwdGlvbiIgY29udGVudD0iRW50ZXJwcmlzZSBwbGFjZW1lbnQgaW50ZWxsaWdlbmNlIHBsYXRmb3JtIGZvciBQRVMgQ29sbGVnZSBvZiBFbmdpbmVlcmluZywgTWFuZHlhLiIgLz4nLAogICcgIDxtZXRhIG5hbWU9InRoZW1lLWNvbG9yIiBjb250ZW50PSIjMDkwOTBiIiAvPicsCiAgKGNzc0ZpbGUgPyAnICA8bGluayByZWw9InN0eWxlc2hlZXQiIGhyZWY9Ii9hc3NldHMvJyArIGNzc0ZpbGUgKyAnIiAvPicgOiAnJyksCiAgJzwvaGVhZD4nLAogICc8Ym9keT4nLAogICcgIDxkaXYgaWQ9InJvb3QiPjwvZGl2PicsCiAgKG1haW5KcyA/ICcgIDxzY3JpcHQgdHlwZT0ibW9kdWxlIiBzcmM9Ii9hc3NldHMvJyArIG1haW5KcyArICciPjwvc2NyaXB0PicgOiAnJyksCiAgJzwvYm9keT4nLAogICc8L2h0bWw+JwpdLmpvaW4oJ1xuJyk7CmZzLndyaXRlRmlsZVN5bmMoJ2Rpc3QvY2xpZW50L2luZGV4Lmh0bWwnLCBodG1sKTsKY29uc29sZS5sb2coJ0dlbmVyYXRlZCBpbmRleC5odG1sICBjc3M9JyArIGNzc0ZpbGUgKyAnICBqcz0nICsgbWFpbkpzKTsK' \
+    | base64 -d > /tmp/gen-html.cjs && node /tmp/gen-html.cjs
+
 # ── Stage 2: Serve with Nginx ────────────────────────────────
 FROM nginx:alpine AS runtime
 
-# Remove default nginx site config
-RUN rm /etc/nginx/conf.d/default.conf
+# Remove default nginx site config and default HTML files
+RUN rm /etc/nginx/conf.d/default.conf && rm -rf /usr/share/nginx/html/*
 
 # Copy our custom Nginx config (SPA routing + /api proxy to backend)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copy built Vite assets from Stage 1
+# Copy built Vite assets from Stage 1 (TanStack Start client assets)
 # Note: VITE_* secrets are now compiled into JS — not readable as env vars
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=builder /app/dist/client /usr/share/nginx/html
 
 # Create output dir placeholder (populated at runtime via shared Docker volume)
 RUN mkdir -p /usr/share/nginx/html/output
