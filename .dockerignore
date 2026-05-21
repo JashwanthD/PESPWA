@@ -25,6 +25,19 @@ pesce-insight-nexus-main/pesce-insight-nexus-main/.env
 # Allow examples through
 !**/.env.example
 
+# ── Frontend build output & junctions ──────────────────────────
+pesce-insight-nexus-main/pesce-insight-nexus-main/dist/
+pesce-insight-nexus-main/pesce-insight-nexus-main/dist-ssr/
+pesce-insight-nexus-main/pesce-insight-nexus-main/.output/
+pesce-insight-nexus-main/pesce-insight-nexus-main/.vinxi/
+pesce-insight-nexus-main/pesce-insight-nexus-main/.tanstack/
+pesce-insight-nexus-main/pesce-insight-nexus-main/.wrangler/
+pesce-insight-nexus-main/pesce-insight-nexus-main/public/output
+
+# ── Backend output ────────────────────────────────────────────
+Lango/Lango/Langraph/output/
+
+
 # ── Test artifacts ────────────────────────────────────────────
 .pytest_cache/
 .coverage
