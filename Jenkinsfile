@@ -126,7 +126,13 @@ pipeline {
         }
 
         stage('Push Images') {
-            when { anyOf { branch 'main'; branch 'master' } }
+            when {
+                anyOf {
+                    branch 'main'
+                    branch 'master'
+                    expression { return env.BRANCH_NAME == null }
+                }
+            }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DH_USER', passwordVariable: 'DH_PASS')]) {
                     bat """
@@ -146,7 +152,13 @@ pipeline {
         }
 
         stage('Deploy') {
-            when { anyOf { branch 'main'; branch 'master' } }
+            when {
+                anyOf {
+                    branch 'main'
+                    branch 'master'
+                    expression { return env.BRANCH_NAME == null }
+                }
+            }
             steps {
                 withCredentials([file(credentialsId: 'pesce-env-file', variable: 'BACKEND_ENV')]) {
                     bat "copy /Y \"%BACKEND_ENV%\" \"%WORKSPACE_DIR%\\%BACKEND_DIR%\\.env\""
