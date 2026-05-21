@@ -67,7 +67,7 @@ pipeline {
                         \$lines = Get-Content "\$env:FRONTEND_ENV" | Where-Object { \$_ -match '^VITE_' -and \$_.Trim() -ne '' -and \$_ -notmatch '^#' }
                         \$argStr = (\$lines | ForEach-Object { \$p = \$_ -split '=',2; "--build-arg " + \$p[0].Trim() + "=" + \$p[1].Trim() }) -join " "
                         \$content = "@echo off`r`ncd /d `"\$env:WORKSPACE_DIR`"`r`ndocker compose -f \$env:COMPOSE_FILE build --no-cache \$argStr`r`nexit /b %ERRORLEVEL%`r`n"
-                        [IO.File]::WriteAllText("\$env:WORKSPACE_DIR\run-build.bat", \$content, [Text.Encoding]::ASCII)
+                        [IO.File]::WriteAllText("\$env:WORKSPACE_DIR/run-build.bat", \$content, [Text.Encoding]::ASCII)
                         Write-Host "Generated run-build.bat with args: \$argStr"
                     """
                 }
