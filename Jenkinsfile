@@ -61,23 +61,31 @@ pipeline {
                     // Copy backend secrets
                     bat "copy /Y \"%BACKEND_ENV%\" \"%WORKSPACE_DIR%\\%BACKEND_DIR%\\.env\""
 
-                    // Write a .bat that embeds VITE_ build args and calls docker compose
-                    // Using [IO.File]::WriteAllText avoids PowerShell exit-code swallowing
+                    // Build frontend argument array and run docker compose directly in PowerShell
                     powershell """
+                        \$ErrorActionPreference = 'Stop'
                         \$lines = Get-Content "\$env:FRONTEND_ENV" | Where-Object { \$_ -match '^VITE_' -and \$_.Trim() -ne '' -and \$_ -notmatch '^#' }
-                        \$argStr = (\$lines | ForEach-Object { \$p = \$_ -split '=',2; "--build-arg " + \$p[0].Trim() + "=" + \$p[1].Trim() }) -join " "
-                        \$content = "@echo off`r`ncd /d `"\$env:WORKSPACE_DIR`"`r`ndocker compose -f \$env:COMPOSE_FILE build --no-cache \$argStr`r`nexit /b %ERRORLEVEL%`r`n"
-                        [IO.File]::WriteAllText("\$env:WORKSPACE_DIR/run-build.bat", \$content, [Text.Encoding]::ASCII)
-                        Write-Host "Generated run-build.bat with args: \$argStr"
+                        
+                        \$buildArgs = @('-f', \$env:COMPOSE_FILE, 'build', '--no-cache')
+                        foreach (\$line in \$lines) {
+                            \$p = \$line -split '=',2
+                            \$buildArgs += "--build-arg"
+                            \$buildArgs += (\$p[0].Trim() + "=" + \$p[1].Trim())
+                        }
+                        
+                        cd "\$env:WORKSPACE_DIR"
+                        Write-Host "Running: docker compose \$buildArgs"
+                        & docker compose \$buildArgs
+                        if (\$LASTEXITCODE -ne 0) {
+                            Write-Error "Docker build failed with exit code \$LASTEXITCODE"
+                            exit \$LASTEXITCODE
+                        }
                     """
                 }
-                // Execute the generated bat -- Jenkins sees the real exit code
-                bat "\"%WORKSPACE_DIR%\\run-build.bat\""
             }
             post {
                 always {
                     bat "if exist \"%WORKSPACE_DIR%\\%BACKEND_DIR%\\.env\" del /F /Q \"%WORKSPACE_DIR%\\%BACKEND_DIR%\\.env\""
-                    bat "if exist \"%WORKSPACE_DIR%\\run-build.bat\" del /F /Q \"%WORKSPACE_DIR%\\run-build.bat\""
                 }
             }
         }
