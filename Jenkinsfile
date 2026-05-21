@@ -1,248 +1,165 @@
-// ─────────────────────────────────────────────────────────────
-// PESCE Intelligence — Jenkins Declarative Pipeline (Windows)
-// ─────────────────────────────────────────────────────────────
-// Prerequisites in Jenkins:
-//   1. Install plugins: Docker Pipeline, Pipeline, Credentials Binding
-//   2. Add credentials:
-//      - ID: "pesce-env-file"    → Secret File  (.env with all API keys)
-//      - ID: "dockerhub-creds"  → Username/Password (Docker Hub login)
-//   3. Ensure Jenkins agent has Docker + Docker Compose v2 installed
-//   4. Jenkins running on Windows — uses 'bat' / 'powershell' (NOT 'sh')
-// ─────────────────────────────────────────────────────────────
+// PESCE Intelligence -- Jenkins Declarative Pipeline
+// Windows agent, Docker Desktop, Java 21
+//
+// CREDENTIALS (Manage Jenkins > Credentials > Global > Add Credential):
+//   ID: pesce-env-file          Kind: Secret file  (Lango\Lango\Langraph\.env)
+//   ID: pesce-frontend-env-file Kind: Secret file  (pesce-insight-nexus-main\..\.env)
+//   ID: dockerhub-creds         Kind: Username+Password (Docker Hub, push only)
 
 pipeline {
     agent any
 
     environment {
-        // Docker Hub repo (change to your username/repo)
-        DOCKER_REPO       = "pesceintellligence"
-        BACKEND_IMAGE     = "${DOCKER_REPO}/pesce-backend"
-        FRONTEND_IMAGE    = "${DOCKER_REPO}/pesce-frontend"
-        // Tag with build number for traceability, also tag as latest
-        IMAGE_TAG         = "${env.BUILD_NUMBER}"
-        COMPOSE_PROJECT   = "pesce"
+        WORKSPACE_DIR  = "d:\\games\\PES placement PWA"
+        BACKEND_DIR    = "Lango\\Lango\\Langraph"
+        FRONTEND_DIR   = "pesce-insight-nexus-main\\pesce-insight-nexus-main"
+        BACKEND_IMAGE  = "pesce-backend"
+        FRONTEND_IMAGE = "pesce-frontend"
+        COMPOSE_FILE   = "docker-compose.yml"
     }
 
     options {
-        // Keep last 10 builds, discard older logs/artifacts
         buildDiscarder(logRotator(numToKeepStr: '10'))
-        // Abort if any stage hangs > 30 min
-        timeout(time: 30, unit: 'MINUTES')
-        // Don't run concurrent builds on same branch
+        timeout(time: 45, unit: 'MINUTES')
         disableConcurrentBuilds()
-        // Timestamps in console output
         timestamps()
+        skipDefaultCheckout(true)
     }
 
     stages {
 
-        // ── 1. Checkout ──────────────────────────────────────
-        stage('Checkout') {
+        stage('Prepare') {
             steps {
-                echo "=== Checking out source ==="
-                checkout scm
-                script {
-                    env.GIT_COMMIT_SHORT = bat(
-                        script: "git rev-parse --short HEAD",
-                        returnStdout: true
-                    ).trim().readLines().last()
-                    echo "Building commit: ${env.GIT_COMMIT_SHORT}"
-                }
+                echo "=== Build #${BUILD_NUMBER} ==="
+                bat """
+                    if not exist "%WORKSPACE_DIR%\\Dockerfile.backend"  ( echo ERROR: Dockerfile.backend missing & exit /b 1 )
+                    if not exist "%WORKSPACE_DIR%\\Dockerfile.frontend"  ( echo ERROR: Dockerfile.frontend missing & exit /b 1 )
+                    if not exist "%WORKSPACE_DIR%\\docker-compose.yml"  ( echo ERROR: docker-compose.yml missing & exit /b 1 )
+                    docker info > nul 2>&1 || ( echo ERROR: Docker not running & exit /b 1 )
+                    echo All checks passed.
+                """
             }
         }
 
-        // ── 2. Lint & Test Backend ───────────────────────────
-        stage('Lint & Test Backend') {
+        stage('Test Backend') {
             steps {
-                echo "=== Running Python tests ==="
-                dir('Lango/Lango/Langraph') {
-                    bat '''
-                        python -m pip install --quiet pytest
-                        python -m pytest test_schema.py -v --tb=short
-                        exit /b 0
-                    '''
-                }
+                bat """
+                    cd /d "%WORKSPACE_DIR%\\%BACKEND_DIR%"
+                    python -m pip install --quiet pytest
+                    python -m pytest test_schema.py -v --tb=short
+                """
             }
         }
 
-        // ── 3. Lint Frontend ─────────────────────────────────
         stage('Lint Frontend') {
             steps {
-                echo "=== Running ESLint ==="
-                dir('pesce-insight-nexus-main/pesce-insight-nexus-main') {
-                    bat '''
-                        npm install --prefer-offline
-                        npm run lint
-                        exit /b 0
-                    '''
-                }
+                bat """
+                    cd /d "%WORKSPACE_DIR%\\%FRONTEND_DIR%"
+                    npm install --prefer-offline
+                    npx tsc --noEmit
+                """
             }
         }
 
-        // ── 4. Build Docker Images ───────────────────────────
         stage('Build Images') {
             steps {
                 echo "=== Building Docker images ==="
-                withCredentials([file(credentialsId: 'pesce-env-file', variable: 'ENV_FILE')]) {
-                    powershell '''
-                        Copy-Item $env:ENV_FILE -Destination "Lango\\Lango\\Langraph\\.env" -Force
-                    '''
+                withCredentials([
+                    file(credentialsId: 'pesce-env-file',          variable: 'BACKEND_ENV'),
+                    file(credentialsId: 'pesce-frontend-env-file', variable: 'FRONTEND_ENV')
+                ]) {
+                    // Copy backend secrets
+                    bat "copy /Y \"%BACKEND_ENV%\" \"%WORKSPACE_DIR%\\%BACKEND_DIR%\\.env\""
+
+                    // Write a .bat that embeds VITE_ build args and calls docker compose
+                    // Using [IO.File]::WriteAllText avoids PowerShell exit-code swallowing
+                    powershell """
+                        \$lines = Get-Content "\$env:FRONTEND_ENV" | Where-Object { \$_ -match '^VITE_' -and \$_.Trim() -ne '' -and \$_ -notmatch '^#' }
+                        \$argStr = (\$lines | ForEach-Object { \$p = \$_ -split '=',2; "--build-arg " + \$p[0].Trim() + "=" + \$p[1].Trim() }) -join " "
+                        \$content = "@echo off`r`ncd /d `"\$env:WORKSPACE_DIR`"`r`ndocker compose -f \$env:COMPOSE_FILE build --no-cache \$argStr`r`nexit /b %ERRORLEVEL%`r`n"
+                        [IO.File]::WriteAllText("\$env:WORKSPACE_DIR\run-build.bat", \$content, [Text.Encoding]::ASCII)
+                        Write-Host "Generated run-build.bat with args: \$argStr"
+                    """
+                }
+                // Execute the generated bat -- Jenkins sees the real exit code
+                bat "\"%WORKSPACE_DIR%\\run-build.bat\""
+            }
+            post {
+                always {
+                    bat "if exist \"%WORKSPACE_DIR%\\%BACKEND_DIR%\\.env\" del /F /Q \"%WORKSPACE_DIR%\\%BACKEND_DIR%\\.env\""
+                    bat "if exist \"%WORKSPACE_DIR%\\run-build.bat\" del /F /Q \"%WORKSPACE_DIR%\\run-build.bat\""
+                }
+            }
+        }
+
+        stage('Smoke Test') {
+            steps {
+                withCredentials([file(credentialsId: 'pesce-env-file', variable: 'BACKEND_ENV')]) {
+                    bat "copy /Y \"%BACKEND_ENV%\" \"%WORKSPACE_DIR%\\%BACKEND_DIR%\\.env\""
                 }
                 bat """
-                    docker compose build --build-arg BUILD_NUMBER=%IMAGE_TAG%
-
-                    docker tag pesce-backend:latest  %BACKEND_IMAGE%:%IMAGE_TAG%
-                    docker tag pesce-backend:latest  %BACKEND_IMAGE%:latest
-                    docker tag pesce-frontend:latest %FRONTEND_IMAGE%:%IMAGE_TAG%
-                    docker tag pesce-frontend:latest %FRONTEND_IMAGE%:latest
+                    cd /d "%WORKSPACE_DIR%"
+                    docker run --rm -d --name pesce-smoke-%BUILD_NUMBER% --env-file %BACKEND_DIR%\\.env -p 18001:8001 pesce-backend:latest
+                """
+                powershell """
+                    \$ok = \$false
+                    for (\$i=1; \$i -le 15; \$i++) {
+                        try { \$r = Invoke-WebRequest 'http://localhost:18001/health' -UseBasicParsing -TimeoutSec 3; if (\$r.StatusCode -eq 200) { \$ok = \$true; break } } catch {}
+                        Write-Host "Waiting (\$i/15)..."; Start-Sleep 3
+                    }
+                    if (-not \$ok) { Write-Error 'Health check timed out'; exit 1 }
+                    if (\$r.Content -notmatch '"status":"healthy"') { Write-Error 'Bad health response'; exit 1 }
+                    Write-Host "Smoke test PASSED: \$(\$r.Content)"
                 """
             }
             post {
                 always {
-                    powershell '''
-                        Remove-Item -Path "Lango\\Lango\\Langraph\\.env" -Force -ErrorAction SilentlyContinue
-                    '''
+                    bat "docker stop pesce-smoke-%BUILD_NUMBER% 2>nul & docker rm pesce-smoke-%BUILD_NUMBER% 2>nul & exit /b 0"
+                    bat "if exist \"%WORKSPACE_DIR%\\%BACKEND_DIR%\\.env\" del /F /Q \"%WORKSPACE_DIR%\\%BACKEND_DIR%\\.env\""
                 }
             }
         }
 
-        // ── 5. Smoke Test Containers ─────────────────────────
-        stage('Smoke Test') {
-            steps {
-                echo "=== Running smoke tests against containers ==="
-                withCredentials([file(credentialsId: 'pesce-env-file', variable: 'ENV_FILE')]) {
-                    powershell '''
-                        Copy-Item $env:ENV_FILE -Destination "Lango\\Lango\\Langraph\\.env" -Force
-
-                        # Start backend only for smoke test
-                        docker compose run --rm -d `
-                            --name pesce-smoke-backend `
-                            -p 18001:8001 `
-                            backend
-
-                        # Wait for health check (up to 45s)
-                        $healthy = $false
-                        for ($i = 1; $i -le 15; $i++) {
-                            try {
-                                $resp = Invoke-WebRequest -Uri "http://localhost:18001/health" -UseBasicParsing -TimeoutSec 3
-                                if ($resp.StatusCode -eq 200) {
-                                    Write-Host "Backend healthy!"
-                                    $healthy = $true
-                                    break
-                                }
-                            } catch {
-                                Write-Host "Waiting for backend... ($i/15)"
-                                Start-Sleep -Seconds 3
-                            }
-                        }
-
-                        if (-not $healthy) {
-                            Write-Host "Backend did not become healthy in time!"
-                            exit 1
-                        }
-
-                        # Verify health endpoint returns expected JSON
-                        $health = (Invoke-WebRequest -Uri "http://localhost:18001/health" -UseBasicParsing).Content
-                        Write-Host "Health response: $health"
-                        if ($health -notmatch '"status":"healthy"') {
-                            Write-Host "Health check response invalid!"
-                            exit 1
-                        }
-
-                        Write-Host "All smoke tests passed!"
-                    '''
-                }
-            }
-            post {
-                always {
-                    powershell '''
-                        docker stop pesce-smoke-backend 2>$null
-                        docker rm   pesce-smoke-backend 2>$null
-                        Remove-Item -Path "Lango\\Lango\\Langraph\\.env" -Force -ErrorAction SilentlyContinue
-                    '''
-                }
-            }
-        }
-
-        // ── 6. Push to Docker Hub ────────────────────────────
         stage('Push Images') {
-            when {
-                // Only push on main/master branch
-                anyOf {
-                    branch 'main'
-                    branch 'master'
-                }
-            }
+            when { anyOf { branch 'main'; branch 'master' } }
             steps {
-                echo "=== Pushing images to Docker Hub ==="
-                withCredentials([usernamePassword(
-                    credentialsId: 'dockerhub-creds',
-                    usernameVariable: 'DOCKER_USER',
-                    passwordVariable: 'DOCKER_PASS'
-                )]) {
-                    powershell '''
-                        $env:DOCKER_PASS | docker login -u $env:DOCKER_USER --password-stdin
-
-                        docker push "$env:BACKEND_IMAGE`:$env:IMAGE_TAG"
-                        docker push "$env:BACKEND_IMAGE`:latest"
-                        docker push "$env:FRONTEND_IMAGE`:$env:IMAGE_TAG"
-                        docker push "$env:FRONTEND_IMAGE`:latest"
-
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DH_USER', passwordVariable: 'DH_PASS')]) {
+                    bat """
+                        echo %DH_PASS% | docker login -u %DH_USER% --password-stdin
+                        docker tag pesce-backend:latest  %DH_USER%/pesce-backend:%BUILD_NUMBER%
+                        docker tag pesce-backend:latest  %DH_USER%/pesce-backend:latest
+                        docker tag pesce-frontend:latest %DH_USER%/pesce-frontend:%BUILD_NUMBER%
+                        docker tag pesce-frontend:latest %DH_USER%/pesce-frontend:latest
+                        docker push %DH_USER%/pesce-backend:%BUILD_NUMBER%
+                        docker push %DH_USER%/pesce-backend:latest
+                        docker push %DH_USER%/pesce-frontend:%BUILD_NUMBER%
+                        docker push %DH_USER%/pesce-frontend:latest
                         docker logout
-                    '''
+                    """
                 }
             }
         }
 
-        // ── 7. Deploy ─────────────────────────────────────────
         stage('Deploy') {
-            when {
-                anyOf {
-                    branch 'main'
-                    branch 'master'
-                }
-            }
+            when { anyOf { branch 'main'; branch 'master' } }
             steps {
-                echo "=== Deploying stack with Docker Compose ==="
-                withCredentials([file(credentialsId: 'pesce-env-file', variable: 'ENV_FILE')]) {
-                    powershell '''
-                        Copy-Item $env:ENV_FILE -Destination "Lango\\Lango\\Langraph\\.env" -Force
-
-                        # (Re)create containers with latest images
-                        docker compose up -d --remove-orphans
-
-                        # Wait for services to stabilise
-                        Write-Host "Waiting for services to be healthy..."
-                        Start-Sleep -Seconds 20
-
-                        docker compose ps
-                    '''
+                withCredentials([file(credentialsId: 'pesce-env-file', variable: 'BACKEND_ENV')]) {
+                    bat "copy /Y \"%BACKEND_ENV%\" \"%WORKSPACE_DIR%\\%BACKEND_DIR%\\.env\""
                 }
+                bat """
+                    cd /d "%WORKSPACE_DIR%"
+                    docker compose -f %COMPOSE_FILE% up -d --remove-orphans --no-build
+                    timeout /t 15 /nobreak > nul
+                    docker compose -f %COMPOSE_FILE% ps
+                """
             }
         }
 
-    } // end stages
+    }
 
     post {
-        success {
-            echo """
-╔══════════════════════════════════════════════════════╗
-║  BUILD SUCCEEDED                                     ║
-║  Commit : ${env.GIT_COMMIT_SHORT ?: 'N/A'}          ║
-║  Build  : #${env.BUILD_NUMBER}                       ║
-║  Images : ${BACKEND_IMAGE}:${IMAGE_TAG}              ║
-║           ${FRONTEND_IMAGE}:${IMAGE_TAG}             ║
-║  App    : http://localhost:3000                       ║
-╚══════════════════════════════════════════════════════╝
-"""
-        }
-        failure {
-            echo "BUILD FAILED — Check console output above for details."
-        }
-        always {
-            // Clean up dangling images to reclaim disk space
-            bat 'docker image prune -f'
-            echo "Build #${env.BUILD_NUMBER} complete."
-        }
+        success { echo "BUILD #${BUILD_NUMBER} SUCCEEDED -- App: http://localhost:3000" }
+        failure { echo "BUILD #${BUILD_NUMBER} FAILED -- check stage logs above." }
+        always  { bat "docker image prune -f 2>nul & exit /b 0" }
     }
 }

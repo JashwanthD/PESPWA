@@ -18,9 +18,12 @@ ENV/
 **/node_modules/
 
 # ── Secrets / environment ─────────────────────────────────────
-.env
-*.env
-!.env.example
+# Backend secrets
+Lango/Lango/Langraph/.env
+# Frontend secrets (Supabase keys — never bake into image)
+pesce-insight-nexus-main/pesce-insight-nexus-main/.env
+# Allow examples through
+!**/.env.example
 
 # ── Test artifacts ────────────────────────────────────────────
 .pytest_cache/
