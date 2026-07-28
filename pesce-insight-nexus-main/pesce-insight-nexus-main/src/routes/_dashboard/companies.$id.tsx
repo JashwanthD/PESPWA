@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useParams } from "@tanstack/react-router";
-import { useCompanyById } from "@/hooks/useCompanyIntelligence";
+import { useCompanyData } from "@/hooks/useCompanyData";
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
@@ -13,6 +13,7 @@ import {
 import { ensureAbsoluteUrl } from "@/utils/calculators";
 import * as Tabs from "@radix-ui/react-tabs";
 import { useProfileSync } from "@/hooks/useProfileSync";
+import { CompanyLogo } from "@/components/CompanyLogo";
 
 export const Route = createFileRoute("/_dashboard/companies/$id")({
   component: CompanyDetail,
@@ -20,27 +21,38 @@ export const Route = createFileRoute("/_dashboard/companies/$id")({
 
 function CompanyDetail() {
   const { id } = useParams({ from: "/_dashboard/companies/$id" });
-  const { data: company, loading } = useCompanyById(Number(id));
+  const { getCompanyById, isLoading } = useCompanyData();
+  const company = getCompanyById(id);
   const [activeTab, setActiveTab] = useState("overview");
   const { calculateMatch } = useProfileSync();
 
   const matchScore = useMemo(() => company ? calculateMatch(company) : 0, [company, calculateMatch]);
 
-  if (loading) {
+  if (isLoading || !company) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
-        <div className="h-12 w-12 border-4 border-indigo-500/20 border-t-indigo-500 rounded-full animate-spin" />
-        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--muted)]">Decrypting Node Data...</p>
-      </div>
-    );
-  }
-
-  if (!company) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
-        <Shield className="h-8 w-8 text-red-500/50" />
-        <h2 className="text-sm font-bold text-[var(--foreground)] uppercase tracking-widest">Access Denied: Node Null</h2>
-        <Link to="/companies" className="text-[9px] font-black uppercase tracking-widest text-[var(--primary)] hover:underline">Return to Directory</Link>
+      <div className="max-w-7xl mx-auto py-6 space-y-10 animate-pulse">
+        {/* Skeleton Breadcrumbs */}
+        <div className="h-4 w-48 bg-zinc-800 rounded-md" />
+        
+        {/* Skeleton Header Card */}
+        <div className="bg-zinc-950 border border-zinc-800 rounded-[2.5rem] p-8 lg:p-12 space-y-6">
+          <div className="flex flex-col lg:flex-row gap-10 items-start">
+            <div className="h-32 w-32 bg-zinc-850 rounded-3xl shrink-0" />
+            <div className="flex-1 space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="h-5 w-24 bg-zinc-800 rounded-full" />
+                <div className="h-5 w-32 bg-zinc-850 rounded-full" />
+              </div>
+              <div className="h-10 w-2/3 bg-zinc-850 rounded-xl" />
+              <div className="h-4 w-1/3 bg-zinc-800 rounded-md" />
+            </div>
+          </div>
+          <div className="pt-6 border-t border-zinc-800 flex flex-col items-center justify-center py-12 gap-3 text-center">
+            <div className="h-8 w-8 rounded-full border-2 border-indigo-500 border-t-transparent animate-spin mb-2" />
+            <h3 className="text-sm font-black text-zinc-300 uppercase tracking-widest">Company Profile Syncing...</h3>
+            <p className="text-xs text-zinc-500 max-w-sm uppercase tracking-wider">Retrieving decision-grade data and establishing realtime pipeline connections</p>
+          </div>
+        </div>
       </div>
     );
   }
@@ -67,14 +79,12 @@ function CompanyDetail() {
         <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-indigo-500/[0.03] to-transparent pointer-events-none" />
         
         <div className="flex flex-col lg:flex-row gap-10 relative z-10">
-          <div className="h-32 w-32 shrink-0 bg-white border border-[var(--border)] rounded-3xl flex items-center justify-center overflow-hidden shadow-2xl group relative p-4">
-            {company.logo_url ? (
-              <img src={ensureAbsoluteUrl(company.logo_url)!} alt="" className="h-full w-full object-contain group-hover:scale-110 transition-transform duration-500" />
-            ) : (
-              <Building2 className="h-12 w-12 text-zinc-300" />
-            )}
-            <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-3xl" />
-          </div>
+          <CompanyLogo 
+            name={company.name || "?"} 
+            logoUrl={company.logo_url || undefined}
+            domain={company.website_url || undefined} 
+            className="h-32 w-32 shrink-0 rounded-3xl shadow-2xl p-4 group-hover:scale-105 transition-transform duration-500" 
+          />
 
           <div className="flex-1 space-y-6">
             <div className="space-y-2">
@@ -116,9 +126,9 @@ function CompanyDetail() {
           </div>
 
           <div className="flex flex-col gap-3 lg:w-64">
-            <QuickLink to={`/companies/${id}/process`} icon={Trophy} label="Hiring Rounds" color="bg-indigo-500" />
-            <QuickLink to={`/companies/${id}/skills`} icon={BrainCircuit} label="Hiring Skills" color="bg-zinc-800" />
-            <QuickLink to={`/companies/${id}/innovx`} icon={Rocket} label="InnovX Intelligence" color="bg-zinc-800" />
+            <QuickLink to={`/companies/${id}/process`} icon={Trophy} label="Hiring Rounds" variant="primary" />
+            <QuickLink to={`/companies/${id}/skills`} icon={BrainCircuit} label="Hiring Skills" />
+            <QuickLink to={`/companies/${id}/innovx`} icon={Rocket} label="InnovX Intelligence" />
           </div>
         </div>
 
@@ -249,7 +259,7 @@ function CompanyDetail() {
                         <h4 className="text-[10px] font-black uppercase tracking-widest text-[var(--muted)]">Weaknesses</h4>
                         <div className="flex flex-wrap gap-2">
                           {(company.weaknesses_gaps || "").split(',').filter(Boolean).map((w, i) => (
-                            <span key={i} className="px-4 py-2 bg-zinc-900 border border-zinc-800 rounded-full text-xs font-bold text-zinc-400">{w.trim()}</span>
+                            <span key={i} className="px-4 py-2 bg-[var(--background)] border border-[var(--border)] rounded-full text-xs font-bold text-[var(--muted)]">{w.trim()}</span>
                           ))}
                         </div>
                       </div>
@@ -257,7 +267,7 @@ function CompanyDetail() {
                         <h4 className="text-[10px] font-black uppercase tracking-widest text-[var(--muted)]">Key Challenges</h4>
                         <div className="flex flex-wrap gap-2">
                           {(company.key_challenges_needs || "").split(',').filter(Boolean).map((c, i) => (
-                            <span key={i} className="px-4 py-2 bg-zinc-900 border border-zinc-800 rounded-full text-xs font-bold text-zinc-400">{c.trim()}</span>
+                            <span key={i} className="px-4 py-2 bg-[var(--background)] border border-[var(--border)] rounded-full text-xs font-bold text-[var(--muted)]">{c.trim()}</span>
                           ))}
                         </div>
                       </div>
@@ -273,7 +283,7 @@ function CompanyDetail() {
               <DossierCard title="Executive Leadership" icon={Medal}>
                 <div className="space-y-6">
                   <div className="flex items-center gap-4 p-4 bg-[var(--background)] border border-[var(--border)] rounded-2xl">
-                    <div className="h-12 w-12 rounded-full bg-zinc-800 flex items-center justify-center text-lg font-black text-white">
+                    <div className="h-12 w-12 rounded-full bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center text-lg font-black text-[var(--foreground)]">
                       {company.ceo_name?.[0] || "C"}
                     </div>
                     <div>
@@ -375,17 +385,25 @@ function MetaItem({ icon: Icon, label, color }: { icon: any, label: string, colo
   );
 }
 
-function QuickLink({ to, icon: Icon, label, color }: { to: string, icon: any, label: string, color: string }) {
+function QuickLink({ to, icon: Icon, label, variant = "default" }: { to: string, icon: any, label: string, variant?: "default" | "primary" }) {
+  const styles = variant === "primary"
+    ? "bg-indigo-650 dark:bg-indigo-600 border-indigo-700 dark:border-indigo-500 text-white hover:bg-indigo-750 dark:hover:bg-indigo-500/90"
+    : "bg-[var(--surface)] border-[var(--border)] text-[var(--foreground)] hover:bg-[var(--border)]/20";
+    
+  const iconColor = variant === "primary" ? "text-white/75 group-hover:text-white" : "text-[var(--muted)] group-hover:text-[var(--foreground)]";
+  const textColor = variant === "primary" ? "text-white/90 group-hover:text-white" : "text-[var(--foreground)]/80 group-hover:text-[var(--foreground)]";
+  const chevronColor = variant === "primary" ? "text-white/50 group-hover:text-white" : "text-[var(--muted)]/50 group-hover:text-[var(--foreground)]";
+
   return (
     <Link 
       to={to}
-      className={`flex items-center justify-between gap-4 px-6 py-4 ${color} border border-white/5 rounded-2xl group hover:scale-[1.02] transition-all`}
+      className={`flex items-center justify-between gap-4 px-6 py-4 rounded-2xl group hover:scale-[1.02] transition-all border ${styles}`}
     >
       <div className="flex items-center gap-3">
-        <Icon className="h-4 w-4 text-white/50 group-hover:text-white transition-colors" />
-        <span className="text-[10px] font-black uppercase tracking-widest text-white/70 group-hover:text-white">{label}</span>
+        <Icon className={`h-4 w-4 transition-colors ${iconColor}`} />
+        <span className={`text-[10px] font-black uppercase tracking-widest transition-colors ${textColor}`}>{label}</span>
       </div>
-      <ChevronRight className="h-3.5 w-3.5 text-white/20 group-hover:text-white transition-colors" />
+      <ChevronRight className={`h-3.5 w-3.5 transition-colors ${chevronColor}`} />
     </Link>
   );
 }

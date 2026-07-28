@@ -1,5 +1,5 @@
 import type { PESCECompanySchema } from "@/types/intelligence";
-import { Link } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { ArrowUpRight, MapPin, Users, Calendar, Briefcase, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { ensureAbsoluteUrl } from "@/utils/calculators";
@@ -9,6 +9,7 @@ import { CompanyLogo } from "@/components/CompanyLogo";
 export function CompanyCard({ company }: { company: PESCECompanySchema }) {
   const { calculateMatch } = useProfileSync();
   const matchScore = calculateMatch(company);
+  const navigate = useNavigate();
 
   const logoSrc = ensureAbsoluteUrl(company.logo_url);
   const initials = (company.short_name || company.name || "?")
@@ -18,16 +19,22 @@ export function CompanyCard({ company }: { company: PESCECompanySchema }) {
     .slice(0, 2)
     .toUpperCase();
 
+  const handleCardClick = () => {
+    navigate({
+      to: "/companies/$id",
+      params: { id: company.company_id.toString() }
+    });
+  };
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       className="h-full"
     >
-      <Link
-        to="/companies/$id"
-        params={{ id: company.company_id.toString() }}
-        className="group h-full bg-[var(--surface)] border border-[var(--border)] p-5 rounded-2xl hover:border-indigo-500/50 transition-all duration-300 flex flex-col gap-5 shadow-sm hover:shadow-indigo-500/5 hover:-translate-y-1 overflow-hidden"
+      <div
+        onClick={handleCardClick}
+        className="group h-full bg-surface border border-border p-5 rounded-2xl hover:border-primary/50 transition-all duration-300 flex flex-col gap-5 shadow-sm hover:shadow-primary/5 hover:-translate-y-1 overflow-hidden cursor-pointer"
       >
         {/* Header: Logo & Name */}
         <div className="flex justify-between items-start">
@@ -38,8 +45,8 @@ export function CompanyCard({ company }: { company: PESCECompanySchema }) {
             className="h-12 w-12 shrink-0 rounded-xl" 
           />
           <div className="flex flex-col items-end gap-1">
-            <ArrowUpRight className="h-4 w-4 text-[var(--border)] group-hover:text-indigo-400 transition-colors" />
-            <div className="flex items-center gap-1 text-[8px] font-black text-amber-500 bg-amber-500/5 px-1.5 py-0.5 rounded border border-amber-500/10">
+            <ArrowUpRight className="h-4 w-4 text-border group-hover:text-primary transition-colors" />
+            <div className="flex items-center gap-1 text-[8px] font-black text-amber-600 dark:text-amber-400 bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/20">
               <Zap className="h-2 w-2" /> {matchScore}%
             </div>
           </div>
@@ -47,30 +54,57 @@ export function CompanyCard({ company }: { company: PESCECompanySchema }) {
 
         {/* Body: Title & Overview */}
         <div className="space-y-2">
-          <h3 className="text-sm font-bold text-[var(--foreground)] uppercase tracking-tight group-hover:text-indigo-400 transition-colors truncate">
+          <h3 className="text-sm font-bold text-foreground uppercase tracking-tight group-hover:text-primary transition-colors truncate">
             {company.name}
           </h3>
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-black uppercase tracking-widest text-indigo-500/80 bg-indigo-500/5 px-2 py-0.5 rounded border border-indigo-500/10">
+            <span className="text-[10px] font-black uppercase tracking-widest text-primary bg-primary/5 px-2 py-0.5 rounded border border-primary/10">
               {company.category || "Intelligence Node"}
             </span>
           </div>
         </div>
 
         {/* Info Grid: Year, Nature, Employees */}
-        <div className="grid grid-cols-2 gap-3 pt-4 border-t border-[var(--border)]">
+        <div className="grid grid-cols-2 gap-3 pt-4 border-t border-border">
           <div className="space-y-1">
-            <div className="flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-[var(--muted)]">
+            <div className="flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-muted">
               <Calendar className="h-3 w-3" /> Est. Year
             </div>
-            <div className="text-xs font-bold text-[var(--foreground)]">{company.incorporation_year || "—"}</div>
+            <div className="text-xs font-bold text-foreground">{company.incorporation_year || "—"}</div>
           </div>
           <div className="space-y-1">
-            <div className="flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-[var(--muted)]">
+            <div className="flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-muted">
               <Briefcase className="h-3 w-3" /> Nature
             </div>
-            <div className="text-xs font-bold text-[var(--foreground)] truncate">{company.nature_of_company?.split('·')[0] || "—"}</div>
+            <div className="text-xs font-bold text-foreground truncate">{company.nature_of_company?.split('·')[0] || "—"}</div>
           </div>
+        </div>
+
+        {/* Apply Now Routing Gateway */}
+        <div className="w-full mt-2">
+          {company.application_url ? (
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                window.open(company.application_url!, "_blank", "noopener,noreferrer");
+              }}
+              className="w-full text-center bg-primary hover:opacity-90 active:scale-[0.98] text-white text-xs font-bold py-2.5 px-4 rounded-xl transition-all shadow-lg shadow-primary/15 cursor-pointer uppercase tracking-wider"
+            >
+              Apply Now
+            </button>
+          ) : (
+            <button
+              disabled
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+              }}
+              className="w-full text-center bg-muted/10 border border-border text-muted/80 text-xs font-bold py-2.5 px-4 rounded-xl cursor-not-allowed uppercase tracking-wider"
+            >
+              No Active Openings
+            </button>
+          )}
         </div>
 
         {/* Footer: HQ & Employees */}
@@ -88,7 +122,7 @@ export function CompanyCard({ company }: { company: PESCECompanySchema }) {
             </span>
           </div>
         </div>
-      </Link>
+      </div>
     </motion.div>
   );
 }

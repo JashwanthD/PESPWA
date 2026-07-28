@@ -1,11 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useCompanyIntelligence } from "@/hooks/useCompanyIntelligence";
+import { useCompanyData } from "@/hooks/useCompanyData";
 import { CompanyCard } from "@/components/intelligence/CompanyCard";
 import { CardSkeleton } from "@/components/ui/skeletons";
 import { useMemo, useState } from "react";
 import { Search, Filter, X, LayoutGrid, List } from "lucide-react";
 import { CompanyListItem } from "@/components/intelligence/CompanyListItem";
 import { AddCompanyModal } from "@/components/intelligence/AddCompanyModal";
+import { useAuth } from "@/lib/auth";
 
 interface CompaniesSearch {
   category?: string;
@@ -21,8 +22,9 @@ export const Route = createFileRoute("/_dashboard/companies/")({
 const CATEGORIES = ["All", "Marquee", "Super Dream", "Dream", "Regular"];
 
 function CompaniesDirectory() {
+  const { role } = useAuth();
   const { category: initialCategory } = Route.useSearch();
-  const { data, loading } = useCompanyIntelligence();
+  const { companies: data, isLoading: loading } = useCompanyData();
   const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState(initialCategory ?? "All");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
@@ -50,7 +52,7 @@ function CompaniesDirectory() {
           </div>
           
           <div className="flex gap-2 items-center ml-auto">
-            <AddCompanyModal onCompanyAdded={() => window.location.reload()} />
+            {role === 'admin' && <AddCompanyModal />}
             <div className="flex gap-1 p-1 bg-[var(--surface)] border border-[var(--border)] rounded-xl">
               <button
                 onClick={() => setViewMode("grid")}

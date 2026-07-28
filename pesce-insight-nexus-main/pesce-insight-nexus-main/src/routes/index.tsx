@@ -1,10 +1,11 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useCompanyIntelligence } from "@/hooks/useCompanyIntelligence";
+import { useCompanyData } from "@/hooks/useCompanyData";
 import { CardSkeleton } from "@/components/ui/skeletons";
 import { CompanyCard } from "@/components/intelligence/CompanyCard";
 import { Building2, Search, TrendingUp, Star, Zap, Briefcase, ArrowRight, Loader2 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { CompanyLogo } from "@/components/CompanyLogo";
 
 export const Route = createFileRoute("/")({
   component: Dashboard,
@@ -19,26 +20,24 @@ const METRICS = [
 ] as const;
 
 function Dashboard() {
-  const { data, loading } = useCompanyIntelligence();
+  const { companies, isLoading: loading } = useCompanyData();
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const navigate = useNavigate();
-
-  const companies = data ?? [];
 
   const metricsData = useMemo(() => {
     const activeNodes = companies.filter(c => c.name && c.name.trim().length > 0);
     return METRICS.map(m => {
       let count = 0;
       if (m.key === "Total") count = activeNodes.length;
-      else count = activeNodes.filter(c => c.category === m.key).length;
+      else count = activeNodes.filter(c => c.category?.toLowerCase() === m.key.toLowerCase()).length;
       return { ...m, count };
     });
   }, [companies]);
 
   const featuredCompanies = useMemo(() => {
     return companies
-      .filter(c => c.category === "Marquee")
+      .filter(c => c.category?.toLowerCase() === "marquee")
       .slice(0, 4);
   }, [companies]);
 
@@ -103,9 +102,12 @@ function Dashboard() {
                     params={{ id: c.company_id.toString() }}
                     className="flex items-center gap-4 p-4 hover:bg-[var(--border)]/50 transition-colors border-b border-[var(--border)] last:border-0"
                   >
-                    <div className="h-8 w-8 rounded-lg bg-zinc-800 flex items-center justify-center overflow-hidden border border-zinc-700">
-                      {c.logo_url ? <img src={c.logo_url} alt="" className="h-full w-full object-cover" /> : <Building2 className="h-4 w-4 text-zinc-500" />}
-                    </div>
+                    <CompanyLogo 
+                      name={c.name || "?"} 
+                      logoUrl={c.logo_url || undefined}
+                      domain={c.website_url || undefined} 
+                      className="h-8 w-8 shrink-0 rounded-lg" 
+                    />
                     <div>
                       <div className="text-xs font-bold text-white uppercase tracking-tight">{c.name}</div>
                       <div className="text-[9px] text-zinc-500 uppercase tracking-widest">{c.category}</div>

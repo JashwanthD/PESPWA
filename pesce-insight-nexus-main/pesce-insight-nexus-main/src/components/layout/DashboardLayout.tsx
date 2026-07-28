@@ -6,7 +6,7 @@ import { LinearAuthScreen } from "@/components/LinearAuthScreen";
 import { CommandMenu } from "@/components/CommandMenu";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useTheme } from "@/components/ThemeProvider";
-import { Activity, LayoutDashboard, Compass, Swords, LogOut, Network, Share2, User } from "lucide-react";
+import { Activity, LayoutDashboard, Compass, Swords, LogOut, Network, Share2, User, Briefcase } from "lucide-react";
 import { useScroll, useVelocity, useTransform, useSpring, motion } from "framer-motion";
 
 export function DashboardLayout({ children }: { children: ReactNode }) {
@@ -140,6 +140,7 @@ function SidebarNav() {
     { to: "/network", label: "Ecosystem Network", icon: Share2 },
     { to: "/hiring", label: "Global Hiring Process", icon: Activity },
     { to: "/innovx", label: "Global INNOVX", icon: Swords },
+    { to: "/placement", label: "Placement Hub", icon: Briefcase },
   ];
 
   return (
@@ -219,6 +220,7 @@ function MobileNav() {
   const loc = useLocation();
   const NAV = [
     { to: "/", label: "Dashboard", icon: LayoutDashboard },
+    { to: "/placement", label: "Hub", icon: Briefcase },
     { to: "/companies", label: "Vault", icon: Compass },
     { to: "/skills", label: "Skills", icon: Network },
     { to: "/network", label: "Network", icon: Share2 },

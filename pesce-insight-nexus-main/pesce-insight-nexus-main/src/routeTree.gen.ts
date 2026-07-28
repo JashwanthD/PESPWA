@@ -13,6 +13,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardSkillsRouteImport } from './routes/_dashboard/skills'
 import { Route as DashboardProfileRouteImport } from './routes/_dashboard/profile'
+import { Route as DashboardPlacementRouteImport } from './routes/_dashboard/placement'
 import { Route as DashboardNetworkRouteImport } from './routes/_dashboard/network'
 import { Route as DashboardInnovxRouteImport } from './routes/_dashboard/innovx'
 import { Route as DashboardHiringRouteImport } from './routes/_dashboard/hiring'
@@ -42,6 +43,11 @@ const DashboardSkillsRoute = DashboardSkillsRouteImport.update({
 const DashboardProfileRoute = DashboardProfileRouteImport.update({
   id: '/_dashboard/profile',
   path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardPlacementRoute = DashboardPlacementRouteImport.update({
+  id: '/_dashboard/placement',
+  path: '/placement',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardNetworkRoute = DashboardNetworkRouteImport.update({
@@ -106,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/hiring': typeof DashboardHiringRoute
   '/innovx': typeof DashboardInnovxRoute
   '/network': typeof DashboardNetworkRoute
+  '/placement': typeof DashboardPlacementRoute
   '/profile': typeof DashboardProfileRoute
   '/skills': typeof DashboardSkillsRoute
   '/companies/$id': typeof DashboardCompaniesIdRouteWithChildren
@@ -121,6 +128,7 @@ export interface FileRoutesByTo {
   '/hiring': typeof DashboardHiringRoute
   '/innovx': typeof DashboardInnovxRoute
   '/network': typeof DashboardNetworkRoute
+  '/placement': typeof DashboardPlacementRoute
   '/profile': typeof DashboardProfileRoute
   '/skills': typeof DashboardSkillsRoute
   '/companies/$id': typeof DashboardCompaniesIdRouteWithChildren
@@ -138,6 +146,7 @@ export interface FileRoutesById {
   '/_dashboard/hiring': typeof DashboardHiringRoute
   '/_dashboard/innovx': typeof DashboardInnovxRoute
   '/_dashboard/network': typeof DashboardNetworkRoute
+  '/_dashboard/placement': typeof DashboardPlacementRoute
   '/_dashboard/profile': typeof DashboardProfileRoute
   '/_dashboard/skills': typeof DashboardSkillsRoute
   '/_dashboard/companies/$id': typeof DashboardCompaniesIdRouteWithChildren
@@ -156,6 +165,7 @@ export interface FileRouteTypes {
     | '/hiring'
     | '/innovx'
     | '/network'
+    | '/placement'
     | '/profile'
     | '/skills'
     | '/companies/$id'
@@ -171,6 +181,7 @@ export interface FileRouteTypes {
     | '/hiring'
     | '/innovx'
     | '/network'
+    | '/placement'
     | '/profile'
     | '/skills'
     | '/companies/$id'
@@ -187,6 +198,7 @@ export interface FileRouteTypes {
     | '/_dashboard/hiring'
     | '/_dashboard/innovx'
     | '/_dashboard/network'
+    | '/_dashboard/placement'
     | '/_dashboard/profile'
     | '/_dashboard/skills'
     | '/_dashboard/companies/$id'
@@ -204,6 +216,7 @@ export interface RootRouteChildren {
   DashboardHiringRoute: typeof DashboardHiringRoute
   DashboardInnovxRoute: typeof DashboardInnovxRoute
   DashboardNetworkRoute: typeof DashboardNetworkRoute
+  DashboardPlacementRoute: typeof DashboardPlacementRoute
   DashboardProfileRoute: typeof DashboardProfileRoute
   DashboardSkillsRoute: typeof DashboardSkillsRoute
 }
@@ -236,6 +249,13 @@ declare module '@tanstack/react-router' {
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof DashboardProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_dashboard/placement': {
+      id: '/_dashboard/placement'
+      path: '/placement'
+      fullPath: '/placement'
+      preLoaderRoute: typeof DashboardPlacementRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_dashboard/network': {
@@ -348,6 +368,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardHiringRoute: DashboardHiringRoute,
   DashboardInnovxRoute: DashboardInnovxRoute,
   DashboardNetworkRoute: DashboardNetworkRoute,
+  DashboardPlacementRoute: DashboardPlacementRoute,
   DashboardProfileRoute: DashboardProfileRoute,
   DashboardSkillsRoute: DashboardSkillsRoute,
 }

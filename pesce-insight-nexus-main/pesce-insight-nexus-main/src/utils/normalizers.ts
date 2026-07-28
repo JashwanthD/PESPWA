@@ -57,18 +57,47 @@ export function normalizeUrl(url: string): string {
  */
 export function classifyCompany(c: PESCECompanySchema): string {
   if (!c) return "Regular";
-  const hc = String(c.employee_size || "");
-  const nature = String(c.nature_of_company || "");
-  const stack = String(c.tech_stack || "");
+  
+  const hc = String(c.employee_size || "").toLowerCase();
+  const nature = String(c.nature_of_company || "").toLowerCase();
+  const cat = String(c.category || "").toLowerCase();
+  const stack = String(c.tech_stack || "").toLowerCase();
+  const name = String(c.name || "").toLowerCase();
   const year = parseInt(String(c.incorporation_year || "0"));
 
-  if (TIER1_KEYWORDS.some(k => safeIncludes(hc, k) || safeIncludes(nature, k)) || safeIncludes(hc, "10,000")) {
+  const combinedContext = `${hc} ${nature} ${cat} ${stack} ${name}`;
+
+  if (
+    TIER1_KEYWORDS.some(k => safeIncludes(combinedContext, k)) ||
+    safeIncludes(hc, "10,000") || 
+    safeIncludes(combinedContext, "tech giant") ||
+    safeIncludes(combinedContext, "multinational") ||
+    safeIncludes(combinedContext, "large cap") ||
+    safeIncludes(cat, "tier-1 giant") ||
+    SERVICE_GIANTS.some(k => safeIncludes(name, k))
+  ) {
     return "Marquee";
   }
-  if (PRODUCT_KEYWORDS.some(k => safeIncludes(nature, k) || safeIncludes(stack, k))) {
+
+  if (
+    PRODUCT_KEYWORDS.some(k => safeIncludes(combinedContext, k)) ||
+    safeIncludes(combinedContext, "unicorn") ||
+    safeIncludes(combinedContext, "quick commerce") ||
+    safeIncludes(cat, "product hub")
+  ) {
     return "Super Dream";
   }
-  if (year >= 2017) return "Dream";
+
+  if (
+    year >= 2017 || 
+    safeIncludes(combinedContext, "startup") || 
+    safeIncludes(combinedContext, "mid-size") ||
+    safeIncludes(cat, "service ecosystem") ||
+    safeIncludes(cat, "emerging startup") ||
+    safeIncludes(combinedContext, "esports")
+  ) {
+    return "Dream";
+  }
 
   return "Regular";
 }
@@ -103,9 +132,10 @@ export function normalizeCompanyData(c: PESCECompanySchema): PESCECompanySchema 
   const normalized = { ...c };
 
   // 1. Auto-Classification
-  // We only override if the current category is "Pending", "N/A", or empty.
+  // Force categorization into one of the 4 placement tiers
+  const allowedCategories = ["marquee", "super dream", "dream", "regular"];
   const currentCat = String(c.category || "").toLowerCase();
-  if (!currentCat || currentCat === "pending" || currentCat === "n/a" || currentCat === "intelligence node") {
+  if (!allowedCategories.includes(currentCat)) {
     normalized.category = classifyCompany(c);
   }
 
@@ -127,13 +157,77 @@ export function normalizeCompanyData(c: PESCECompanySchema): PESCECompanySchema 
   // 5. Title Case Normalization
   if (normalized.name) normalized.name = toTitleCase(normalized.name);
   if (normalized.short_name) normalized.short_name = toTitleCase(normalized.short_name);
-  if (normalized.category) normalized.category = toTitleCase(normalized.category);
+  
+  // Keep category exact matches for metrics checking
+  if (normalized.category) {
+    const validMap: Record<string, string> = {
+      "marquee": "Marquee",
+      "super dream": "Super Dream",
+      "dream": "Dream",
+      "regular": "Regular"
+    };
+    normalized.category = validMap[String(normalized.category).toLowerCase()] || "Regular";
+  }
+
   if (normalized.nature_of_company) normalized.nature_of_company = toTitleCase(normalized.nature_of_company);
+
+  // 5.5. Careers URL Resolution (Double-Safe)
+  let cleanAppUrl = normalized.application_url;
+  if (!cleanAppUrl || cleanAppUrl === "null" || cleanAppUrl === "undefined" || cleanAppUrl === "—" || cleanAppUrl === "Analyzing Archive...") {
+    cleanAppUrl = "";
+  }
+
+  if (!cleanAppUrl) {
+    let webUrl = normalized.website_url;
+    if (!webUrl || webUrl === "null" || webUrl === "undefined" || webUrl === "—" || webUrl === "Analyzing Archive...") {
+      const cleanName = String(normalized.short_name || normalized.name || "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, "");
+      webUrl = cleanName ? `https://www.${cleanName}.com` : "";
+    }
+
+    if (webUrl) {
+      let cleanWebUrl = webUrl.trim();
+      if (!cleanWebUrl.startsWith("http")) {
+        cleanWebUrl = "https://" + cleanWebUrl;
+      }
+      cleanWebUrl = cleanWebUrl.replace(/\/+$/, "");
+
+      const lowerName = String(normalized.name || normalized.short_name || "").toLowerCase();
+      if (lowerName.includes("google")) normalized.application_url = "https://careers.google.com";
+      else if (lowerName.includes("microsoft")) normalized.application_url = "https://careers.microsoft.com";
+      else if (lowerName.includes("netflix")) normalized.application_url = "https://jobs.netflix.com";
+      else if (lowerName.includes("apple")) normalized.application_url = "https://www.apple.com/careers/";
+      else if (lowerName.includes("amazon")) normalized.application_url = "https://amazon.jobs";
+      else if (lowerName.includes("ibm")) normalized.application_url = "https://www.ibm.com/careers";
+      else if (lowerName.includes("samsung")) normalized.application_url = "https://www.samsung.com/careers";
+      else if (lowerName.includes("tesla")) normalized.application_url = "https://www.tesla.com/careers";
+      else if (lowerName.includes("blinkit")) normalized.application_url = "https://blinkit.com/careers";
+      else if (lowerName.includes("glovo")) normalized.application_url = "https://careers.glovo.com";
+      else if (lowerName.includes("globant")) normalized.application_url = "https://www.globant.com/careers";
+      else if (lowerName.includes("globallogic")) normalized.application_url = "https://www.globallogic.com/careers";
+      else if (lowerName.includes("tcs") || lowerName.includes("tata consultancy")) normalized.application_url = "https://www.tcs.com/careers";
+      else if (lowerName.includes("infosys")) normalized.application_url = "https://www.infosys.com/careers.html";
+      else if (lowerName.includes("wipro")) normalized.application_url = "https://careers.wipro.com";
+      else if (lowerName.includes("cognizant")) normalized.application_url = "https://careers.cognizant.com";
+      else if (lowerName.includes("accenture")) normalized.application_url = "https://www.accenture.com/careers";
+      else normalized.application_url = `${cleanWebUrl}/careers`;
+    } else {
+      normalized.application_url = "https://careers.google.com"; // ultimate fallback
+    }
+  } else {
+    // If we have an existing URL, ensure it starts with http
+    let cleanApp = String(normalized.application_url).trim();
+    if (cleanApp && !cleanApp.startsWith("http")) {
+      normalized.application_url = "https://" + cleanApp;
+    }
+  }
 
   // 6. Zero-Dash Policy (Empty States)
   const FALLBACK = "Analyzing Archive...";
   const fields = Object.keys(normalized) as Array<keyof PESCECompanySchema>;
   fields.forEach(f => {
+    if (f === "application_url") return; // Keep careers urls clean and functioning
     // @ts-ignore
     const val = normalized[f];
     if (val === null || val === undefined || val === "" || val === "null" || val === "undefined" || val === "—") {

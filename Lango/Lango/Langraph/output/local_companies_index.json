@@ -1,5 +1,17 @@
 [
   {
+    "company_id": 2180,
+    "name": "Blinkit (formerly Grofers India Private Limited)",
+    "short_name": "Blinkit",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Blinkit_logo.svg/1200px-Blinkit_logo.svg.png; https://blinkit.com/assets/images/logo.svg; https://cdn.zeptonow.com/web-static-assets/images/logo.svg; https://www.blinkit.com/assets/images/logo.png; https://www.blinkit.com/assets/images/logo-dark.png; https://www.blinkit.com/assets/images/logo-white.png; https://example.com/logo1; https://example.com/logo2; https://example.com/logo3",
+    "category": "Startup (Quick Commerce)",
+    "employee_size": "8,753 (as of latest reports); Not Found (no specific information available)",
+    "yoy_growth_rate": "Excellent; employees feel safe to speak openly and admit mistakes without fear of punishment.; High; employees feel safe to speak openly and share their ideas; encouraged to ask questions and challenge assumptions",
+    "operating_countries": "India; United States; United Kingdom; Australia; Canada",
+    "office_locations": "Gurugram (HQ); Mumbai; Bengaluru; Delhi; Hyderabad; Chennai; Pune; Kolkata; Ahmedabad; Jaipur; Lucknow; Chandigarh; Noida; Ghaziabad; Faridabad; Indore; Bhopal; Patna; Kochi; Coimbatore; Surat; Vadodara; Nagpur; Ludhiana; Amritsar; Jalandhar; Mohali; Panchkula; Gurugram, Haryana, India; New Delhi, India; Mumbai, India; Bengaluru, India; Chennai, India; Hyderabad, India; Pune, India; Kolkata, India; Ahmedabad, India; Surat, India",
+    "filename": "blinkit_consolidated.json"
+  },
+  {
     "company_id": 2,
     "name": "GlobalLogic Inc.",
     "short_name": "GlobalLogic",
@@ -77,6 +89,18 @@
     "filename": "Glovoapp23_S.L._consolidated.json"
   },
   {
+    "company_id": 9306,
+    "name": "International Business Machines Corporation",
+    "short_name": "IBM",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg; https://www.ibm.com/brand/experience-guides/logo/",
+    "category": "Multinational Technology Corporation",
+    "employee_size": "~288,000 (as of 2023)",
+    "yoy_growth_rate": "3.5% (2023)",
+    "operating_countries": "United States; Canada; United Kingdom; Germany; France; Japan; China; India; Brazil; Australia; South Africa; Singapore; Netherlands; Switzerland; Sweden; Italy; Spain; Mexico; Argentina; South Korea; Israel",
+    "office_locations": "Silicon Valley Lab (California, USA); IBM Research - Zurich (Switzerland); IBM Research - Tokyo (Japan); IBM Research - Haifa (Israel); IBM Research - Delhi (India); IBM Client Innovation Center (Germany)",
+    "filename": "IBM_consolidated.json"
+  },
+  {
     "company_id": 4799,
     "name": "Netflix, Inc.",
     "short_name": "Netflix",
@@ -111,6 +135,18 @@
     "operating_countries": "South Korea; United States; Japan; Vietnam; Singapore; China",
     "office_locations": "Seoul, South Korea; Philadelphia, USA; Los Angeles, USA",
     "filename": "SK_telecom_CS_T1_consolidated.json"
+  },
+  {
+    "company_id": 5293,
+    "name": "Synopsys, Inc.",
+    "short_name": "Synopsys",
+    "logo_url": "https://www.synopsys.com/content/dam/synopsys/company/logos/synopsys-logo.png; https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Synopsys_logo.svg/1200px-Synopsys_logo.svg.png; https://www.synopsys.com/about/our-story/our-story.html; https://www.synopsys.com/about/our-story/our-story.html; https://www.synopsys.com/about/our-story/our-story.html; https://www.synopsys.com/about/our-story/our-story.html; https://www.synopsys.com/about/our-story/our-story.html",
+    "category": "Public Company (Large Enterprise); Multinational Electronic Design Automation (EDA) Company",
+    "employee_size": "10,001+ employees",
+    "yoy_growth_rate": "14% (Q3 2025 revenue growth YoY)",
+    "operating_countries": "United States; Canada; Germany; France; United Kingdom; India; China; Japan; South Korea; Israel; Taiwan",
+    "office_locations": "Sunnyvale, California; Austin, Texas; Marlborough, Massachusetts; Ottawa, Canada; Munich, Germany; Grenoble, France; Bristol, UK; Bangalore, India; Shanghai, China; Tokyo, Japan; Seoul, South Korea; Tel Aviv, Israel; Beijing, China; London, United Kingdom",
+    "filename": "synopsis_consolidated.json"
   },
   {
     "company_id": 1022,

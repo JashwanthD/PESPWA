@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Shield, Lock, ArrowRight, Fingerprint, Loader2, AlertCircle, Eye, EyeOff } from "lucide-react";
+import { Shield, Lock, ArrowRight, Fingerprint, Loader2, AlertCircle, Eye, EyeOff, GraduationCap, ShieldCheck, Zap } from "lucide-react";
 import { useAuth } from "@/lib/auth";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LiquidMatrix } from "@/components/LiquidMatrix";
@@ -19,6 +19,7 @@ export const Route = createFileRoute("/login")({
 
 function LoginComponent() {
   const { role: initialRole } = Route.useSearch();
+  const [selectedRole, setSelectedRole] = useState<"student" | "admin" | null>(initialRole || null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -30,12 +31,23 @@ function LoginComponent() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (initialRole === "admin") {
-      setEmail("admin@pesce.ac.in");
-    } else if (initialRole === "student") {
-      setEmail("student@pesce.ac.in");
+    if (initialRole) {
+      setSelectedRole(initialRole);
     }
   }, [initialRole]);
+
+  useEffect(() => {
+    if (selectedRole === "admin") {
+      setEmail("admin@pesce.ac.in");
+      setPassword("pesce@2025");
+    } else if (selectedRole === "student") {
+      setEmail("student@pesce.ac.in");
+      setPassword("pesce@2025");
+    } else {
+      setEmail("");
+      setPassword("");
+    }
+  }, [selectedRole]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,6 +90,14 @@ function LoginComponent() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleBypass = (role: "student" | "admin") => {
+    console.log(`[Auth] ⚡ Dev Bypass: Logging in as ${role}`);
+    login(role);
+    setTimeout(() => {
+      navigate({ to: "/" });
+    }, 100);
   };
 
   return (
@@ -124,6 +144,71 @@ function LoginComponent() {
                   <p className="text-[9px] text-[var(--muted)] mt-2 uppercase tracking-widest font-bold">Encrypted Handshake in progress...</p>
                 </div>
               </motion.div>
+            ) : selectedRole === null ? (
+              <motion.div
+                key="choice"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                className="flex flex-col gap-6"
+              >
+                <div className="flex flex-col items-center gap-4 text-center">
+                  <div className="h-16 w-16 rounded-2xl bg-[var(--primary)]/10 border border-[var(--primary)]/20 flex items-center justify-center shadow-lg">
+                    <Shield className="h-8 w-8 text-[var(--primary)]" />
+                  </div>
+                  <div>
+                    <h1 className="text-2xl font-black text-[var(--foreground)] uppercase tracking-tighter">PESCE Intelligence</h1>
+                    <p className="text-[var(--muted)] text-[10px] font-medium uppercase tracking-[0.2em] mt-1">Authorized Access Gateway</p>
+                  </div>
+                </div>
+
+                {/* Role Choice Buttons */}
+                <div className="space-y-3">
+                  <button
+                    onClick={() => setSelectedRole("student")}
+                    className="group w-full bg-[var(--surface)] hover:bg-indigo-500/10 border border-[var(--border)] hover:border-indigo-500/30 py-5 px-6 text-left transition-all duration-300 flex items-center gap-5 rounded-2xl shadow-sm hover:-translate-y-1 cursor-pointer"
+                  >
+                    <div className="h-10 w-10 rounded-xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-center group-hover:bg-indigo-500 group-hover:text-white transition-colors">
+                      <GraduationCap className="h-5 w-5 text-[var(--muted)] group-hover:text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-sm font-black text-[var(--foreground)] uppercase tracking-tight">Student Portal</div>
+                      <div className="text-[9px] uppercase tracking-[0.1em] text-[var(--muted)] font-bold mt-1">Access drives & placement hub</div>
+                    </div>
+                  </button>
+
+                  <button
+                    onClick={() => setSelectedRole("admin")}
+                    className="group w-full bg-[var(--surface)] hover:bg-emerald-500/10 border border-[var(--border)] hover:border-emerald-500/30 py-5 px-6 text-left transition-all duration-300 flex items-center gap-5 rounded-2xl shadow-sm hover:-translate-y-1 cursor-pointer"
+                  >
+                    <div className="h-10 w-10 rounded-xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                      <ShieldCheck className="h-5 w-5 text-[var(--muted)] group-hover:text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-sm font-black text-[var(--foreground)] uppercase tracking-tight">Admin Terminal</div>
+                      <div className="text-[9px] uppercase tracking-[0.1em] text-[var(--muted)] font-bold mt-1">Manage pipeline & hydrate nodes</div>
+                    </div>
+                  </button>
+                </div>
+
+                <div className="pt-4 border-t border-[var(--border)]">
+                  <div className="text-[9px] uppercase tracking-widest text-[var(--muted)] font-black mb-3 px-1">Quick Access Choice (Bypass Login)</div>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => handleBypass("student")}
+                      className="flex-1 py-3 px-3 bg-[var(--background)]/40 hover:bg-indigo-500/15 border border-[var(--border)] hover:border-indigo-500/50 text-[9px] font-black uppercase text-[var(--muted)] hover:text-[var(--foreground)] transition-all rounded-xl flex items-center justify-center gap-2 shadow-sm active:scale-95 cursor-pointer"
+                    >
+                      <Zap className="h-3.5 w-3.5 text-indigo-400" /> Student
+                    </button>
+                    <button
+                      onClick={() => handleBypass("admin")}
+                      className="flex-1 py-3 px-3 bg-[var(--background)]/40 hover:bg-emerald-500/15 border border-[var(--border)] hover:border-emerald-500/50 text-[9px] font-black uppercase text-[var(--muted)] hover:text-[var(--foreground)] transition-all rounded-xl flex items-center justify-center gap-2 shadow-sm active:scale-95 cursor-pointer"
+                    >
+                      <ShieldCheck className="h-3.5 w-3.5 text-emerald-500 animate-pulse" /> Admin
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
             ) : (
               <motion.div 
                 key="form"
@@ -133,11 +218,15 @@ function LoginComponent() {
                 className="flex flex-col gap-8"
               >
                 <div className="flex flex-col items-center gap-4 text-center">
-                  <div className="h-16 w-16 rounded-2xl bg-[var(--primary)]/10 border border-[var(--primary)]/20 flex items-center justify-center shadow-lg">
-                    <Shield className="h-8 w-8 text-[var(--primary)]" />
+                  <div className={`h-16 w-16 rounded-2xl flex items-center justify-center shadow-lg ${
+                    selectedRole === "admin" ? "bg-emerald-500/10 border border-emerald-500/20" : "bg-indigo-500/10 border border-indigo-500/20"
+                  }`}>
+                    {selectedRole === "admin" ? <ShieldCheck className="h-8 w-8 text-emerald-500" /> : <GraduationCap className="h-8 w-8 text-indigo-500" />}
                   </div>
                   <div>
-                    <h1 className="text-2xl font-black text-[var(--foreground)] uppercase tracking-tighter">PESCE Intelligence</h1>
+                    <h1 className="text-2xl font-black text-[var(--foreground)] uppercase tracking-tighter">
+                      {selectedRole === "admin" ? "Admin Terminal" : "Student Portal"}
+                    </h1>
                     <p className="text-[var(--muted)] text-xs font-medium uppercase tracking-[0.2em] mt-1">Authorized Access Only</p>
                   </div>
                 </div>
@@ -167,7 +256,10 @@ function LoginComponent() {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-[var(--muted)] ml-1">Secure Key</label>
+                    <div className="flex justify-between items-center px-1">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-[var(--muted)]">Secure Key</label>
+                      <span className="text-[9px] font-bold text-[var(--muted)] uppercase tracking-tight">Passcode: pesce@2025</span>
+                    </div>
                     <div className="relative">
                       <input
                         type={showPassword ? "text" : "password"}
@@ -190,17 +282,17 @@ function LoginComponent() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="mt-4 w-full bg-[var(--foreground)] text-[var(--background)] hover:bg-[var(--primary)] hover:text-white transition-all duration-300 py-4 rounded-xl font-black uppercase tracking-[0.2em] text-[10px] flex items-center justify-center gap-2 shadow-xl active:scale-95"
+                    className="mt-4 w-full bg-[var(--foreground)] text-[var(--background)] hover:bg-[var(--primary)] hover:text-white transition-all duration-300 py-4 rounded-xl font-black uppercase tracking-[0.2em] text-[10px] flex items-center justify-center gap-2 shadow-xl active:scale-95 cursor-pointer"
                   >
-                    {isSignUp ? "Register Node" : "Initiate Handshake"} <ArrowRight className="h-4 w-4" />
+                    Initiate Handshake <ArrowRight className="h-4 w-4" />
                   </button>
                   
                   <button 
                     type="button"
-                    onClick={() => setIsSignUp(!isSignUp)}
-                    className="text-[10px] text-[var(--muted)] font-black uppercase tracking-widest hover:text-[var(--primary)] transition-colors text-center w-full"
+                    onClick={() => setSelectedRole(null)}
+                    className="text-[10px] text-[var(--muted)] font-black uppercase tracking-widest hover:text-[var(--primary)] transition-colors text-center w-full mt-2"
                   >
-                    {isSignUp ? "Existing Node? Authenticate" : "New Node? Register"}
+                    ← Back to Role Gate
                   </button>
                 </form>
               </motion.div>

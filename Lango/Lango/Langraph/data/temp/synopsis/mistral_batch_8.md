@@ -1,0 +1,7 @@
+```markdown
+| ID  | Category         | A/C     | Parameter               | Research Output / Data                                                                                                                                                                                                 |
+|-----|------------------|---------|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 161 | Values Alignment  | Atomic  | Mission clarity         | Synopsys' mission is to deliver industry-leading silicon design, IP, simulation and analysis solutions, and design services to enable customers to rapidly innovate AI-powered products, maximizing R&D capability and productivity. |
+| 162 | Values Alignment  | Composite | Sustainability and CSR  | Commitment to 1.5°C GHG emissions targets validated by SBTi; A- CDP Climate Change score; Focus on fostering a culture of innovation, inclusion, and respect with 25.4% of the global workforce being women.                     |
+| 163 | Values Alignment  | Atomic  | Crisis behavior         | Not Found                                                                                                                                                                                                            |
+```

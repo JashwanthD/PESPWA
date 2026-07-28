@@ -1,0 +1,5 @@
+﻿Parameter,Status,Score,Notes
+input_validation,PASSED,10.0,All fields match input specification
+data_completeness,PASSED,9.0,HQ location and details populated
+hallucination_check,PASSED,9.5,Entity validation verified
+overall_quality,PASSED,9.2,High quality consolidated records

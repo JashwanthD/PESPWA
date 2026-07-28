@@ -6,6 +6,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { supabase } from "@/lib/supabase"; // Use standardized client
 import { Loader2, Zap, Share2, Maximize2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTheme } from "@/components/ThemeProvider";
 
 interface Node {
   id: string | number;
@@ -29,6 +30,7 @@ interface NexusGraphProps {
 
 export function NexusGraph({ companyId, companyName }: NexusGraphProps) {
   const navigate = useNavigate();
+  const { theme } = useTheme();
   const [data, setData] = useState<{ nodes: Node[]; links: Link[] }>({ nodes: [], links: [] });
   const [loading, setLoading] = useState(true);
   const fgRef = useRef<any>(null);
@@ -118,6 +120,7 @@ export function NexusGraph({ companyId, companyName }: NexusGraphProps) {
     const label = node.name;
     const fontSize = 12 / globalScale;
     const r = node.val / Math.sqrt(globalScale);
+    const isDark = theme === "dark";
     
     // Node Body
     ctx.beginPath();
@@ -126,13 +129,13 @@ export function NexusGraph({ companyId, companyName }: NexusGraphProps) {
     // Gradient fill based on type
     const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, r);
     if (node.isTarget) {
-      gradient.addColorStop(0, '#818cf8');
-      gradient.addColorStop(1, '#4f46e5');
-      ctx.shadowColor = '#6366f1';
-      ctx.shadowBlur = 15;
+      gradient.addColorStop(0, isDark ? '#818cf8' : '#6366f1');
+      gradient.addColorStop(1, isDark ? '#4f46e5' : '#3730a3');
+      ctx.shadowColor = isDark ? '#6366f1' : 'rgba(79, 70, 229, 0.4)';
+      ctx.shadowBlur = isDark ? 15 : 8;
     } else {
-      gradient.addColorStop(0, '#ffffff');
-      gradient.addColorStop(1, '#a1a1aa');
+      gradient.addColorStop(0, isDark ? '#ffffff' : '#4b5563');
+      gradient.addColorStop(1, isDark ? '#a1a1aa' : '#1f2937');
       ctx.shadowBlur = 0;
     }
     
@@ -140,7 +143,9 @@ export function NexusGraph({ companyId, companyName }: NexusGraphProps) {
     ctx.fill();
 
     // Border
-    ctx.strokeStyle = node.isTarget ? '#c7d2fe' : '#3f3f46';
+    ctx.strokeStyle = node.isTarget 
+      ? (isDark ? '#c7d2fe' : '#312e81') 
+      : (isDark ? '#3f3f46' : '#e5e7eb');
     ctx.lineWidth = 1 / globalScale;
     ctx.stroke();
 
@@ -149,28 +154,34 @@ export function NexusGraph({ companyId, companyName }: NexusGraphProps) {
       ctx.font = `${fontSize}px Inter`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillStyle = node.isTarget ? '#ffffff' : '#d4d4d8';
+      ctx.fillStyle = node.isTarget 
+        ? (isDark ? '#ffffff' : '#1e1b4b') 
+        : (isDark ? '#d4d4d8' : '#374151');
       ctx.fillText(label, node.x, node.y + r + fontSize + 2);
     }
-  }, []);
+  }, [theme]);
 
   if (loading) {
     return (
-      <div className="h-[500px] w-full bg-zinc-950/80 border border-zinc-800 rounded-[2.5rem] flex flex-col items-center justify-center gap-6 backdrop-blur-xl">
+      <div className="h-[500px] w-full bg-surface/80 border border-border rounded-[2.5rem] flex flex-col items-center justify-center gap-6 backdrop-blur-xl">
         <div className="relative">
-          <Loader2 className="h-10 w-10 text-indigo-500 animate-spin" />
-          <div className="absolute inset-0 blur-lg bg-indigo-500/20 animate-pulse" />
+          <Loader2 className="h-10 w-10 text-primary animate-spin" />
+          <div className="absolute inset-0 blur-lg bg-primary/20 animate-pulse" />
         </div>
         <div className="text-center">
-          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-400 mb-1">Nexus Core Synchronizing</p>
-          <p className="text-[8px] font-medium text-zinc-500 uppercase tracking-widest">Mapping Intelligence Topology...</p>
+          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-primary mb-1">Nexus Core Synchronizing</p>
+          <p className="text-[8px] font-medium text-muted uppercase tracking-widest">Mapping Intelligence Topology...</p>
         </div>
       </div>
     );
   }
 
+  const graphBg = theme === "dark" ? "#09090b" : "#ffffff";
+  const linkColorVal = theme === "dark" ? "#27272a" : "#e4e4e7";
+  const particleColorVal = theme === "dark" ? "#6366f1" : "#4f46e5";
+
   return (
-    <div className="relative h-[500px] w-full bg-zinc-950 border border-zinc-800 rounded-[2.5rem] overflow-hidden shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] group">
+    <div className="relative h-[500px] w-full bg-surface border border-border rounded-[2.5rem] overflow-hidden shadow-[0_0_50px_-12px_rgba(0,0,0,0.15)] dark:shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] group">
       {/* Cinematic HUD Overlays */}
       <div className="absolute top-8 left-8 z-20 pointer-events-none">
         <motion.div 
@@ -178,32 +189,32 @@ export function NexusGraph({ companyId, companyName }: NexusGraphProps) {
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center gap-3 mb-2"
         >
-          <div className="p-1.5 bg-indigo-500/10 rounded-lg border border-indigo-500/20">
-            <Zap className="h-4 w-4 text-indigo-500" />
+          <div className="p-1.5 bg-primary/10 rounded-lg border border-primary/20">
+            <Zap className="h-4 w-4 text-primary" />
           </div>
-          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500">Neural Intelligence Nexus</span>
+          <span className="text-[10px] font-black uppercase tracking-[0.2em] text-muted">Neural Intelligence Nexus</span>
         </motion.div>
-        <h3 className="text-xl font-bold text-white uppercase tracking-tighter leading-none mb-1">
+        <h3 className="text-xl font-bold text-foreground uppercase tracking-tighter leading-none mb-1">
           Ecosystem Topology
         </h3>
-        <p className="text-[10px] font-medium text-zinc-600 uppercase tracking-widest">
+        <p className="text-[10px] font-medium text-muted uppercase tracking-widest">
           Node: {companyName} • Connectivity: High Density
         </p>
       </div>
 
       <div className="absolute bottom-8 right-8 z-20 pointer-events-none flex gap-4">
         <div className="text-right">
-          <p className="text-[10px] font-black uppercase tracking-widest text-zinc-700">Dynamic Force Vectoring</p>
-          <p className="text-[8px] font-bold text-zinc-800 uppercase">Live Sync: 143 Nodes</p>
+          <p className="text-[10px] font-black uppercase tracking-widest text-muted/60">Dynamic Force Vectoring</p>
+          <p className="text-[8px] font-bold text-muted/40 uppercase">Live Sync: 143 Nodes</p>
         </div>
       </div>
 
       {/* Control Layer */}
       <div className="absolute top-8 right-8 z-20 flex gap-2">
-        <button className="p-2 bg-zinc-900/50 border border-zinc-800 rounded-xl text-zinc-500 hover:text-white transition-colors backdrop-blur-md">
+        <button className="p-2 bg-background/50 border border-border rounded-xl text-muted hover:text-foreground transition-colors backdrop-blur-md cursor-pointer">
           <Maximize2 className="h-4 w-4" />
         </button>
-        <button className="p-2 bg-zinc-900/50 border border-zinc-800 rounded-xl text-zinc-500 hover:text-white transition-colors backdrop-blur-md">
+        <button className="p-2 bg-background/50 border border-border rounded-xl text-muted hover:text-foreground transition-colors backdrop-blur-md cursor-pointer">
           <Share2 className="h-4 w-4" />
         </button>
       </div>
@@ -211,7 +222,7 @@ export function NexusGraph({ companyId, companyName }: NexusGraphProps) {
       <ForceGraph2D
         ref={fgRef}
         graphData={data}
-        backgroundColor="#09090b"
+        backgroundColor={graphBg}
         nodeCanvasObject={renderNode}
         nodePointerAreaPaint={(node, color, ctx) => {
           ctx.fillStyle = color;
@@ -219,12 +230,12 @@ export function NexusGraph({ companyId, companyName }: NexusGraphProps) {
           ctx.arc(node.x!, node.y!, node.val + 2, 0, 2 * Math.PI, false);
           ctx.fill();
         }}
-        linkColor={() => "#27272a"}
+        linkColor={() => linkColorVal}
         linkWidth={(link: any) => link.value * 2}
         linkDirectionalParticles={1}
         linkDirectionalParticleWidth={1.5}
         linkDirectionalParticleSpeed={0.005}
-        linkDirectionalParticleColor={() => "#6366f1"}
+        linkDirectionalParticleColor={() => particleColorVal}
         onNodeClick={(node: any) => {
           if (node.isTarget) return;
           navigate({ 
@@ -238,7 +249,7 @@ export function NexusGraph({ companyId, companyName }: NexusGraphProps) {
       />
 
       {/* Glass Vignette */}
-      <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_100px_rgba(0,0,0,0.8)] rounded-[2.5rem]" />
+      <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_100px_rgba(0,0,0,0.05)] dark:shadow-[inset_0_0_100px_rgba(0,0,0,0.8)] rounded-[2.5rem]" />
     </div>
   );
 }

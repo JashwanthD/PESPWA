@@ -49,11 +49,27 @@ function flattenCompanyNode(raw: any): PESCECompanySchema {
   // Map skill levels if present (this usually comes from company_skill_levels join)
   if (raw.company_skill_levels) {
     const skills: PESCESkillLevels = {};
+    const SKILL_KEY_MAP: Record<string, keyof PESCESkillLevels> = {
+      coding: "coding",
+      dsa: "data_structures_and_algorithms",
+      oop: "object_oriented_programming_and_design",
+      aptitude: "aptitude_and_problem_solving",
+      communication: "communication_skills",
+      ai_native: "ai_native_engineering",
+      devops: "devops_and_cloud",
+      sql: "sql_and_design",
+      software_eng: "software_engineering",
+      system_design: "system_design_and_architecture",
+      networking: "computer_networking",
+      os: "operating_system"
+    };
+
     raw.company_skill_levels.forEach((s: any) => {
       const skillName = s.skill_set_master?.short_name?.toLowerCase();
       if (skillName) {
+        const longKey = SKILL_KEY_MAP[skillName] || skillName as keyof PESCESkillLevels;
         // @ts-ignore
-        skills[skillName] = s.required_level;
+        skills[longKey] = s.required_level;
       }
     });
     flattened.skill_levels = skills;
@@ -96,19 +112,79 @@ async function fetchLocalCompaniesIndex(): Promise<any[]> {
   }
 }
 
+async function fetchSkillMatrix(): Promise<any[]> {
+  try {
+    if (typeof window === "undefined") return [];
+    const baseUrl = window.location.origin;
+    const res = await fetch(`${baseUrl}/data/intelligence/skill_matrix.json`);
+    if (!res.ok) return [];
+    return await res.json();
+  } catch (e) {
+    console.warn("[Intelligence] Failed to fetch skill matrix:", e);
+    return [];
+  }
+}
+
+/**
+ * Autorecovery/fallback levels from skill_matrix.json helper
+ */
+function getLocalSkills(skillMatrix: any[], name: string, shortName: string, id: number) {
+  const normName = norm(name);
+  const normShort = norm(shortName);
+  const skillRow = skillMatrix.find(
+    (row: any) =>
+      String(row.id) === String(id) ||
+      norm(row.name) === normName ||
+      norm(row.name) === normShort
+  );
+
+  if (!skillRow) return undefined;
+
+  const skills: PESCESkillLevels = {};
+  const SKILL_KEY_MAP: Record<string, keyof PESCESkillLevels> = {
+    coding: "coding",
+    dsa: "data_structures_and_algorithms",
+    oop: "object_oriented_programming_and_design",
+    aptitude: "aptitude_and_problem_solving",
+    communication: "communication_skills",
+    ai_native: "ai_native_engineering",
+    devops: "devops_and_cloud",
+    sql: "sql_and_design",
+    software_eng: "software_engineering",
+    system_design: "system_design_and_architecture",
+    networking: "computer_networking",
+    os: "operating_system"
+  };
+
+  Object.keys(SKILL_KEY_MAP).forEach((shortKey) => {
+    const skillVal = skillRow[shortKey];
+    if (skillVal !== undefined) {
+      const longKey = SKILL_KEY_MAP[shortKey];
+      // @ts-ignore
+      skills[longKey] = skillVal;
+    }
+  });
+
+  return skills;
+}
+
 /**
  * Fetches all companies for the Vault/Explorer view.
  * Performs a shallow join for Supabase, then merges local companies from the index.
  */
 export async function getAllCompanies(): Promise<PESCECompanySchema[]> {
   try {
-    const [dbResult, localIndex] = await Promise.all([
+    const [dbResult, localIndex, skillMatrix] = await Promise.all([
       supabase
         .from("companies")
         .select(`
           *,
           company_culture(hiring_velocity),
-          company_brand_reputation(brand_sentiment_score)
+          company_brand_reputation(brand_sentiment_score),
+          company_skill_levels(
+            required_level,
+            skill_set_master(short_name)
+          )
         `)
         .order("name", { ascending: true })
         .then(({ data, error }: { data: any; error: any }) => {
@@ -119,7 +195,8 @@ export async function getAllCompanies(): Promise<PESCECompanySchema[]> {
           console.error("[Intelligence] Supabase getAllCompanies failed, falling back to local index only:", err);
           return [] as PESCECompanySchema[];
         }),
-      fetchLocalCompaniesIndex()
+      fetchLocalCompaniesIndex(),
+      fetchSkillMatrix()
     ]);
 
     // Map of existing DB companies by normalized name and short_name
@@ -127,6 +204,11 @@ export async function getAllCompanies(): Promise<PESCECompanySchema[]> {
     dbResult.forEach((c: PESCECompanySchema) => {
       if (c.name) dbMap.set(norm(c.name), c);
       if (c.short_name) dbMap.set(norm(c.short_name), c);
+      
+      // Fallback/enrich db companies if they lack skill levels
+      if (!c.skill_levels || Object.keys(c.skill_levels).length === 0) {
+        c.skill_levels = getLocalSkills(skillMatrix, c.name || "", c.short_name || "", c.company_id);
+      }
     });
 
     const merged: PESCECompanySchema[] = [...dbResult];
@@ -146,6 +228,7 @@ export async function getAllCompanies(): Promise<PESCECompanySchema[]> {
         yoy_growth_rate: local.yoy_growth_rate,
         operating_countries: Array.isArray(local.operating_countries) ? local.operating_countries.join("; ") : local.operating_countries,
         office_locations: Array.isArray(local.office_locations) ? local.office_locations.join("; ") : local.office_locations,
+        skill_levels: getLocalSkills(skillMatrix, local.name || "", local.short_name || "", local.company_id)
       } as any;
 
       if (existing) {
@@ -273,7 +356,55 @@ export async function fetchIntelligenceCompanyById(id: number): Promise<PESCECom
     if (error) throw error;
     if (!data) return null;
 
-    return flattenCompanyNode(data);
+    const flattened = flattenCompanyNode(data);
+    
+    // Fallback/enrich skills from local skill_matrix.json if empty
+    if (!flattened.skill_levels || Object.keys(flattened.skill_levels).length === 0) {
+      try {
+        if (typeof window !== "undefined") {
+          const baseUrl = window.location.origin;
+          const skillMatrixRes = await fetch(`${baseUrl}/data/intelligence/skill_matrix.json`);
+          if (skillMatrixRes.ok) {
+            const skillsList = await skillMatrixRes.json();
+            const nameNorm = norm(flattened.name || "");
+            const shortNorm = norm(flattened.short_name || "");
+            const skillRow = skillsList.find((s: any) => norm(s.name) === nameNorm || norm(s.name) === shortNorm);
+            
+            if (skillRow) {
+              const skills: PESCESkillLevels = {};
+              const SKILL_KEY_MAP: Record<string, keyof PESCESkillLevels> = {
+                coding: "coding",
+                dsa: "data_structures_and_algorithms",
+                oop: "object_oriented_programming_and_design",
+                aptitude: "aptitude_and_problem_solving",
+                communication: "communication_skills",
+                ai_native: "ai_native_engineering",
+                devops: "devops_and_cloud",
+                sql: "sql_and_design",
+                software_eng: "software_engineering",
+                system_design: "system_design_and_architecture",
+                networking: "computer_networking",
+                os: "operating_system"
+              };
+
+              Object.keys(SKILL_KEY_MAP).forEach((shortKey) => {
+                const skillVal = skillRow[shortKey];
+                if (skillVal !== undefined) {
+                  const longKey = SKILL_KEY_MAP[shortKey];
+                  // @ts-ignore
+                  skills[longKey] = skillVal;
+                }
+              });
+              flattened.skill_levels = skills;
+            }
+          }
+        }
+      } catch (se) {
+        console.warn("[Intelligence] DB company single skills enrichment skipped:", se);
+      }
+    }
+
+    return flattened;
   } catch (error) {
     console.error(`[Intelligence] fetchById(${id}) failure:`, error);
     return null;

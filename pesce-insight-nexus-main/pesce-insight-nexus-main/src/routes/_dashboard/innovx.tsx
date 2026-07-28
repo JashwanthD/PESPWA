@@ -1,15 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useCompanyIntelligence } from "@/hooks/useCompanyIntelligence";
+import { useCompanyData } from "@/hooks/useCompanyData";
 import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Rocket, TrendingUp, Zap, Star, Shield, ArrowUpRight, Cpu } from "lucide-react";
+import { CompanyLogo } from "@/components/CompanyLogo";
 
 export const Route = createFileRoute("/_dashboard/innovx")({
   component: GlobalInnovX,
 });
 
 function GlobalInnovX() {
-  const { data: companies, loading } = useCompanyIntelligence();
+  const { companies, isLoading: loading } = useCompanyData();
 
   const breakthroughProjects = useMemo(() => {
     return (companies ?? [])
@@ -83,9 +84,12 @@ function GlobalInnovX() {
                   <div className="space-y-2">
                     <h4 className="text-sm font-bold text-[var(--foreground)] uppercase tracking-tight truncate">{p.name}</h4>
                     <div className="flex items-center gap-2">
-                      <div className="h-4 w-4 rounded bg-[var(--border)] flex items-center justify-center overflow-hidden">
-                         {p.company.logo_url ? <img src={p.company.logo_url} className="h-full w-full object-cover" /> : <Shield className="h-2 w-2 text-[var(--muted)]" />}
-                      </div>
+                      <CompanyLogo 
+                        name={p.company.name || "?"} 
+                        logoUrl={p.company.logo_url || undefined}
+                        domain={p.company.website_url || undefined} 
+                        className="h-4 w-4 shrink-0 rounded" 
+                      />
                       <span className="text-[9px] font-black text-[var(--muted)] uppercase tracking-widest">{p.company.short_name || p.company.name}</span>
                     </div>
                   </div>

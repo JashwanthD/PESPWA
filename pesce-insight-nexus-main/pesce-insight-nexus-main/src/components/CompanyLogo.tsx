@@ -79,7 +79,7 @@ export function CompanyLogo({ name, logoUrl, domain, className = "" }: CompanyLo
   // STAGE 2: Try Clearbit API
   if ((fallbackStage === "clearbit" || (fallbackStage === "db" && allDbUrls.length === 0)) && cleanDomain) {
     return (
-      <div className={`relative overflow-hidden bg-white border border-zinc-800 flex items-center justify-center ${className}`}>
+      <div className={`relative overflow-hidden bg-white border border-[var(--border)] flex items-center justify-center ${className}`}>
         <img
           src={`https://logo.clearbit.com/${cleanDomain}`}
           alt={`${name} Logo`}
@@ -94,7 +94,7 @@ export function CompanyLogo({ name, logoUrl, domain, className = "" }: CompanyLo
   // STAGE 3: Try Google S2 Favicon API (Very reliable fallback)
   if (fallbackStage === "google" && cleanDomain) {
     return (
-      <div className={`relative overflow-hidden bg-white border border-zinc-800 flex items-center justify-center ${className}`}>
+      <div className={`relative overflow-hidden bg-white border border-[var(--border)] flex items-center justify-center ${className}`}>
         <img
           src={`https://www.google.com/s2/favicons?domain=${cleanDomain}&sz=128`}
           alt={`${name} Logo`}
@@ -109,7 +109,7 @@ export function CompanyLogo({ name, logoUrl, domain, className = "" }: CompanyLo
   // STAGE 4: Try DuckDuckGo Icons API
   if (fallbackStage === "ddg" && cleanDomain) {
     return (
-      <div className={`relative overflow-hidden bg-white border border-zinc-800 flex items-center justify-center ${className}`}>
+      <div className={`relative overflow-hidden bg-white border border-[var(--border)] flex items-center justify-center ${className}`}>
         <img
           src={`https://icons.duckduckgo.com/ip3/${cleanDomain}.ico`}
           alt={`${name} Logo`}
@@ -124,7 +124,7 @@ export function CompanyLogo({ name, logoUrl, domain, className = "" }: CompanyLo
   // FINAL STAGE: Initials
   return (
     <div
-      className={`bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 font-bold uppercase tracking-tighter shadow-inner ${className}`}
+      className={`bg-[var(--background)] border border-[var(--border)] flex items-center justify-center text-[var(--muted)] font-bold uppercase tracking-tighter shadow-inner ${className}`}
     >
       <span className="text-[0.75em] opacity-80">{initials}</span>
     </div>

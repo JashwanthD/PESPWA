@@ -1,7 +1,9 @@
+Here is the final output Markdown table based on the provided Data Schema and Web Search Data:
+
 ```markdown
 | ID  | Category         | A/C      | Parameter               | Research Output / Data                                                                                                                                                                                                 |
 |-----|------------------|----------|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 161 | Values Alignment  | Atomic   | Mission clarity         | Blinkit's mission is to revolutionize grocery shopping through quick commerce, offering ultra-fast deliveries (as little as 10 minutes) to provide convenience and efficiency for urban consumers in India.                     |
-| 162 | Values Alignment  | Composite| Sustainability and CSR  | Commitment to reducing carbon footprint through optimized delivery routes; Partnerships with local farmers and suppliers to promote sustainable sourcing; Initiatives to minimize plastic waste in packaging.                     |
-| 163 | Values Alignment  | Atomic   | Crisis behavior         | During the COVID-19 pandemic, Blinkit pivoted to an inventory-based model to ensure supply chain resilience, prioritized safety protocols for delivery personnel, and expanded services to meet increased demand for essential goods. |
+| 161 | Values Alignment  | Atomic   | Mission clarity         | Blinkit's mission is to provide ultra-fast grocery and essentials delivery (within 10 minutes) by leveraging technology, dark stores, and an optimized supply chain to enhance convenience for urban consumers in India. |
+| 162 | Values Alignment  | Composite| Sustainability and CSR  | No explicit sustainability initiatives found; Focus on affordability and convenience; Criticism over delivery partner safety during 10-minute delivery rollout in 2021.                                                |
+| 163 | Values Alignment  | Atomic   | Crisis behavior         | During the pivot from hyperlocal to inventory-based model (2021), Blinkit adapted to market demands by shifting to dark stores for faster deliveries, despite initial criticism over worker safety and operational challenges. |
 ```

@@ -235,6 +235,7 @@ export interface PESCECompanySchema extends
   customer_testimonials?: Maybe<string>;
 
   // Metadata / Extensions
+  application_url?: Maybe<string>;
   job_role_details?: any; 
   skill_levels?: Maybe<PESCESkillLevels>;
   intelligence_score_stability?: Maybe<number>;

@@ -23,6 +23,7 @@ class WorkflowService:
     def __init__(self):
         # In-memory store for active and completed runs
         self.active_runs: Dict[str, RunResponse] = {}
+        self._tasks = set()
 
     def get_all_runs(self) -> list[RunResponse]:
         return list(self.active_runs.values())
@@ -57,8 +58,10 @@ class WorkflowService:
             "retry_count": 0,
         }
 
-        # Spawn background task
-        asyncio.create_task(self._execute_graph(run_id, initial_state))
+        # Spawn background task and save a strong reference to prevent GC cancellation
+        task = asyncio.create_task(self._execute_graph(run_id, initial_state))
+        self._tasks.add(task)
+        task.add_done_callback(self._tasks.discard)
         
         return run_id
 

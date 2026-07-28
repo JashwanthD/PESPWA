@@ -20,8 +20,8 @@ const createSafeClient = (url: string, key: string, label: string) => {
           signInWithPassword: () => Promise.resolve({ data: { session: null }, error: null }),
           signOut: () => Promise.resolve({ error: null })
         };
-        // Handle database chain methods (.from, .select, etc)
-        if (['from', 'select', 'insert', 'update', 'delete', 'eq', 'single', 'order', 'limit'].includes(String(prop))) {
+        // Handle database and realtime chain methods (.from, .channel, etc)
+        if (['from', 'select', 'insert', 'update', 'delete', 'eq', 'single', 'order', 'limit', 'channel', 'removeChannel', 'on', 'subscribe', 'unsubscribe'].includes(String(prop))) {
           return () => proxy;
         }
         return createResilientProxy(`${name}.${String(prop)}`);

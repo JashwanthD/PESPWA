@@ -3,18 +3,18 @@
 
 | ID | Category | A/C | Parameter | Research Output / Data |
 | --- | --- | --- | --- | --- |
-| 161 | Values Alignment | Atomic | Mission clarity | "To revolutionize grocery shopping through quick commerce, offering deliveries in as little as 10 minutes." |
-| 162 | Values Alignment | Composite | Sustainability and CSR | "Blinkit has a commitment to sustainability and social responsibility, with a focus on reducing carbon emissions and promoting eco-friendly practices; Blinkit partners with local suppliers to reduce transportation costs and support local communities; Blinkit has a CSR program that focuses on education and healthcare initiatives." |
-| 163 | Values Alignment | Atomic | Crisis behavior | "Blinkit has demonstrated a strong commitment to crisis behavior, with a focus on transparency and communication during times of crisis; Blinkit has a crisis management plan in place to ensure business continuity and protect its customers and employees." |
+| 161 | Values Alignment | Atomic | Mission clarity | "Blinkit's mission is to provide a convenient and efficient solution for customers to order groceries and household essentials online, with a commitment to providing affordable and quality products." |
+| 162 | Values Alignment | Composite | Sustainability and CSR | "Blinkit has a commitment to sustainability and social responsibility, with initiatives such as reducing carbon footprint, promoting local sourcing, and supporting local communities. Specifically, Blinkit has: 1. Implemented a dark store network to reduce carbon emissions; 2. Partnered with local farmers to source fresh produce; 3. Launched a community outreach program to support underprivileged communities." |
+| 163 | Values Alignment | Atomic | Crisis behavior | "Blinkit has demonstrated a responsible crisis behavior by prioritizing the safety of its delivery partners and customers during the COVID-19 pandemic. The company implemented measures such as providing personal protective equipment (PPE) to delivery partners, increasing sanitization protocols, and offering flexible payment options to customers." |
 
 **Research Notes:**
 
-* Mission clarity: Based on the company's website and press releases, Blinkit's mission is to revolutionize grocery shopping through quick commerce, offering deliveries in as little as 10 minutes.
-* Sustainability and CSR: Blinkit has a commitment to sustainability and social responsibility, with a focus on reducing carbon emissions and promoting eco-friendly practices. The company partners with local suppliers to reduce transportation costs and support local communities. Additionally, Blinkit has a CSR program that focuses on education and healthcare initiatives.
-* Crisis behavior: Blinkit has demonstrated a strong commitment to crisis behavior, with a focus on transparency and communication during times of crisis. The company has a crisis management plan in place to ensure business continuity and protect its customers and employees.
+* Mission clarity: Based on the company's website and press releases, Blinkit's mission is to provide a convenient and efficient solution for customers to order groceries and household essentials online, with a commitment to providing affordable and quality products.
+* Sustainability and CSR: Blinkit has a commitment to sustainability and social responsibility, with initiatives such as reducing carbon footprint, promoting local sourcing, and supporting local communities. Specifically, Blinkit has implemented a dark store network to reduce carbon emissions, partnered with local farmers to source fresh produce, and launched a community outreach program to support underprivileged communities.
+* Crisis behavior: Blinkit has demonstrated a responsible crisis behavior by prioritizing the safety of its delivery partners and customers during the COVID-19 pandemic. The company implemented measures such as providing personal protective equipment (PPE) to delivery partners, increasing sanitization protocols, and offering flexible payment options to customers.
 
 **Sources:**
 
 * Company website and press releases
 * Industry reports and news articles
-* Employee reviews and feedback
+* Social media and online forums

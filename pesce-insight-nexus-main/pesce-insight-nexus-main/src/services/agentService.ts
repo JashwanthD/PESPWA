@@ -19,6 +19,8 @@ export interface RunResponse {
   failed_fields?: string[];
 }
 
+import { supabase } from "@/lib/supabase";
+
 export async function startCompanyGeneration(request: GenerateRequest): Promise<RunResponse> {
   const response = await fetch(`${API_BASE_URL}/v1/agent/generate`, {
     method: "POST",
@@ -29,20 +31,46 @@ export async function startCompanyGeneration(request: GenerateRequest): Promise<
   });
 
   if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.message || "Failed to start generation");
+    let errMsg = "Failed to start generation";
+    try {
+      const error = await response.json();
+      errMsg = error.message || error.detail || errMsg;
+    } catch {
+      try {
+        const text = await response.text();
+        if (text) errMsg = text.slice(0, 150);
+      } catch {}
+    }
+    throw new Error(errMsg);
   }
 
-  return response.json();
+  try {
+    return await response.json();
+  } catch (e: any) {
+    throw new Error(`Invalid JSON response: ${e.message}`);
+  }
 }
 
 export async function getRunStatus(runId: string): Promise<RunResponse> {
   const response = await fetch(`${API_BASE_URL}/v1/agent/status/${runId}`);
 
   if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.message || "Failed to fetch run status");
+    let errMsg = "Failed to fetch run status";
+    try {
+      const error = await response.json();
+      errMsg = error.message || error.detail || errMsg;
+    } catch {
+      try {
+        const text = await response.text();
+        if (text) errMsg = text.slice(0, 150);
+      } catch {}
+    }
+    throw new Error(errMsg);
   }
 
-  return response.json();
+  try {
+    return await response.json();
+  } catch (e: any) {
+    throw new Error(`Invalid JSON response: ${e.message}`);
+  }
 }

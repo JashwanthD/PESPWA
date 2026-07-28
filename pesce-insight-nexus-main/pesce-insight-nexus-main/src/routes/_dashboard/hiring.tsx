@@ -1,18 +1,19 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useCompanyIntelligence } from "@/hooks/useCompanyIntelligence";
+import { useCompanyData } from "@/hooks/useCompanyData";
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Search, Briefcase, ChevronRight, ChevronDown, 
   CheckCircle2, HelpCircle, Zap, Activity, Target, ArrowUpRight
 } from "lucide-react";
+import { CompanyLogo } from "@/components/CompanyLogo";
 
 export const Route = createFileRoute("/_dashboard/hiring")({
   component: GlobalHiringProcess,
 });
 
 function GlobalHiringProcess() {
-  const { data: companies, loading } = useCompanyIntelligence();
+  const { companies, isLoading: loading } = useCompanyData();
   const [query, setQuery] = useState("");
   const [expandedId, setExpandedId] = useState<number | null>(null);
 
@@ -77,9 +78,12 @@ function HiringAggregatorCard({ company, isExpanded, onToggle }: { company: any;
         onClick={onToggle}
       >
         <div className="flex items-center gap-6">
-          <div className="h-12 w-12 rounded-xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-center overflow-hidden">
-             {company.logo_url ? <img src={company.logo_url} className="h-full w-full object-cover" /> : <Briefcase className="h-5 w-5 text-[var(--muted)]" />}
-          </div>
+          <CompanyLogo 
+            name={company.name || "?"} 
+            logoUrl={company.logo_url || undefined}
+            domain={company.website_url || undefined} 
+            className="h-12 w-12 shrink-0 rounded-xl" 
+          />
           <div>
             <h3 className="text-sm font-bold text-[var(--foreground)] uppercase tracking-tight group-hover:text-indigo-400 transition-colors">{company.name}</h3>
             <div className="flex items-center gap-3 mt-1">

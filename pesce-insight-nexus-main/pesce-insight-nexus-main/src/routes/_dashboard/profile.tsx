@@ -11,6 +11,7 @@ import { SKILL_LABELS } from "@/types/intelligence";
 import { useAuth } from "@/lib/auth";
 import { supabaseMS1 } from "@/lib/supabase";
 import { useRef } from "react";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/_dashboard/profile")({
   component: ProfileRouter,
@@ -126,7 +127,10 @@ function AdminProfile({ initialProfile }: { initialProfile: any }) {
 }
 
 function StudentProfile({ initialProfile }: { initialProfile: any }) {
+  const { updateProfile } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
+  
+  // Local form state
   const [profile, setProfile] = useState(initialProfile || {
     full_name: "Student Node",
     nexus_id: "PES2024-NEXUS",
@@ -140,31 +144,55 @@ function StudentProfile({ initialProfile }: { initialProfile: any }) {
     interests: ["Fintech", "SaaS", "AI Orchestration"]
   });
 
+  // Sync state if initialProfile loads late
+  useEffect(() => {
+    if (initialProfile) {
+      setProfile(initialProfile);
+    }
+  }, [initialProfile]);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleSave = async () => {
     try {
-      const { error } = await supabaseMS1
-        .from('profiles')
-        .update({
-          full_name: profile.full_name,
-          major: profile.major,
-          gpa: profile.gpa,
-          location: profile.location,
-          skills: profile.skills,
-          interests: profile.interests
-        })
-        .eq('id', profile.id || profile.nexus_id);
+      // 1. Update globally in auth state (updates context + localStorage)
+      updateProfile(profile);
+
+      // 2. Sync with Supabase DB if a real ID is present
+      if (profile.id && profile.id !== "PES2024-NEXUS") {
+        const { error } = await supabaseMS1
+          .from('profiles')
+          .update({
+            full_name: profile.full_name,
+            major: profile.major,
+            gpa: profile.gpa,
+            graduation_year: profile.graduation_year,
+            location: profile.location,
+            skills: profile.skills,
+            interests: profile.interests
+          })
+          .eq('id', profile.id);
+        
+        if (error) {
+          console.error("Supabase Save Warning:", error);
+          toast.warning("Profile saved locally (database offline).");
+        } else {
+          toast.success("Profile saved successfully to cloud!");
+        }
+      } else {
+        toast.success("Profile committed successfully to local node!");
+      }
       
-      if (!error) setIsEditing(false);
+      setIsEditing(false);
     } catch (e) {
       console.error(e);
+      toast.error("An error occurred while committing the changes.");
     }
   };
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      alert(`CV Uploaded securely to Nexus: ${e.target.files[0].name}`);
+      toast.success(`CV Uploaded securely to Nexus: ${e.target.files[0].name}`);
     }
   };
 
@@ -173,6 +201,24 @@ function StudentProfile({ initialProfile }: { initialProfile: any }) {
       ...prev,
       skills: { ...prev.skills, [skill]: level }
     }));
+  };
+
+  const handleInterestChange = (index: number, val: string) => {
+    const updated = [...(profile.interests || [])];
+    updated[index] = val;
+    setProfile((prev: any) => ({ ...prev, interests: updated }));
+  };
+
+  const addInterest = () => {
+    setProfile((prev: any) => ({
+      ...prev,
+      interests: [...(prev.interests || []), "New Interest"]
+    }));
+  };
+
+  const removeInterest = (index: number) => {
+    const updated = (profile.interests || []).filter((_: any, i: number) => i !== index);
+    setProfile((prev: any) => ({ ...prev, interests: updated }));
   };
 
   return (
@@ -186,12 +232,25 @@ function StudentProfile({ initialProfile }: { initialProfile: any }) {
             <div className="absolute inset-0 bg-indigo-500/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-3xl" />
           </div>
           
-          <div className="flex-1 space-y-4">
+          <div className="flex-1 space-y-4 w-full">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="space-y-1">
-                <h1 className="text-3xl font-black text-[var(--foreground)] uppercase tracking-tight">{profile.full_name}</h1>
+              <div className="space-y-2 flex-1">
+                {isEditing ? (
+                  <div className="space-y-1">
+                    <label className="text-[9px] font-black uppercase text-indigo-650 dark:text-indigo-400">Full Name</label>
+                    <input
+                      type="text"
+                      value={profile.full_name || ""}
+                      onChange={(e) => setProfile((prev: any) => ({ ...prev, full_name: e.target.value }))}
+                      className="bg-[var(--background)] border border-[var(--border)] rounded-xl px-3 py-1.5 text-sm font-bold text-[var(--foreground)] focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full max-w-sm"
+                    />
+                  </div>
+                ) : (
+                  <h1 className="text-3xl font-black text-[var(--foreground)] uppercase tracking-tight">{profile.full_name}</h1>
+                )}
+                
                 <div className="flex items-center gap-3 text-[10px] font-black text-indigo-500 uppercase tracking-widest">
-                  <Shield className="h-3.5 w-3.5" /> ID: {profile.nexus_id}
+                  <Shield className="h-3.5 w-3.5" /> ID: {profile.nexus_id || "PES2024-NEXUS"}
                 </div>
               </div>
               <div className="flex items-center gap-2">
@@ -203,7 +262,7 @@ function StudentProfile({ initialProfile }: { initialProfile: any }) {
                 </button>
                 <button 
                   onClick={() => fileInputRef.current?.click()}
-                  className="flex items-center gap-2 px-4 py-2.5 bg-[var(--background)] border border-[var(--border)] hover:border-indigo-500/50 text-[var(--muted)] hover:text-indigo-400 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all shadow-sm"
+                  className="flex items-center gap-2 px-4 py-2.5 bg-[var(--background)] border border-[var(--border)] hover:border-indigo-500/50 text-[var(--muted)] hover:text-indigo-400 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all shadow-sm animate-pulse"
                 >
                   <MapPin className="h-3.5 w-3.5 hidden sm:block" /> Upload CV
                 </button>
@@ -216,17 +275,49 @@ function StudentProfile({ initialProfile }: { initialProfile: any }) {
                 />
                 <button 
                   onClick={() => isEditing ? handleSave() : setIsEditing(true)}
-                  className="flex items-center gap-2 px-6 py-2.5 bg-indigo-500 hover:bg-indigo-600 text-white text-[10px] font-black uppercase tracking-widest rounded-xl transition-all shadow-lg shadow-indigo-500/20 active:scale-95"
+                  className="flex items-center gap-2 px-6 py-2.5 bg-indigo-500 hover:bg-indigo-650 text-white text-[10px] font-black uppercase tracking-widest rounded-xl transition-all shadow-lg shadow-indigo-500/20 active:scale-95 cursor-pointer"
                 >
-                  {isEditing ? <><Save className="h-3.5 w-3.5" /> Commit</> : <><Award className="h-3.5 w-3.5" /> Modify</>}
+                  {isEditing ? <><Save className="h-3.5 w-3.5 animate-bounce" /> Commit</> : <><Award className="h-3.5 w-3.5" /> Modify</>}
                 </button>
               </div>
             </div>
             
-            <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
-              <InfoBadge icon={GraduationCap} label={profile.major || "Unspecified Major"} />
-              <InfoBadge icon={Mail} label={profile.email} />
-              <InfoBadge icon={MapPin} label={profile.location || "Bengaluru, India"} />
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-3 pt-2">
+              <div className="flex-1 min-w-[200px]">
+                {isEditing ? (
+                  <div className="space-y-1">
+                    <label className="text-[9px] font-black uppercase text-indigo-650 dark:text-indigo-400 block">Major Branch</label>
+                    <input
+                      type="text"
+                      value={profile.major || ""}
+                      onChange={(e) => setProfile((prev: any) => ({ ...prev, major: e.target.value }))}
+                      className="bg-[var(--background)] border border-[var(--border)] rounded-xl px-3 py-1 text-xs text-[var(--foreground)] focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                    />
+                  </div>
+                ) : (
+                  <InfoBadge icon={GraduationCap} label={profile.major || "Unspecified Major"} />
+                )}
+              </div>
+              
+              <div className="flex-1 min-w-[200px]">
+                {isEditing ? (
+                  <div className="space-y-1">
+                    <label className="text-[9px] font-black uppercase text-indigo-650 dark:text-indigo-400 block">Location</label>
+                    <input
+                      type="text"
+                      value={profile.location || ""}
+                      onChange={(e) => setProfile((prev: any) => ({ ...prev, location: e.target.value }))}
+                      className="bg-[var(--background)] border border-[var(--border)] rounded-xl px-3 py-1 text-xs text-[var(--foreground)] focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                    />
+                  </div>
+                ) : (
+                  <InfoBadge icon={MapPin} label={profile.location || "Bengaluru, India"} />
+                )}
+              </div>
+
+              <div className="flex items-center gap-2">
+                <InfoBadge icon={Mail} label={profile.email} />
+              </div>
             </div>
           </div>
         </div>
@@ -234,36 +325,98 @@ function StudentProfile({ initialProfile }: { initialProfile: any }) {
 
       <div className="grid lg:grid-cols-3 gap-8">
         <div className="lg:col-span-1 space-y-8">
+          {/* Academic Standing */}
           <div className="bg-[var(--surface)] border border-[var(--border)] p-8 rounded-3xl space-y-6">
             <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--muted)] flex items-center gap-2">
               <TrendingUp className="h-4 w-4 text-indigo-500" /> Academic Standing
             </h3>
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-[var(--background)] border border-[var(--border)] p-4 rounded-2xl text-center space-y-1">
-                <div className="text-2xl font-black text-[var(--foreground)]">{profile.gpa || "0.00"}</div>
-                <div className="text-[8px] font-black text-[var(--muted)] uppercase">Current GPA</div>
+                {isEditing ? (
+                  <div className="space-y-1">
+                    <label className="text-[8px] font-black text-indigo-650 dark:text-indigo-400 uppercase">Edit GPA</label>
+                    <input
+                      type="text"
+                      value={profile.gpa || ""}
+                      onChange={(e) => setProfile((prev: any) => ({ ...prev, gpa: e.target.value }))}
+                      className="bg-[var(--background)] border border-[var(--border)] rounded-xl px-2 py-1 text-xs font-bold text-[var(--foreground)] text-center focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                    />
+                  </div>
+                ) : (
+                  <>
+                    <div className="text-2xl font-black text-[var(--foreground)]">{profile.gpa || "0.00"}</div>
+                    <div className="text-[8px] font-black text-[var(--muted)] uppercase">Current GPA</div>
+                  </>
+                )}
               </div>
               <div className="bg-[var(--background)] border border-[var(--border)] p-4 rounded-2xl text-center space-y-1">
-                <div className="text-2xl font-black text-[var(--foreground)]">{profile.graduation_year || "2024"}</div>
-                <div className="text-[8px] font-black text-[var(--muted)] uppercase">Grad Year</div>
+                {isEditing ? (
+                  <div className="space-y-1">
+                    <label className="text-[8px] font-black text-indigo-650 dark:text-indigo-400 uppercase">Grad Year</label>
+                    <input
+                      type="number"
+                      value={profile.graduation_year || 2024}
+                      onChange={(e) => setProfile((prev: any) => ({ ...prev, graduation_year: parseInt(e.target.value) }))}
+                      className="bg-[var(--background)] border border-[var(--border)] rounded-xl px-2 py-1 text-xs font-bold text-[var(--foreground)] text-center focus:outline-none focus:ring-1 focus:ring-indigo-500 w-full"
+                    />
+                  </div>
+                ) : (
+                  <>
+                    <div className="text-2xl font-black text-[var(--foreground)]">{profile.graduation_year || "2024"}</div>
+                    <div className="text-[8px] font-black text-[var(--muted)] uppercase">Grad Year</div>
+                  </>
+                )}
               </div>
             </div>
           </div>
 
+          {/* Career Vectors */}
           <div className="bg-[var(--surface)] border border-[var(--border)] p-8 rounded-3xl space-y-6">
-            <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--muted)] flex items-center gap-2">
-              <Zap className="h-4 w-4 text-amber-500" /> Career Vectors
-            </h3>
+            <div className="flex justify-between items-center">
+              <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--muted)] flex items-center gap-2">
+                <Zap className="h-4 w-4 text-amber-500" /> Career Vectors
+              </h3>
+              {isEditing && (
+                <button
+                  onClick={addInterest}
+                  className="text-[9px] font-black text-indigo-400 uppercase tracking-wider hover:underline"
+                >
+                  + Add
+                </button>
+              )}
+            </div>
             <div className="flex flex-wrap gap-2">
-              {(profile.interests || []).map((i: string) => (
-                <span key={i} className="px-3 py-1.5 bg-[var(--background)] border border-[var(--border)] rounded-lg text-[9px] font-bold text-[var(--foreground)] uppercase tracking-wider">
-                  {i}
-                </span>
-              ))}
+              {isEditing ? (
+                <div className="space-y-2 w-full">
+                  {(profile.interests || []).map((interest: string, index: number) => (
+                    <div key={index} className="flex gap-2 items-center">
+                      <input
+                        type="text"
+                        value={interest}
+                        onChange={(e) => handleInterestChange(index, e.target.value)}
+                        className="bg-[var(--background)] border border-[var(--border)] rounded-lg px-2 py-1 text-[10px] font-semibold text-[var(--foreground)] focus:outline-none focus:ring-1 focus:ring-indigo-500 flex-1"
+                      />
+                      <button
+                        onClick={() => removeInterest(index)}
+                        className="text-[9px] text-red-500 hover:text-red-400 font-bold px-1"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                (profile.interests || []).map((i: string) => (
+                  <span key={i} className="px-3 py-1.5 bg-[var(--background)] border border-[var(--border)] rounded-lg text-[9px] font-bold text-[var(--foreground)] uppercase tracking-wider">
+                    {i}
+                  </span>
+                ))
+              )}
             </div>
           </div>
         </div>
 
+        {/* Skill Matrix */}
         <div className="lg:col-span-2">
           <div className="bg-[var(--surface)] border border-[var(--border)] p-8 rounded-3xl space-y-8">
             <div className="flex items-center justify-between">
@@ -287,11 +440,12 @@ function StudentProfile({ initialProfile }: { initialProfile: any }) {
                       max="10" 
                       value={profile.skills?.[key] || 0}
                       onChange={(e) => updateSkill(key, parseInt(e.target.value))}
-                      className="w-full accent-indigo-500"
+                      className="w-full accent-indigo-500 cursor-pointer"
                     />
                   ) : (
                     <div className="h-1.5 w-full bg-[var(--background)] rounded-full overflow-hidden border border-[var(--border)]">
                       <motion.div 
+                      
                         initial={{ width: 0 }}
                         animate={{ width: `${(profile.skills?.[key] || 0) * 10}%` }}
                         className="h-full bg-indigo-500"

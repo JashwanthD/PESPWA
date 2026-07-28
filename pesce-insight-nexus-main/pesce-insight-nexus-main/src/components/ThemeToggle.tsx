@@ -12,15 +12,15 @@ export function ThemeToggle() {
       aria-label="Toggle Theme"
     >
       <div className="flex items-center gap-2 px-2 z-10">
-        <div className={`h-6 w-6 rounded-lg flex items-center justify-center transition-colors ${theme === 'dark' ? 'bg-indigo-500/10 text-indigo-400' : 'bg-zinc-800 text-zinc-400'}`}>
+        <div className={`h-6 w-6 rounded-lg flex items-center justify-center transition-colors ${theme === 'dark' ? 'bg-indigo-500/10 text-indigo-400' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-400'}`}>
            <Moon className="w-3.5 h-3.5" />
         </div>
-        <span className={`text-[10px] font-black uppercase tracking-widest transition-colors ${theme === 'dark' ? 'text-white' : 'text-zinc-500'}`}>Carbon</span>
+        <span className={`text-[10px] font-black uppercase tracking-widest transition-colors ${theme === 'dark' ? 'text-[var(--foreground)]' : 'text-[var(--muted)]'}`}>Carbon</span>
       </div>
 
       <div className="flex items-center gap-2 px-2 z-10">
-        <span className={`text-[10px] font-black uppercase tracking-widest transition-colors ${theme === 'light' ? 'text-indigo-600' : 'text-zinc-500'}`}>Dossier</span>
-        <div className={`h-6 w-6 rounded-lg flex items-center justify-center transition-colors ${theme === 'light' ? 'bg-indigo-500/10 text-indigo-600' : 'bg-zinc-800 text-zinc-400'}`}>
+        <span className={`text-[10px] font-black uppercase tracking-widest transition-colors ${theme === 'light' ? 'text-[var(--primary)]' : 'text-[var(--muted)]'}`}>Dossier</span>
+        <div className={`h-6 w-6 rounded-lg flex items-center justify-center transition-colors ${theme === 'light' ? 'bg-indigo-500/10 text-[var(--primary)]' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-400'}`}>
            <Sun className="w-3.5 h-3.5" />
         </div>
       </div>
@@ -30,9 +30,9 @@ export function ThemeToggle() {
         layoutId="theme-slider"
         initial={false}
         animate={{ 
-          x: theme === 'dark' ? '0%' : '100%',
-          left: theme === 'dark' ? '0px' : '-50%'
+          x: theme === 'dark' ? '0%' : '100%'
         }}
+        style={{ left: 0 }}
         className="absolute top-0 bottom-0 w-1/2 bg-indigo-500/5 border border-indigo-500/20 rounded-xl z-0"
       />
     </button>

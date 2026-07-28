@@ -44,3 +44,9 @@ Thumbs.db
 # ── Node modules (frontend) ───────────────────────────────────
 node_modules/
 dist/
+
+# ── Jenkins data ──────────────────────────────────────────────
+jenkins-home/
+jenkins-service/
+jenkins_console.txt
+*.jar

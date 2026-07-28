@@ -1,0 +1,198 @@
+import type { PESCECompanySchema } from "@/types/intelligence";
+
+export interface AlumniResource {
+  id: string;
+  alumni_name: string;
+  company_name: string;
+  resource_type: "leetcode" | "github" | "article" | "custom_question";
+  url: string | null;
+  description: string;
+  date_added: string;
+}
+
+export const mockPlacementCompanies: PESCECompanySchema[] = [
+  {
+    company_id: 1,
+    name: "Google India",
+    short_name: "Google",
+    logo_url: "https://logo.clearbit.com/google.com",
+    category: "Marquee",
+    incorporation_year: "2004",
+    nature_of_company: "Product Hub",
+    employee_size: "10,000+",
+    website_url: "https://google.co.in",
+    application_url: "https://careers.google.com/jobs/results/",
+    headquarters_address: "Bengaluru, Karnataka, India",
+    overview_text: "Google's mission is to organize the world's information and make it universally accessible and useful. Google India operates major development centers in Bengaluru and Hyderabad, focusing on Search, Ads, Cloud, and core infrastructure.",
+    skill_levels: {
+      coding: 9,
+      data_structures_and_algorithms: 10,
+      object_oriented_programming_and_design: 8,
+      aptitude_and_problem_solving: 9,
+      communication_skills: 8,
+      ai_native_engineering: 7,
+      devops_and_cloud: 7,
+      sql_and_design: 6,
+      software_engineering: 8,
+      system_design_and_architecture: 9,
+      computer_networking: 8,
+      operating_system: 8,
+    },
+    yoy_growth_rate: "15%",
+  },
+  {
+    company_id: 2,
+    name: "Razorpay Software",
+    short_name: "Razorpay",
+    logo_url: "https://logo.clearbit.com/razorpay.com",
+    category: "Super Dream",
+    incorporation_year: "2014",
+    nature_of_company: "Product Hub · Fintech",
+    employee_size: "3,000+",
+    website_url: "https://razorpay.com",
+    application_url: "https://razorpay.com/jobs/",
+    headquarters_address: "Bengaluru, Karnataka, India",
+    overview_text: "Razorpay is India's leading fintech platform, helping businesses manage their entire payment and financial lifecycle. They offer payment gateways, payouts, business banking, and payroll solutions.",
+    skill_levels: {
+      coding: 8,
+      data_structures_and_algorithms: 8,
+      object_oriented_programming_and_design: 8,
+      aptitude_and_problem_solving: 8,
+      communication_skills: 8,
+      ai_native_engineering: 6,
+      devops_and_cloud: 7,
+      sql_and_design: 8,
+      software_engineering: 8,
+      system_design_and_architecture: 8,
+      computer_networking: 6,
+      operating_system: 6,
+    },
+    yoy_growth_rate: "25%",
+  },
+  {
+    company_id: 3,
+    name: "Infosys Limited",
+    short_name: "Infosys",
+    logo_url: "https://logo.clearbit.com/infosys.com",
+    category: "Regular",
+    incorporation_year: "1981",
+    nature_of_company: "Service Ecosystem",
+    employee_size: "300,000+",
+    website_url: "https://infosys.com",
+    application_url: null, // Greyed-out button test case
+    headquarters_address: "Bengaluru, Karnataka, India",
+    overview_text: "Infosys is a global leader in next-generation digital services and consulting. They enable clients in more than 56 countries to navigate their digital transformation powered by cloud and AI.",
+    skill_levels: {
+      coding: 5,
+      data_structures_and_algorithms: 5,
+      object_oriented_programming_and_design: 6,
+      aptitude_and_problem_solving: 6,
+      communication_skills: 7,
+      ai_native_engineering: 5,
+      devops_and_cloud: 5,
+      sql_and_design: 6,
+      software_engineering: 6,
+      system_design_and_architecture: 4,
+      computer_networking: 5,
+      operating_system: 5,
+    },
+    yoy_growth_rate: "5%",
+  },
+  {
+    company_id: 4,
+    name: "Amazon Web Services India",
+    short_name: "AWS",
+    logo_url: "https://logo.clearbit.com/aws.amazon.com",
+    category: "Marquee",
+    incorporation_year: "2006",
+    nature_of_company: "Product Hub · Cloud",
+    employee_size: "50,000+",
+    website_url: "https://aws.amazon.com",
+    application_url: "https://amazon.jobs",
+    headquarters_address: "Bengaluru, Karnataka, India",
+    overview_text: "Amazon Web Services (AWS) is the world's most comprehensive and broadly adopted cloud platform, offering over 200 fully featured services from data centers globally.",
+    skill_levels: {
+      coding: 8,
+      data_structures_and_algorithms: 9,
+      object_oriented_programming_and_design: 8,
+      aptitude_and_problem_solving: 8,
+      communication_skills: 8,
+      ai_native_engineering: 6,
+      devops_and_cloud: 10,
+      sql_and_design: 8,
+      software_engineering: 8,
+      system_design_and_architecture: 9,
+      computer_networking: 9,
+      operating_system: 9,
+    },
+    yoy_growth_rate: "20%",
+  },
+  {
+    company_id: 5,
+    name: "Siemens India",
+    short_name: "Siemens",
+    logo_url: "https://logo.clearbit.com/siemens.com",
+    category: "Dream",
+    incorporation_year: "1847",
+    nature_of_company: "Industrial Tech · Engineering",
+    employee_size: "15,000+",
+    website_url: "https://siemens.co.in",
+    application_url: "https://new.siemens.com/in/en/company/jobs.html",
+    headquarters_address: "Mumbai, Maharashtra, India",
+    overview_text: "Siemens is a technology company focused on industry, infrastructure, transport, and healthcare. From resource-efficient factories to resilient supply chains, Siemens creates technology with purpose.",
+    skill_levels: {
+      coding: 7,
+      data_structures_and_algorithms: 7,
+      object_oriented_programming_and_design: 8,
+      aptitude_and_problem_solving: 7,
+      communication_skills: 8,
+      ai_native_engineering: 5,
+      devops_and_cloud: 6,
+      sql_and_design: 7,
+      software_engineering: 8,
+      system_design_and_architecture: 7,
+      computer_networking: 7,
+      operating_system: 8,
+    },
+    yoy_growth_rate: "8%",
+  }
+];
+
+export const mockAlumniResources: AlumniResource[] = [
+  {
+    id: "r-1",
+    alumni_name: "Darshan Gowda",
+    company_name: "Google",
+    resource_type: "leetcode",
+    url: "https://leetcode.com/discuss/interview-question?q=google",
+    description: "Crucial list of Google graph and dynamic programming questions asked in the past 6 months. Strongly recommend practicing DFS/BFS variations.",
+    date_added: "2026-05-10"
+  },
+  {
+    id: "r-2",
+    alumni_name: "Pooja Hegde",
+    company_name: "Razorpay",
+    resource_type: "github",
+    url: "https://github.com/alumni-repo/razorpay-prep",
+    description: "Complete preparation repository containing system design diagrams for Razorpay's ledger system and low-level design mockups for a rate limiter.",
+    date_added: "2026-05-12"
+  },
+  {
+    id: "r-3",
+    alumni_name: "Koushik S",
+    company_name: "Amazon",
+    resource_type: "custom_question",
+    url: null,
+    description: "Q: Design a real-time tracking system for logistics under high network latency.\nTip: Read about Amazon's DynamoDB consistency options and SQS FIFO queues.",
+    date_added: "2026-05-15"
+  },
+  {
+    id: "r-4",
+    alumni_name: "Yudhisthir Narayan",
+    company_name: "Siemens",
+    resource_type: "article",
+    url: "https://medium.com/engineering-prep/siemens-round-breakdown",
+    description: "A comprehensive breakdown of Siemens' assessment rounds, focusing on OOP principles, operating system scheduling, and C++ memory management.",
+    date_added: "2026-05-18"
+  }
+];

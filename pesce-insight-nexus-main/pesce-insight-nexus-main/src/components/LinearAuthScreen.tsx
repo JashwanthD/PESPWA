@@ -89,25 +89,23 @@ export function LinearAuthScreen() {
                 </div>
               </button>
 
-              {import.meta.env.DEV && (
-                <div className="pt-4 border-t border-[var(--border)] mt-6">
-                  <div className="text-[9px] uppercase tracking-widest text-[var(--muted)] font-black mb-3 px-1">Dev Tools</div>
-                  <div className="flex gap-2">
-                      <button
-                      onClick={() => handleBypass("student")}
-                      className="flex-1 py-2 px-3 bg-[var(--surface)] border border-[var(--border)] text-[9px] font-black uppercase text-[var(--muted)] hover:text-[var(--foreground)] hover:border-[var(--primary)] transition-all rounded-lg flex items-center justify-center gap-2 shadow-sm"
-                    >
-                      <Zap className="h-3 w-3 text-[var(--primary)]" /> Student Bypass
-                    </button>
-                    <button
-                      onClick={() => handleBypass("admin")}
-                      className="flex-1 py-2 px-3 bg-[var(--surface)] border border-[var(--border)] text-[9px] font-black uppercase text-[var(--muted)] hover:text-[var(--foreground)] hover:border-[var(--primary)] transition-all rounded-lg flex items-center justify-center gap-2 shadow-sm"
-                    >
-                      <ShieldCheck className="h-3 w-3 text-[var(--primary)]" /> Admin Bypass
-                    </button>
-                  </div>
+              <div className="pt-4 border-t border-[var(--border)] mt-6">
+                <div className="text-[9px] uppercase tracking-widest text-[var(--muted)] font-black mb-3 px-1">Quick Access Choice (Bypass Login)</div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => handleBypass("student")}
+                    className="flex-1 py-3 px-3 bg-[var(--surface)] border border-[var(--border)] text-[9px] font-black uppercase text-[var(--muted)] hover:text-white hover:border-[var(--primary)] transition-all rounded-xl flex items-center justify-center gap-2 shadow-sm active:scale-95 cursor-pointer"
+                  >
+                    <Zap className="h-3.5 w-3.5 text-[var(--primary)] animate-pulse" /> Student Choice
+                  </button>
+                  <button
+                    onClick={() => handleBypass("admin")}
+                    className="flex-1 py-3 px-3 bg-[var(--surface)] border border-[var(--border)] text-[9px] font-black uppercase text-[var(--muted)] hover:text-white hover:border-[var(--primary)] transition-all rounded-xl flex items-center justify-center gap-2 shadow-sm active:scale-95 cursor-pointer"
+                  >
+                    <ShieldCheck className="h-3.5 w-3.5 text-[var(--primary)] animate-pulse" /> Admin Choice
+                  </button>
                 </div>
-              )}
+              </div>
             </div>
 
             <div className="flex flex-col items-center gap-4">

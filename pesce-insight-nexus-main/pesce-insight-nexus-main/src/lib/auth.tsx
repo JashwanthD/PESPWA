@@ -11,6 +11,7 @@ type AuthContextType = {
   signInWithPassword: (email: string, pass: string) => Promise<{ error: any }>;
   signUpWithPassword: (email: string, pass: string) => Promise<{ error: any }>;
   logout: () => void;
+  updateProfile: (profile: any) => void;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -36,14 +37,43 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setSession(newSession);
       const userProfile = await fetchProfile(newSession.user.id);
       if (userProfile) {
-        setProfile(userProfile);
+        const localMockStr = localStorage.getItem("nexus_mock_profile");
+        let localMock: any = {};
+        if (localMockStr) {
+          try {
+            localMock = JSON.parse(localMockStr);
+          } catch {}
+        }
+        
+        const mergedProfile = {
+          ...localMock,
+          ...userProfile,
+          skills: (userProfile.skills && Object.keys(userProfile.skills).length > 0)
+            ? userProfile.skills
+            : (localMock.skills || {}),
+          interests: (userProfile.interests && userProfile.interests.length > 0)
+            ? userProfile.interests
+            : (localMock.interests || [])
+        };
+
+        setProfile(mergedProfile);
         setRole(userProfile.role as UserRole);
+        localStorage.setItem("nexus_mock_profile", JSON.stringify(mergedProfile));
       } else {
         setRole((newSession.user.user_metadata.role as UserRole) || "student");
       }
     } else {
       setSession(null);
-      setProfile(null);
+      const mockProfileStr = localStorage.getItem("nexus_mock_profile");
+      if (mockProfileStr) {
+        try {
+          setProfile(JSON.parse(mockProfileStr));
+        } catch {
+          setProfile(null);
+        }
+      } else {
+        setProfile(null);
+      }
       const mockRole = localStorage.getItem("nexus_mock_role") as UserRole;
       setRole(mockRole || null);
     }
@@ -74,15 +104,46 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = async () => {
     await supabaseMS1.auth.signOut();
     localStorage.removeItem("nexus_mock_role");
+    localStorage.removeItem("nexus_mock_profile");
     setSession(null);
     setRole(null);
+    setProfile(null);
   };
 
   const login = (newRole: UserRole) => {
-    // Legacy support for memory-based login (used by Bypass)
     setRole(newRole);
     if (newRole) {
       localStorage.setItem("nexus_mock_role", newRole);
+      
+      // Seed a robust default profile for the chosen mock role
+      const defaultProfile = {
+        full_name: newRole === "admin" ? "Architect Prime" : "Jashwanth D",
+        nexus_id: newRole === "admin" ? "PES-ADMIN-001" : "PES2024-NEXUS",
+        email: newRole === "admin" ? "architect@pes.edu" : "jashwanth.d@pes.edu",
+        major: newRole === "admin" ? "Principal System Architect" : "Computer Science & Engineering",
+        gpa: "8.85",
+        graduation_year: 2024,
+        location: "Bengaluru, India",
+        bio: newRole === "admin" ? "Root node administrator" : "Aspiring Full-Stack Architect...",
+        skills: {
+          coding: 8,
+          data_structures_and_algorithms: 8,
+          object_oriented_programming_and_design: 7,
+          aptitude_and_problem_solving: 8,
+          communication_skills: 9,
+          ai_native_engineering: 6,
+          devops_and_cloud: 5,
+          sql_and_design: 7,
+          software_engineering: 8,
+          system_design_and_architecture: 6,
+          computer_networking: 5,
+          operating_system: 6,
+        },
+        interests: ["Fintech", "SaaS", "AI Orchestration"]
+      };
+      
+      localStorage.setItem("nexus_mock_profile", JSON.stringify(defaultProfile));
+      setProfile(defaultProfile);
     }
   };
 
@@ -113,6 +174,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return { error };
   };
 
+  const updateProfile = (newProfile: any) => {
+    setProfile(newProfile);
+    localStorage.setItem("nexus_mock_profile", JSON.stringify(newProfile));
+  };
+
   return (
     <AuthContext.Provider value={{ 
       role, 
@@ -122,7 +188,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       login, 
       signInWithPassword,
       signUpWithPassword,
-      logout 
+      logout,
+      updateProfile
     }}>
       {children}
     </AuthContext.Provider>

@@ -51,14 +51,32 @@ export function useCompanyById(id: number | null) {
           fetchHiringJsonByCompanyId(id),
         ]);
 
-        if (!ms1Data) {
+        let finalCompanyData = ms1Data;
+        
+        // If not found in database, check localStorage custom companies
+        if (!finalCompanyData) {
+          try {
+            const stored = localStorage.getItem("localGeneratedCompanies");
+            if (stored) {
+              const customCompanies = JSON.parse(stored);
+              const found = customCompanies.find((c: any) => Number(c.company_id) === Number(id));
+              if (found) {
+                finalCompanyData = found;
+              }
+            }
+          } catch (e) {
+            console.warn("Error parsing localGeneratedCompanies in useCompanyById:", e);
+          }
+        }
+
+        if (!finalCompanyData) {
           throw new Error("Company not found in Intelligence Database");
         }
 
         // Rule: If a fetch fails or data is null, provide a fallback to prevent UI crashes.
         // We merged it to job_role_details schema key.
         const mergedCompany: PESCECompanySchema = {
-          ...ms1Data,
+          ...finalCompanyData,
           job_role_details: ms2Json || { fallback_status: "N/A" },
         };
 

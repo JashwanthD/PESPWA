@@ -1,5 +1,5 @@
 import type { PESCECompanySchema } from "@/types/intelligence";
-import { Link } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { ArrowUpRight, MapPin, Briefcase, Zap, Shield, TrendingUp, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { ensureAbsoluteUrl } from "@/utils/calculators";
@@ -12,6 +12,7 @@ export function CompanyListItem({ company }: { company: PESCECompanySchema }) {
   const { calculateMatch } = useProfileSync();
   const matchScore = calculateMatch(company);
   const [applied, setApplied] = useState(false);
+  const navigate = useNavigate();
   
   const logoSrc = ensureAbsoluteUrl(company.logo_url);
   const initials = (company.short_name || company.name || "?")
@@ -21,16 +22,22 @@ export function CompanyListItem({ company }: { company: PESCECompanySchema }) {
     .slice(0, 2)
     .toUpperCase();
 
+  const handleCardClick = () => {
+    navigate({
+      to: "/companies/$id",
+      params: { id: company.company_id.toString() }
+    });
+  };
+
   return (
     <motion.div 
       initial={{ opacity: 0, x: -10 }}
       animate={{ opacity: 1, x: 0 }}
       className="w-full"
     >
-      <Link
-        to="/companies/$id"
-        params={{ id: company.company_id.toString() }}
-        className="group flex flex-col md:flex-row md:items-center gap-4 md:gap-6 bg-[var(--surface)] border border-[var(--border)] p-4 rounded-2xl hover:border-indigo-500/50 transition-all duration-300 shadow-sm hover:shadow-indigo-500/5 relative overflow-hidden"
+      <div
+        onClick={handleCardClick}
+        className="group flex flex-col md:flex-row md:items-center gap-4 md:gap-6 bg-[var(--surface)] border border-[var(--border)] p-4 rounded-2xl hover:border-indigo-500/50 transition-all duration-300 shadow-sm hover:shadow-indigo-500/5 relative overflow-hidden cursor-pointer"
       >
         <div className="flex items-center gap-4 w-full md:w-auto md:flex-1 min-w-0">
           {/* Logo Section */}
@@ -87,13 +94,14 @@ export function CompanyListItem({ company }: { company: PESCECompanySchema }) {
           <button 
             onClick={(e) => {
               e.preventDefault();
+              e.stopPropagation();
               setApplied(true);
             }}
             disabled={applied}
             className={`px-4 py-2 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all shadow-lg active:scale-95 flex items-center justify-center gap-2 flex-1 md:flex-none ${
               applied 
                 ? "bg-emerald-500/20 text-emerald-500 border border-emerald-500/30 shadow-none cursor-default" 
-                : "bg-indigo-500 hover:bg-indigo-600 text-white shadow-indigo-500/20"
+                : "bg-indigo-500 hover:bg-indigo-650 text-white shadow-indigo-500/20"
             }`}
           >
             {applied ? (
@@ -108,7 +116,7 @@ export function CompanyListItem({ company }: { company: PESCECompanySchema }) {
             <ArrowUpRight className="h-4 w-4 text-[var(--muted)] group-hover:text-indigo-400 transition-colors" />
           </div>
         </div>
-      </Link>
+      </div>
     </motion.div>
   );
 }

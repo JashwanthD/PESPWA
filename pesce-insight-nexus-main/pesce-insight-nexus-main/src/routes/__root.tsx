@@ -1,13 +1,23 @@
 import React, { useEffect } from "react";
-import { Outlet, createRootRoute, HeadContent, Scripts, Link, useLocation } from "@tanstack/react-router";
+import { Outlet, createRootRoute, HeadContent, Scripts, Link, useLocation, useNavigate } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { AuthProvider, useAuth } from "@/lib/auth";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { Preloader } from "@/components/ui/Preloader";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import appCss from "../styles.css?url";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      retry: 2,
+    },
+  },
+});
 
 function NotFoundComponent() {
   return (
@@ -86,27 +96,56 @@ function RootComponent() {
   };
   
   return (
-    <ThemeProvider>
-      <AnimatePresence mode="wait">
-        {booting ? (
-          <Preloader key="preloader" onComplete={handleBootComplete} />
-        ) : (
-          <AuthProvider key="app">
-            <AuthGate location={location} />
-          </AuthProvider>
-        )}
-      </AnimatePresence>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <AnimatePresence mode="wait">
+          {booting ? (
+            <Preloader key="preloader" onComplete={handleBootComplete} />
+          ) : (
+            <AuthProvider key="app">
+              <AuthGate location={location} />
+            </AuthProvider>
+          )}
+        </AnimatePresence>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
 
 function AuthGate({ location }: { location: any }) {
-  const { session, loading } = useAuth();
+  const { role, loading, session } = useAuth();
+  const navigate = useNavigate();
   const isLoginPage = location.pathname === "/login";
 
   useEffect(() => {
-    console.log("[Auth] 🔑 Session Detected:", !!session);
-  }, [session]);
+    if (!loading) {
+      if (!role && !isLoginPage) {
+        navigate({ to: "/login" });
+      } else if (role && isLoginPage) {
+        navigate({ to: "/" });
+      }
+    }
+  }, [role, loading, isLoginPage, navigate]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#09090b]">
+        <div className="flex flex-col items-center gap-4">
+          <div className="h-10 w-10 bg-indigo-500 rounded-xl animate-pulse flex items-center justify-center font-black text-xs text-white shadow-lg shadow-indigo-500/20">
+            P
+          </div>
+          <div className="text-[10px] uppercase tracking-[0.3em] font-black text-zinc-500 animate-pulse">
+            Syncing Intelligence...
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Prevent protected UI flashing before redirect completes
+  if (!role && !isLoginPage) {
+    return null;
+  }
 
   const content = (
     <AnimatePresence mode="wait">

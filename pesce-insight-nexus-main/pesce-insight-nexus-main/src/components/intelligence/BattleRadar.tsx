@@ -19,7 +19,6 @@ interface BattleRadarProps {
  */
 export function BattleRadar({ company }: BattleRadarProps) {
   // Map the 12 rubric parameters from the company object
-  // These will be merged into the company object by the dataHydrator
   const skillLevels = company.skill_levels || {};
 
   const axes = [
@@ -37,9 +36,27 @@ export function BattleRadar({ company }: BattleRadarProps) {
     { key: "os", label: "OS" },
   ];
 
+  const SKILL_KEY_MAP: Record<string, string> = {
+    coding: "coding",
+    dsa: "data_structures_and_algorithms",
+    oop: "object_oriented_programming_and_design",
+    aptitude: "aptitude_and_problem_solving",
+    communication: "communication_skills",
+    ai_native: "ai_native_engineering",
+    devops: "devops_and_cloud",
+    sql: "sql_and_design",
+    software_eng: "software_engineering",
+    system_design: "system_design_and_architecture",
+    networking: "computer_networking",
+    os: "operating_system"
+  };
   const data = axes.map((axis) => {
-    // @ts-ignore
-    const rawValue = company[axis.key] || "";
+    const longKey = SKILL_KEY_MAP[axis.key] || axis.key;
+    const rawValue = 
+      (company.skill_levels as any)?.[longKey] || 
+      (company.skill_levels as any)?.[axis.key] || 
+      (company as any)[axis.key] || 
+      "";
     return {
       axis: axis.label,
       value: getScoreValue(rawValue),
