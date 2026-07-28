@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://YOUR_RENDER_APP_NAME.onrender.com/:path*"
+      "destination": "https://pespwa.onrender.com/:path*"
     },
     {
       "source": "/(.*)",
