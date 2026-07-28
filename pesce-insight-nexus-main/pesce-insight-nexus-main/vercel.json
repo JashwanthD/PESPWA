@@ -3,10 +3,6 @@
     {
       "source": "/api/:path*",
       "destination": "https://pespwa.onrender.com/:path*"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
     }
   ]
 }
