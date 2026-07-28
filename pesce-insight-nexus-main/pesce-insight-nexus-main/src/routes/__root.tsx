@@ -8,8 +8,6 @@ import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { Preloader } from "@/components/ui/Preloader";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import appCss from "../styles.css?url";
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -52,7 +50,6 @@ export const Route = createRootRoute({
       { property: "og:type", content: "website" },
     ],
     links: [
-      { rel: "stylesheet", href: appCss },
       { rel: "manifest", href: "/manifest.webmanifest" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },

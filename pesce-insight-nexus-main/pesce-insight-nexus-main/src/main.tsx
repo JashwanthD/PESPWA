@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "@tanstack/react-router";
 import { getRouter } from "./router";
+import "./styles.css"; // Ensure Vite automatically injects this into index.html
 
 // 1. RECOVERY COMPONENT
 class SafeErrorBoundary extends React.Component<{ children: ReactNode }, { hasError: boolean }> {
